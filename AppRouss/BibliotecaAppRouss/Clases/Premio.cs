@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BibliotecaAppRouss.Clases
 {
-    class Administrador
+    class Premio
     {
         public virtual int Codigo { get; set; }
-        public virtual string NombreUsuario { get; set; }
-        public virtual string Contraseña { get; set; }
+        public virtual string Descripcion { get; set; }
+        public virtual int Probabilidad { get; set; }
     }
 }

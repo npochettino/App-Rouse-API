@@ -50,8 +50,15 @@
   <ItemGroup>
     <Compile Include="ClasesComplementarias\ManejoNHibernate.cs" />
     <Compile Include="Clases\Administrador.cs" />
+    <Compile Include="Clases\Participante.cs" />
+    <Compile Include="Clases\Premio.cs" />
     <Compile Include="Clases\Sorteo.cs" />
     <Compile Include="Clases\Usuario.cs" />
+    <Compile Include="Mapeos\AdministradorMap.cs" />
+    <Compile Include="Mapeos\ParticipanteMap.cs" />
+    <Compile Include="Mapeos\PremioMap.cs" />
+    <Compile Include="Mapeos\SorteoMap.cs" />
+    <Compile Include="Mapeos\UsuarioMap.cs" />
     <Compile Include="ModuloPrueba.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

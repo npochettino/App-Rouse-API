@@ -11,7 +11,7 @@ namespace BibliotecaAppRouss.Clases
         public virtual int Codigo { get; set; }
         public virtual DateTime FechaDesde { get; set; }
         public virtual DateTime FechaHasta { get; set; }
-        public virtual string? Descripcion { get; set; }
+        public virtual string Descripcion { get; set; }
         public virtual int CantidadTirosPorUsuario { get; set; }
         public virtual int CantidadPremiosPorUsuario { get; set; }
     }
