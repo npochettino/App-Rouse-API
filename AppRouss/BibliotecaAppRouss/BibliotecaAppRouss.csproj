@@ -48,12 +48,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Catalogos\CatalogoAdministrador.cs" />
+    <Compile Include="Catalogos\CatalogoGenerico.cs" />
+    <Compile Include="Catalogos\CatalogoParticipante.cs" />
+    <Compile Include="Catalogos\CatalogoPremio.cs" />
+    <Compile Include="Catalogos\CatalogoSorteo.cs" />
+    <Compile Include="Catalogos\CatalogoUsuario.cs" />
     <Compile Include="ClasesComplementarias\ManejoNHibernate.cs" />
     <Compile Include="Clases\Administrador.cs" />
     <Compile Include="Clases\Participante.cs" />
     <Compile Include="Clases\Premio.cs" />
     <Compile Include="Clases\Sorteo.cs" />
     <Compile Include="Clases\Usuario.cs" />
+    <Compile Include="Controladores\ControladorGeneral.cs" />
     <Compile Include="Mapeos\AdministradorMap.cs" />
     <Compile Include="Mapeos\ParticipanteMap.cs" />
     <Compile Include="Mapeos\PremioMap.cs" />

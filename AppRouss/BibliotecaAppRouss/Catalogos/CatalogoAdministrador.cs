@@ -8,14 +8,14 @@ using NHibernate;
 
 namespace BibliotecaAppRouss.Catalogos
 {
-    class CatalogoUsuario : CatalogoGenerico<Usuario>
+    class CatalogoAdministrador : CatalogoGenerico<Administrador>
     {
-        public static Usuario RecuperarPorMailYContraseña(string mail, string contraseña, ISession nhSesion)
+        public static Administrador RecuperarPorUsuarioYContraseña(string nombreUsuario, string contraseña, ISession nhSesion)
         {
             try
             {
-                Usuario usuario = RecuperarPor(x => x.Contraseña == contraseña && x.Mail == mail, nhSesion);
-                return usuario;
+                Administrador adm = RecuperarPor(x => x.Contraseña == contraseña && x.NombreUsuario == nombreUsuario, nhSesion);
+                return adm;
             }
             catch (Exception ex)
             {
