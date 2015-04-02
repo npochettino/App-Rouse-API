@@ -1,13 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="administradores.aspx.cs" Inherits="AppRouss.administradores" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="administradores.aspx.cs" Inherits="AppRouss.administradores" %>
 
 <%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
-
-
-<%@ Register assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxEditors" tagprefix="dx" %>
-
-
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
@@ -108,6 +102,8 @@
                                                 </div>
                                             </div>
                                             <div class="form-body">
+                                                
+                                                
                                                 <dx:ASPxGridView ID="gvAdministradores" Width="100%" runat="server" Theme="Metropolis">
                                                     <SettingsBehavior AllowFocusedRow="True" />
 
@@ -193,4 +189,3 @@
     <!-- END JAVASCRIPTS -->
 
 </asp:Content>
-

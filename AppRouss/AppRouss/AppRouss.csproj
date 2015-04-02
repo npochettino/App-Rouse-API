@@ -59,6 +59,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="administradores.aspx" />
     <Content Include="cambioContraseña.aspx" />
     <Content Include="administradoresAdd.aspx" />
     <Content Include="assets\admin\layout\css\custom.css" />
@@ -3643,7 +3644,6 @@
     <Content Include="assets\global\plugins\zoom\jquery.zoom.min.js" />
     <Content Include="assets\global\scripts\datatable.js" />
     <Content Include="assets\global\scripts\metronic.js" />
-    <Content Include="administradores.aspx" />
     <Content Include="assets\rouss\boton.png" />
     <Content Include="assets\rouss\favicon.ico" />
     <Content Include="assets\rouss\fondo2.png" />
@@ -3660,29 +3660,32 @@
     <Content Include="form_controls.html" />
     <Content Include="form_layouts.html" />
     <Content Include="form_validation.html" />
+    <Content Include="index.aspx" />
     <Content Include="premios.aspx" />
     <Content Include="reporteUsuarios.aspx" />
     <Content Include="reporteGanadores.aspx" />
     <Content Include="ServicioWeb.asmx" />
-    <Content Include="sorteosAdd.aspx" />
     <Content Include="sorteos.aspx" />
-    <Content Include="index.aspx" />
+    <Content Include="sorteosAdd.aspx" />
     <Content Include="livecss.js" />
     <Content Include="login.aspx" />
     <Content Include="reporteParticipantes.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="administradores.aspx.cs">
+      <DependentUpon>administradores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administradores.aspx.designer.cs">
+      <DependentUpon>administradores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="cambioContraseña.aspx.cs">
       <DependentUpon>cambioContraseña.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="administradoresAdd.aspx.cs">
       <DependentUpon>administradoresAdd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="administradores.aspx.cs">
-      <DependentUpon>administradores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="components.aspx.cs">
@@ -3699,9 +3702,19 @@
     <Compile Include="extra_lock.aspx.designer.cs">
       <DependentUpon>extra_lock.aspx</DependentUpon>
     </Compile>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="premios.aspx.cs">
       <DependentUpon>premios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="premios.aspx.designer.cs">
+      <DependentUpon>premios.aspx</DependentUpon>
     </Compile>
     <Compile Include="reporteUsuarios.aspx.cs">
       <DependentUpon>reporteUsuarios.aspx</DependentUpon>
@@ -3715,16 +3728,15 @@
       <DependentUpon>ServicioWeb.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="sorteosAdd.aspx.cs">
-      <DependentUpon>sorteosAdd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="sorteos.aspx.cs">
       <DependentUpon>sorteos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="index.aspx.cs">
-      <DependentUpon>index.aspx</DependentUpon>
+    <Compile Include="sorteos.aspx.designer.cs">
+      <DependentUpon>sorteos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sorteosAdd.aspx.cs">
+      <DependentUpon>sorteosAdd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="login.aspx.cs">
@@ -4041,7 +4053,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>21404</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:57642/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

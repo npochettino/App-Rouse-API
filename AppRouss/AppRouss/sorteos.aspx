@@ -1,7 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="sorteos.aspx.cs" Inherits="AppRouss.sorteos" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="sorteos.aspx.cs" Inherits="AppRouss.sorteos" %>
 
 <%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
-
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
@@ -104,6 +103,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-body">
+                                                
                                                 <dx:ASPxGridView ID="gvSorteos" runat="server"></dx:ASPxGridView>
                                             </div>
                                             
@@ -190,4 +190,3 @@
     <!-- END JAVASCRIPTS -->
 
 </asp:Content>
-

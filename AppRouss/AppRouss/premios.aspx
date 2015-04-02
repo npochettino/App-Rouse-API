@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="premios.aspx.cs" Inherits="AppRouss.premios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="premios.aspx.cs" Inherits="AppRouss.premios" %>
 
 <%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
 
@@ -98,7 +98,7 @@
                                         <dx:ASPxGridView ID="gvPremios" runat="server">
 
                                         </dx:ASPxGridView>
-
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -176,4 +176,3 @@
     <!-- END JAVASCRIPTS -->
 
 </asp:Content>
-
