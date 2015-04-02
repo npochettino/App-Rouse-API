@@ -142,7 +142,11 @@ namespace BibliotecaAppRouss.Controladores
                 tablaUsuario.Columns.Add("contraseña");
 
                 Usuario usuario = CatalogoUsuario.RecuperarPorMailYContraseña(mail, contraseña, nhSesion);
-                tablaUsuario.Rows.Add(new object[] { usuario.Codigo, usuario.Nombre, usuario.Apellido, usuario.Dni, usuario.Telefono, usuario.Mail, usuario.Contraseña });
+                
+                if (usuario != null)
+                {
+                    tablaUsuario.Rows.Add(new object[] { usuario.Codigo, usuario.Nombre, usuario.Apellido, usuario.Dni, usuario.Telefono, usuario.Mail, usuario.Contraseña });
+                }
 
                 return tablaUsuario;
             }
@@ -259,6 +263,41 @@ namespace BibliotecaAppRouss.Controladores
 
                 (from s in listaPremios select s).Aggregate(tablaPremios, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.Probabilidad); return dt; });
                 return tablaPremios;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static int RecuperarPremio()
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                Random rnd = new Random();
+                int sorteo = rnd.Next(1, 100);
+                int codigoPremio = 0;
+                int probabilidadAnterior = 0;
+                int probabilidadPosterior = 0;
+                List<Premio> listaPremios = CatalogoPremio.RecuperarTodos(nhSesion);
+
+                foreach (Premio premio in listaPremios)
+                {
+                    probabilidadPosterior = probabilidadPosterior + premio.Probabilidad;
+
+                    if (sorteo > probabilidadAnterior && sorteo <= probabilidadPosterior)
+                    {
+                        codigoPremio = premio.Codigo;
+                        break;
+                    }
+
+                    probabilidadAnterior = probabilidadAnterior + premio.Probabilidad;
+
+                }
+
+                return codigoPremio;
             }
             catch (Exception ex)
             {

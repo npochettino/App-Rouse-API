@@ -15,8 +15,8 @@ namespace BibliotecaAppRouss.ClasesComplementarias
         {
             ISessionFactory _sessionFactory = Fluently.Configure()
 
-              //.Database(MsSqlConfiguration.MsSql2008.ConnectionString("data source=localhost\\sqlexpress;initial catalog=HistorialMedico;integrated security=True"))
-              .Database(MsSqlConfiguration.MsSql2008.ConnectionString("data source=localhost;initial catalog=AppRouss;user=sa;password=ana"))
+              .Database(MsSqlConfiguration.MsSql2008.ConnectionString("data source=localhost\\sqlexpress;initial catalog=AppRouss;integrated security=True"))
+              //.Database(MsSqlConfiguration.MsSql2008.ConnectionString("data source=localhost;initial catalog=AppRouss;user=sa;password=ana"))
               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<ModuloPrueba>())
               .BuildSessionFactory();
             return _sessionFactory;

@@ -4032,9 +4032,6 @@
     <Folder Include="assets\global\plugins\jquery-file-upload\server\php\files\thumbnail\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\licenses.licx" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\BibliotecaAppRouss\BibliotecaAppRouss.csproj">
       <Project>{d09179ac-6d9c-4f1f-bb3e-f0d02b11d315}</Project>
       <Name>BibliotecaAppRouss</Name>
