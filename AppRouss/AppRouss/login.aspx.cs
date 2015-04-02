@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BibliotecaAppRouss.Controladores;
 
 namespace AppRouss
 {
@@ -23,9 +25,10 @@ namespace AppRouss
 
         protected void txtLogin_Click(object sender, EventArgs e)
         {
-            if (txtUsuario.Text.Trim() == "admin" && txtContraseña.Text.Trim() == "admin")
+            DataTable dtAdministradorActual = ControladorGeneral.RecuperarLogueoAdministrador(txtUsuario.Text.Trim(), txtContraseña.Text.Trim());
+            if(dtAdministradorActual != null)
             {
-                //Session.Add("IDAdministrados", oUsuarioActual.ID);
+                Session.Add("codigoAdm", dtAdministradorActual.Rows[0][1].ToString());
                 Session.Add("logueado", true);
                 Response.Redirect("index.aspx");
             }

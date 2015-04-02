@@ -1,4 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="administradores.aspx.cs" Inherits="administradores" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="administradores.aspx.cs" Inherits="AppRouss.administradores" %>
+
+<%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
+
+
+<%@ Register assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxEditors" tagprefix="dx" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -98,12 +103,15 @@
                                             <div class="form-actions top">
                                                 <div class="btn-set pull-left">   
                                                     <asp:Button ID="btnNewAdministrador" class="btn blue" runat="server" Text="Nuevo" OnClick="btnNewAdministrador_Click" />                                                 
-                                                    <button type="button" class="btn yellow">Editar</button>
-                                                    <button type="button" class="btn red">Eliminar</button>
+                                                    <asp:Button ID="btnEditarAdministrador" class="btn yellow" runat="server" Text="Editar" OnClick="btnEditarAdministrador_Click" />                                                 
+                                                    <asp:Button ID="btnEliminarAdministrador" class="btn red" runat="server" Text="Eliminar" OnClick="btnEliminarAdministrador_Click" />                                                 
                                                 </div>
                                             </div>
                                             <div class="form-body">
-                                                
+                                                <dx:ASPxGridView ID="gvAdministradores" Width="100%" runat="server" Theme="Metropolis">
+                                                    <SettingsBehavior AllowFocusedRow="True" />
+
+                                                </dx:ASPxGridView>
                                             </div>
                                             
                                             <!-- END FORM-->

@@ -1,4 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="premios.aspx.cs" Inherits="premios" enableEventValidation="false" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="premios.aspx.cs" Inherits="AppRouss.premios" %>
+
+<%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -93,7 +95,9 @@
                                 </div>
                                 <div class="portlet-body">
                                     <div id="chart_1" class="chart" style="height: 500px;">
+                                        <dx:ASPxGridView ID="gvPremios" runat="server">
 
+                                        </dx:ASPxGridView>
 
                                     </div>
                                 </div>

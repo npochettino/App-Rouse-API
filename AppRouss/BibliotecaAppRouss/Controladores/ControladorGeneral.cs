@@ -55,7 +55,10 @@ namespace BibliotecaAppRouss.Controladores
                 tablaAdm.Columns.Add("contraseña");
 
                 Administrador adm = CatalogoAdministrador.RecuperarPorUsuarioYContraseña(nombreUsuario, contraseña, nhSesion);
-                tablaAdm.Rows.Add(new object[] { adm.Codigo, adm.NombreUsuario, adm.Contraseña });
+                if (adm == null)
+                    tablaAdm = null;
+                else
+                    tablaAdm.Rows.Add(new object[] { adm.Codigo, adm.NombreUsuario, adm.Contraseña });
 
                 return tablaAdm;
             }
