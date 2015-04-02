@@ -3663,6 +3663,7 @@
     <Content Include="premios.aspx" />
     <Content Include="reporteUsuarios.aspx" />
     <Content Include="reporteGanadores.aspx" />
+    <Content Include="ServicioWeb.asmx" />
     <Content Include="sorteosAdd.aspx" />
     <Content Include="sorteos.aspx" />
     <Content Include="index.aspx" />
@@ -3709,6 +3710,10 @@
     <Compile Include="reporteGanadores.aspx.cs">
       <DependentUpon>reporteGanadores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ServicioWeb.asmx.cs">
+      <DependentUpon>ServicioWeb.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="sorteosAdd.aspx.cs">
       <DependentUpon>sorteosAdd.aspx</DependentUpon>
