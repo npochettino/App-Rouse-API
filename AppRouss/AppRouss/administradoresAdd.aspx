@@ -1,9 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="administradoresAdd.aspx.cs" Inherits="AppRouss.administradoresAdd" %>
-
-
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
-    <!-- BEGIN CONTENT -->
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="administradoresAdd.aspx.cs" Inherits="AppRouss.administradoresAdd" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+      <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
 
@@ -124,8 +121,8 @@
                                             </div>
                                             <div class="form-actions">
                                                 <div class="btn-set pull-right">
-                                                    <button type="button" class="btn blue">Confirmar</button>
-                                                    <button type="button" class="btn red">Cancelar</button>
+                                                    <asp:Button ID="btnConfirmar" class="btn blue" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
+                                                    <asp:Button ID="btnCancelar" class="btn red" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
                                                 </div>
                                             </div>
                                             <!-- END FORM-->
@@ -164,4 +161,3 @@
     <!-- END JAVASCRIPTS -->
 
 </asp:Content>
-

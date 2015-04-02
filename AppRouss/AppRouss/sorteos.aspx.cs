@@ -21,6 +21,7 @@ namespace AppRouss
         private void LoadGridSorteos()
         {
             gvSorteos.DataSource = ControladorGeneral.RecuperarTodosSorteos();
+            gvSorteos.DataBind();
         }
 
         protected void btnNewSorteo_Click(object sender, EventArgs e)

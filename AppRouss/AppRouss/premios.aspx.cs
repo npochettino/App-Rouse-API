@@ -21,6 +21,7 @@ namespace AppRouss
         private void LoadGridPremios()
         {
             gvPremios.DataSource = ControladorGeneral.RecuperarTodosPremios();
+            gvPremios.DataBind();
         }
 
     }

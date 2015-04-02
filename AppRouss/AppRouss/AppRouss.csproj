@@ -63,8 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="administradores.aspx" />
-    <Content Include="cambioContraseña.aspx" />
     <Content Include="administradoresAdd.aspx" />
+    <Content Include="cambioContraseña.aspx" />
     <Content Include="assets\admin\layout\css\custom.css" />
     <Content Include="assets\admin\layout\css\layout.css" />
     <Content Include="assets\admin\layout\css\themes\blue.css" />
@@ -3683,12 +3683,15 @@
     <Compile Include="administradores.aspx.designer.cs">
       <DependentUpon>administradores.aspx</DependentUpon>
     </Compile>
-    <Compile Include="cambioContraseña.aspx.cs">
-      <DependentUpon>cambioContraseña.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="administradoresAdd.aspx.cs">
       <DependentUpon>administradoresAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="administradoresAdd.aspx.designer.cs">
+      <DependentUpon>administradoresAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cambioContraseña.aspx.cs">
+      <DependentUpon>cambioContraseña.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="components.aspx.cs">
@@ -4040,6 +4043,9 @@
       <Project>{d09179ac-6d9c-4f1f-bb3e-f0d02b11d315}</Project>
       <Name>BibliotecaAppRouss</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

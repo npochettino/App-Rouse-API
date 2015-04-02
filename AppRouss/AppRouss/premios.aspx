@@ -29,7 +29,7 @@
                 </ul>
 
 
-               <%-- <div class="page-toolbar">
+                <%-- <div class="page-toolbar">
                     <div class="btn-group pull-right">
                         <button type="button" class="btn btn-fit-height grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
                             Acciones <i class="fa fa-angle-down"></i>
@@ -95,10 +95,17 @@
                                 </div>
                                 <div class="portlet-body">
                                     <div id="chart_1" class="chart" style="height: 500px;">
-                                        <dx:ASPxGridView ID="gvPremios" runat="server">
-
+                                        <dx:ASPxGridView ID="gvPremios" runat="server" KeyFieldName="idPremio">
+                                            <Columns>
+                                                <dx:GridViewDataTextColumn Caption="idPremio" FieldName="idPremio" Visible="False" VisibleIndex="0">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="Descripcion" FieldName="descripcion" VisibleIndex="1">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="Probabilidad" FieldName="probabilidad" VisibleIndex="2">
+                                                </dx:GridViewDataTextColumn>                                                
+                                            </Columns>
                                         </dx:ASPxGridView>
-                                        
+
                                     </div>
                                 </div>
                             </div>

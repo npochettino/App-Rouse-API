@@ -104,7 +104,22 @@
                                             </div>
                                             <div class="form-body">
                                                 
-                                                <dx:ASPxGridView ID="gvSorteos" runat="server"></dx:ASPxGridView>
+                                                <dx:ASPxGridView ID="gvSorteos" runat="server" KeyFieldName="idSorteo">
+                                                    <Columns>
+                                                        <dx:GridViewDataTextColumn Caption="idSorteo" FieldName="idSorteo" Visible="False" VisibleIndex="0">
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn Caption="Fecha Desde" FieldName="fechaDesde" VisibleIndex="1">
+                                                        </dx:GridViewDataTextColumn>                                                        
+                                                        <dx:GridViewDataTextColumn Caption="Fecha Hasta" FieldName="fechaHasta" VisibleIndex="2">
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn Caption="Descripcion" FieldName="descripcion" VisibleIndex="3">
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn Caption="Cantidad Tiros x Usuario" FieldName="cantidadTirosPorUsuario" VisibleIndex="4">
+                                                        </dx:GridViewDataTextColumn>                                                        
+                                                        <dx:GridViewDataTextColumn Caption="Cantidad Premios x Usuario" FieldName="cantidadPremiosPorUsuario" VisibleIndex="5">
+                                                        </dx:GridViewDataTextColumn>
+                                                    </Columns>
+                                                </dx:ASPxGridView>
                                             </div>
                                             
                                             <!-- END FORM-->

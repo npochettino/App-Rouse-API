@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="administradores.aspx.cs" Inherits="AppRouss.administradores" %>
 
 <%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
@@ -33,8 +34,8 @@
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li>
-								<a href="administradoresAdd.aspx">Nuevo Administrador</a>
-							</li>
+                                <a href="administradoresAdd.aspx">Nuevo Administrador</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -95,21 +96,28 @@
                                         <div class="portlet-body form">
                                             <!-- BEGIN FORM-->
                                             <div class="form-actions top">
-                                                <div class="btn-set pull-left">   
-                                                    <asp:Button ID="btnNewAdministrador" class="btn blue" runat="server" Text="Nuevo" OnClick="btnNewAdministrador_Click" />                                                 
-                                                    <asp:Button ID="btnEditarAdministrador" class="btn yellow" runat="server" Text="Editar" OnClick="btnEditarAdministrador_Click" />                                                 
-                                                    <asp:Button ID="btnEliminarAdministrador" class="btn red" runat="server" Text="Eliminar" OnClick="btnEliminarAdministrador_Click" />                                                 
+                                                <div class="btn-set pull-left">
+                                                    <asp:Button ID="btnNewAdministrador" class="btn blue" runat="server" Text="Nuevo" OnClick="btnNewAdministrador_Click" />
+                                                    <asp:Button ID="btnEditarAdministrador" class="btn yellow" runat="server" Text="Editar" OnClick="btnEditarAdministrador_Click" />
+                                                    <asp:Button ID="btnEliminarAdministrador" class="btn red" runat="server" Text="Eliminar" OnClick="btnEliminarAdministrador_Click" />
                                                 </div>
                                             </div>
                                             <div class="form-body">
-                                                
-                                                
-                                                <dx:ASPxGridView ID="gvAdministradores" Width="100%" runat="server" Theme="Metropolis">
-                                                    <SettingsBehavior AllowFocusedRow="True" />
 
+
+                                                <dx:ASPxGridView ID="gvAdministradores" KeyFieldName="idAdministrador" Width="100%" runat="server" Theme="Metropolis" AutoGenerateColumns="False">
+                                                    <Columns>
+                                                        <dx:GridViewDataTextColumn Caption="idAdministrador" FieldName="idAdministrador" Visible="False" VisibleIndex="1">
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn Caption="Usuario" FieldName="usuario" VisibleIndex="2" Visible="true">
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn Caption="Contraseña" FieldName="contraseña" VisibleIndex="3">
+                                                        </dx:GridViewDataTextColumn>
+                                                    </Columns>
+                                                    <SettingsBehavior AllowFocusedRow="True" />
                                                 </dx:ASPxGridView>
                                             </div>
-                                            
+
                                             <!-- END FORM-->
                                         </div>
                                     </div>
@@ -133,36 +141,27 @@
             <div class="nav-justified">
                 <ul class="nav nav-tabs nav-justified">
                     <li class="active">
-                        <a href="#quick_sidebar_tab_1" data-toggle="tab">Users <span class="badge badge-danger">2</span>
+                        <a href="#quick_sidebar_tab_1" data-toggle="tab">Users                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">More<i class="fa fa-angle-down"></i>
                         </a>
-                    </li>
-                    <li>
-                        <a href="#quick_sidebar_tab_2" data-toggle="tab">Alerts <span class="badge badge-success">7</span>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More<i class="fa fa-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu pull-right" role="menu">
-                            <li>
-                                <a href="#quick_sidebar_tab_3" data-toggle="tab">
-                                    <i class="icon-bell"></i>Alerts </a>
-                            </li>
-                            <li>
-                                <a href="#quick_sidebar_tab_3" data-toggle="tab">
-                                    <i class="icon-info"></i>Notifications </a>
-                            </li>
-                            <li>
-                                <a href="#quick_sidebar_tab_3" data-toggle="tab">
-                                    <i class="icon-speech"></i>Activities </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#quick_sidebar_tab_3" data-toggle="tab">
-                                    <i class="icon-settings"></i>Settings </a>
-                            </li>
-                        </ul>
-                    </li>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li>
+                                    <a href="#quick_sidebar_tab_3" data-toggle="tab">
+                                        <i class="icon-bell"></i>Alerts </a>
+                                </li>
+                                <li>
+                                    <a href="#quick_sidebar_tab_3" data-toggle="tab">
+                                        <i class="icon-info"></i>Notifications </a>
+                                </li>
+                                <li>
+                                    <a href="#quick_sidebar_tab_3" data-toggle="tab">
+                                        <i class="icon-speech"></i>Activities </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#quick_sidebar_tab_3" data-toggle="tab">
+                                        <i class="icon-settings"></i>Settings </a>
+                                </li>
+                            </ul></li>
                 </ul>
             </div>
         </div>
