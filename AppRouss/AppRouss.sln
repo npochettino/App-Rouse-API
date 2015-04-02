@@ -2,8 +2,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppRouss", "AppRouss\AppRouss.csproj", "{8414D83D-C1D5-4291-B8E6-3896980A6964}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09179AC-6D9C-4F1F-BB3E-F0D02B11D315} = {D09179AC-6D9C-4F1F-BB3E-F0D02B11D315}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaAppRouss", "BibliotecaAppRouss\BibliotecaAppRouss.csproj", "{D09179AC-6D9C-4F1F-BB3E-F0D02B11D315}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiciosWebAppRouss", "ServiciosWebAppRouss\ServiciosWebAppRouss.csproj", "{0EEF0A8B-C6CB-4524-BDA4-09F60F853DED}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D09179AC-6D9C-4F1F-BB3E-F0D02B11D315} = {D09179AC-6D9C-4F1F-BB3E-F0D02B11D315}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +27,10 @@ Global
 		{D09179AC-6D9C-4F1F-BB3E-F0D02B11D315}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D09179AC-6D9C-4F1F-BB3E-F0D02B11D315}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D09179AC-6D9C-4F1F-BB3E-F0D02B11D315}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EEF0A8B-C6CB-4524-BDA4-09F60F853DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EEF0A8B-C6CB-4524-BDA4-09F60F853DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EEF0A8B-C6CB-4524-BDA4-09F60F853DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EEF0A8B-C6CB-4524-BDA4-09F60F853DED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

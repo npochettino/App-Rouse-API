@@ -4014,9 +4014,6 @@
     <Folder Include="assets\global\plugins\angularjs\plugins\angular-file-upload\uploads\" />
     <Folder Include="assets\global\plugins\jquery-file-upload\server\php\files\thumbnail\" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\licenses.licx" />
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

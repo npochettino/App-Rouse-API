@@ -65,6 +65,28 @@ namespace BibliotecaAppRouss.Controladores
             }
         }
 
+        public static DataTable RecuperarTodosAdministradores()
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaAdministradores = new DataTable();
+                tablaAdministradores.Columns.Add("idAdministrador");
+                tablaAdministradores.Columns.Add("usuario");
+                tablaAdministradores.Columns.Add("contraseña");
+
+                List<Administrador> listaAdministradores = CatalogoAdministrador.RecuperarTodos(nhSesion);
+
+                (from s in listaAdministradores select s).Aggregate(tablaAdministradores, (dt, r) => { dt.Rows.Add(r.Codigo, r.NombreUsuario, r.Contraseña); return dt; });
+                return tablaAdministradores;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
 
         #region Usuario
@@ -239,9 +261,6 @@ namespace BibliotecaAppRouss.Controladores
             {
                 throw ex;
             }
-
-
-
         }
 
         #endregion

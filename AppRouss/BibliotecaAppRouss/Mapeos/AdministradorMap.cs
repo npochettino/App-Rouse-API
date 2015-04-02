@@ -14,7 +14,7 @@ namespace BibliotecaAppRouss.Mapeos
         {
             Table("Administradores");
             Id(x => x.Codigo).Column("idAdministrador").GeneratedBy.Identity();
-            Map(x => x.NombreUsuario).Column("apellido");
+            Map(x => x.NombreUsuario).Column("usuario");
             Map(x => x.Contraseña).Column("contraseña");
         }
     }
