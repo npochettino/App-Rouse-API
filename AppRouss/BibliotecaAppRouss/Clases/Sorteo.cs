@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaAppRouss.Clases
 {
-    class Sorteo
+    public class Sorteo
     {
         public virtual int Codigo { get; set; }
         public virtual DateTime FechaDesde { get; set; }
@@ -14,5 +14,6 @@ namespace BibliotecaAppRouss.Clases
         public virtual string Descripcion { get; set; }
         public virtual int CantidadTirosPorUsuario { get; set; }
         public virtual int CantidadPremiosPorUsuario { get; set; }
+        public virtual int CantidadPremiosTotales { get; set; }
     }
 }

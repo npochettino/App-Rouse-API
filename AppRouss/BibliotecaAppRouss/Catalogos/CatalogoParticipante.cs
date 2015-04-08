@@ -22,5 +22,18 @@ namespace BibliotecaAppRouss.Catalogos
                 throw ex;
             }
         }
+
+        public static List<Participante> RecuperarPorUsuarioYSorteo(int codigoUsuario, int codigoSorteo, ISession nhSesion)
+        {
+            try
+            {
+                List<Participante> listaParticipantes = RecuperarLista(x => x.Sorteo.Codigo == codigoSorteo && x.Usuario.Codigo == codigoUsuario, nhSesion);
+                return listaParticipantes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaAppRouss.Clases
 {
-    class Administrador
+    public class Administrador
     {
         public virtual int Codigo { get; set; }
         public virtual string NombreUsuario { get; set; }

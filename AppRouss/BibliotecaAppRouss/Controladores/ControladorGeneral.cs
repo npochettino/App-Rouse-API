@@ -90,6 +90,21 @@ namespace BibliotecaAppRouss.Controladores
             }
         }
 
+        public static void EliminarAdministrador(int codigoAdministrador)
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                Administrador adm = CatalogoAdministrador.RecuperarPorCodigo(codigoAdministrador, nhSesion);
+                CatalogoAdministrador.Eliminar(adm, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
 
         #region Usuario
@@ -142,7 +157,7 @@ namespace BibliotecaAppRouss.Controladores
                 tablaUsuario.Columns.Add("contraseña");
 
                 Usuario usuario = CatalogoUsuario.RecuperarPorMailYContraseña(mail, contraseña, nhSesion);
-                
+
                 if (usuario != null)
                 {
                     tablaUsuario.Rows.Add(new object[] { usuario.Codigo, usuario.Nombre, usuario.Apellido, usuario.Dni, usuario.Telefono, usuario.Mail, usuario.Contraseña });
@@ -209,6 +224,51 @@ namespace BibliotecaAppRouss.Controladores
 
                 (from s in listaSorteos select s).Aggregate(tablaSorteos, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Descripcion, r.CantidadTirosPorUsuario, r.CantidadPremiosPorUsuario); return dt; });
                 return tablaSorteos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void EliminarSorteo(int codigoSorteo)
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                Sorteo sorteo = CatalogoSorteo.RecuperarPorCodigo(codigoSorteo, nhSesion);
+                CatalogoSorteo.Eliminar(sorteo, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataTable RecuperarSorteoActual()
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaSorteo = new DataTable();
+                tablaSorteo.Columns.Add("codigoSorteo");
+                tablaSorteo.Columns.Add("fechaDesde");
+                tablaSorteo.Columns.Add("fechaHasta");
+                tablaSorteo.Columns.Add("descripcion");
+                tablaSorteo.Columns.Add("cantidadTirosPorUsuario");
+                tablaSorteo.Columns.Add("cantidadPremiosPorUsuario");
+                tablaSorteo.Columns.Add("cantidadPremiosTotales");
+
+                Sorteo sorteo = CatalogoSorteo.RecuperarPor(x => x.FechaDesde <= DateTime.Now && x.FechaHasta >= DateTime.Now, nhSesion);
+
+                if (sorteo != null)
+                {
+                    tablaSorteo.Rows.Add(new object[] { sorteo.Codigo, sorteo.FechaDesde, sorteo.FechaHasta, sorteo.Descripcion, sorteo.CantidadTirosPorUsuario, sorteo.CantidadPremiosPorUsuario, sorteo.CantidadPremiosTotales });
+                }
+
+                return tablaSorteo;
             }
             catch (Exception ex)
             {
@@ -318,7 +378,6 @@ namespace BibliotecaAppRouss.Controladores
                 DataTable tablaParticipantes = new DataTable();
                 tablaParticipantes.Columns.Add("codigoParticipante");
                 tablaParticipantes.Columns.Add("fechaParticipacion");
-                tablaParticipantes.Columns.Add("isGanador");
                 tablaParticipantes.Columns.Add("codigoUsuario");
                 tablaParticipantes.Columns.Add("mailUsuario");
                 tablaParticipantes.Columns.Add("codigoPremio");
@@ -326,7 +385,7 @@ namespace BibliotecaAppRouss.Controladores
 
                 List<Participante> listaParticipantes = CatalogoParticipante.RecuperarPorSorteo(codigoSorteo, nhSesion);
 
-                (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.isGanador, r.Usuario.Codigo, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0, r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt; });
+                (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0, r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt; });
 
                 return tablaParticipantes;
             }
@@ -336,6 +395,51 @@ namespace BibliotecaAppRouss.Controladores
             }
         }
 
+        public static void InsertarParticipante(int codigoUsuario, int codigoSorteo, int codigoPremio)
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                Participante participante = new Participante();
+                participante.FechaParticipacion = DateTime.Now;
+                participante.Premio = CatalogoPremio.RecuperarPorCodigo(codigoPremio, nhSesion);
+                participante.Sorteo = CatalogoSorteo.RecuperarPorCodigo(codigoSorteo, nhSesion);
+                participante.Usuario = CatalogoUsuario.RecuperarPorCodigo(codigoUsuario, nhSesion);
+
+                CatalogoParticipante.InsertarActualizar(participante, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
+
+        public static DataTable RecuperarParticipacionesDeUsuarioPorSorteo(int codigoSorteo, int codigoUsuario)
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaParticipantes = new DataTable();
+                tablaParticipantes.Columns.Add("codigoParticipante");
+                tablaParticipantes.Columns.Add("fechaParticipacion");
+                tablaParticipantes.Columns.Add("codigoUsuario");
+                tablaParticipantes.Columns.Add("codigoSorteo");
+                tablaParticipantes.Columns.Add("codigoPremio");
+
+                List<Participante> listaParticipantes = CatalogoParticipante.RecuperarPorUsuarioYSorteo(codigoUsuario, codigoSorteo, nhSesion);
+
+                (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo, r.Sorteo.Codigo, r.Premio.Codigo); return dt; });
+
+                return tablaParticipantes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

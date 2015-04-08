@@ -15,7 +15,6 @@ namespace BibliotecaAppRouss.Mapeos
             Table("Participantes");
             Id(x => x.Codigo).Column("idParticipante").GeneratedBy.Identity();
             Map(x => x.FechaParticipacion).Column("fechaParticipacion");
-            Map(x => x.isGanador).Column("isGanador");
             
             References(x => x.Premio).Column("idPremio").Cascade.None().LazyLoad(Laziness.Proxy);
             References(x => x.Sorteo).Column("idSorteo").Cascade.None().LazyLoad(Laziness.Proxy);

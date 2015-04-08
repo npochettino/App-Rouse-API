@@ -19,6 +19,7 @@ namespace BibliotecaAppRouss.Mapeos
             Map(x => x.Descripcion).Column("descripcion");
             Map(x => x.FechaDesde).Column("fechaDesde");
             Map(x => x.FechaHasta).Column("fechaHasta");
+            Map(x => x.CantidadPremiosTotales).Column("cantidadPremiosTotales");
         }
     }
 }
