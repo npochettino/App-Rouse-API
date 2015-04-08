@@ -104,7 +104,6 @@
                                             </div>
                                             <div class="form-body">
 
-
                                                 <dx:ASPxGridView ID="gvAdministradores" KeyFieldName="idAdministrador" Width="100%" runat="server" Theme="Metropolis" AutoGenerateColumns="False">
                                                     <Columns>
                                                         <dx:GridViewDataTextColumn Caption="idAdministrador" FieldName="idAdministrador" Visible="False" VisibleIndex="1">
@@ -112,6 +111,8 @@
                                                         <dx:GridViewDataTextColumn Caption="Usuario" FieldName="usuario" VisibleIndex="2" Visible="true">
                                                         </dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn Caption="Contraseña" FieldName="contraseña" VisibleIndex="3">
+                                                        <PropertiesTextEdit Password="True">
+                                                            </PropertiesTextEdit>
                                                         </dx:GridViewDataTextColumn>
                                                     </Columns>
                                                     <SettingsBehavior AllowFocusedRow="True" />

@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="sorteos.aspx.cs" Inherits="AppRouss.sorteos" %>
 
-<%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
@@ -96,32 +97,33 @@
                                         <div class="portlet-body form">
                                             <!-- BEGIN FORM-->
                                             <div class="form-actions top">
-                                                <div class="btn-set pull-left">                                                    
-                                                    <asp:Button ID="btnNewSorteo" class="btn blue" runat="server" Text="Nuevo" OnClick="btnNewSorteo_Click" />                                                 
-                                                    <button type="button" class="btn yellow">Editar</button>
-                                                    <button type="button" class="btn red">Eliminar</button>
+                                                <div class="btn-set pull-left">
+                                                    <asp:Button ID="btnNewSorteo" class="btn blue" runat="server" Text="Nuevo" OnClick="btnNewSorteo_Click" />
+                                                    <asp:Button ID="btnEditarSorteo" class="btn yellow" runat="server" Text="Editar" OnClick="btnEditarSorteo_Click" />
+                                                    <asp:Button ID="btnEliminarSorteo" class="btn red" runat="server" Text="Eliminar" OnClick="btnEliminarSorteo_Click" />
                                                 </div>
                                             </div>
                                             <div class="form-body">
-                                                
-                                                <dx:ASPxGridView ID="gvSorteos" runat="server" KeyFieldName="idSorteo">
+                                                <dx:ASPxGridView ID="gvSorteos" runat="server" KeyFieldName="codigoSorteo" Width="100%" Theme="Metropolis" AutoGenerateColumns="False">
                                                     <Columns>
-                                                        <dx:GridViewDataTextColumn Caption="idSorteo" FieldName="idSorteo" Visible="False" VisibleIndex="0">
-                                                        </dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn Caption="Fecha Desde" FieldName="fechaDesde" VisibleIndex="1">
-                                                        </dx:GridViewDataTextColumn>                                                        
-                                                        <dx:GridViewDataTextColumn Caption="Fecha Hasta" FieldName="fechaHasta" VisibleIndex="2">
-                                                        </dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn Caption="Descripcion" FieldName="descripcion" VisibleIndex="3">
-                                                        </dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn Caption="Cantidad Tiros x Usuario" FieldName="cantidadTirosPorUsuario" VisibleIndex="4">
-                                                        </dx:GridViewDataTextColumn>                                                        
-                                                        <dx:GridViewDataTextColumn Caption="Cantidad Premios x Usuario" FieldName="cantidadPremiosPorUsuario" VisibleIndex="5">
-                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="codigoSorteo" ShowInCustomizationForm="True" Caption="Codigo" Visible="False" VisibleIndex="1"></dx:GridViewDataTextColumn>
+
+                                                        <dx:GridViewDataDateColumn FieldName="fechaDesde" VisibleIndex="2" Caption="Fecha Desde" PropertiesDateEdit-DisplayFormatString="dd/MM/yyyy HH:mm:ss" PropertiesDateEdit-EditFormat="Custom">
+                                                            <PropertiesDateEdit  DisplayFormatString="dd/MM/yyyy HH:mm:ss" EditFormatString="dd/MM/yyyy HH:mm:ss">
+                                                            </PropertiesDateEdit>
+                                                        </dx:GridViewDataDateColumn>
+                                                        <dx:GridViewDataDateColumn FieldName="fechaHasta" VisibleIndex="3" Caption="Fecha Hasta">
+                                                            <PropertiesDateEdit DisplayFormatString="dd-MM-yyyy" EditFormatString="dd-MM-yyyy"></PropertiesDateEdit>
+                                                        </dx:GridViewDataDateColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="descripcion" ShowInCustomizationForm="True" Caption="Descripcion" VisibleIndex="4"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="cantidadTirosPorUsuario" ShowInCustomizationForm="True" Caption="Cantidad Juegos x Usuario" VisibleIndex="5"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="cantidadPremiosPorUsuario" ShowInCustomizationForm="True" Caption="Cantidad Premios x Usuario" VisibleIndex="6"></dx:GridViewDataTextColumn>
                                                     </Columns>
+                                                    <SettingsBehavior AllowFocusedRow="True" />
+                                                    <Settings ShowFilterRow="True" />
                                                 </dx:ASPxGridView>
                                             </div>
-                                            
+
                                             <!-- END FORM-->
                                         </div>
 

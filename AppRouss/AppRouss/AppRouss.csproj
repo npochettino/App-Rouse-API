@@ -64,7 +64,6 @@
   <ItemGroup>
     <Content Include="administradores.aspx" />
     <Content Include="administradoresAdd.aspx" />
-    <Content Include="cambioContraseña.aspx" />
     <Content Include="assets\admin\layout\css\custom.css" />
     <Content Include="assets\admin\layout\css\layout.css" />
     <Content Include="assets\admin\layout\css\themes\blue.css" />
@@ -3655,6 +3654,7 @@
     <Content Include="assets\rouss\RULETA sin boton.png" />
     <Content Include="assets\rouss\RULETA2.jpg" />
     <Content Include="assets\rouss\ruleta_sf_Login.png" />
+    <Content Include="cambioContraseña.aspx" />
     <Content Include="components.aspx" />
     <Content Include="components_pickers.html" />
     <Content Include="ecommerce_orders_view.html" />
@@ -3673,7 +3673,9 @@
     <Content Include="livecss.js" />
     <Content Include="login.aspx" />
     <Content Include="reporteParticipantes.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="administradores.aspx.cs">
@@ -3693,6 +3695,9 @@
     <Compile Include="cambioContraseña.aspx.cs">
       <DependentUpon>cambioContraseña.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cambioContraseña.aspx.designer.cs">
+      <DependentUpon>cambioContraseña.aspx</DependentUpon>
     </Compile>
     <Compile Include="components.aspx.cs">
       <DependentUpon>components.aspx</DependentUpon>
@@ -3744,6 +3749,9 @@
     <Compile Include="sorteosAdd.aspx.cs">
       <DependentUpon>sorteosAdd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sorteosAdd.aspx.designer.cs">
+      <DependentUpon>sorteosAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

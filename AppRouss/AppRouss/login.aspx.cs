@@ -28,7 +28,7 @@ namespace AppRouss
             DataTable dtAdministradorActual = ControladorGeneral.RecuperarLogueoAdministrador(txtUsuario.Text.Trim(), txtContraseña.Text.Trim());
             if(dtAdministradorActual != null)
             {
-                Session.Add("codigoAdm", dtAdministradorActual.Rows[0][1].ToString());
+                Session.Add("codigoAdm", dtAdministradorActual.Rows[0][0].ToString());
                 Session.Add("logueado", true);
                 Response.Redirect("index.aspx");
             }

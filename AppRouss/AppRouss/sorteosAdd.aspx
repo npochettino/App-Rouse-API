@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="sorteosAdd.aspx.cs" Inherits="sorteosAdd" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="sorteosAdd.aspx.cs" Inherits="AppRouss.sorteosAdd" %>
 
 <%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 
@@ -95,7 +95,7 @@
                                                 <div class="form-group">
                                                     <label class="control-label">Descripción del sorteo</label>
                                                     <asp:TextBox type="text" class="form-control" ID="txtDescripcionSorteo" runat="server" placeholder="ingrese descripcion"></asp:TextBox>
-                                                    <span class="help-block">puede ser nulo. </span>
+                                                    <label id="lblDescripcion" class="help-block" style="color: red" visible="false" runat="server"></label>
                                                 </div>
 
                                                 <div class="form-group">
@@ -106,6 +106,7 @@
                                                             <TimeEditProperties DisplayFormatString="dd/MM/yyyy" />
                                                         </TimeSectionProperties>
                                                     </dx:ASPxDateEdit>
+                                                    <label id="lblFechaDesde" class="help-block" style="color: red" visible="false" runat="server"></label>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">Fecha Hasta</label>
@@ -115,20 +116,23 @@
                                                             <TimeEditProperties DisplayFormatString="dd/MM/yyyy" />
                                                         </TimeSectionProperties>
                                                     </dx:ASPxDateEdit>
+                                                    <label id="lblFechaHasta" class="help-block" style="color: red" visible="false" runat="server"></label>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">Cantidad de Oportunidades por Usuario</label>
                                                     <asp:TextBox type="text" class="form-control" ID="txtCantidadOportunidades" Text="1" runat="server"></asp:TextBox>
+                                                    <label id="lblCantidadOportunidades" class="help-block" style="color: red" visible="false" runat="server"></label>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">Cantidad de veces que puede ganar un usuario</label>
                                                     <asp:TextBox type="text" class="form-control" ID="txtCantidadVictorias" Text="1" runat="server"></asp:TextBox>
+                                                    <label id="lblCantidadVictorias" class="help-block" style="color: red" visible="false" runat="server"></label>
                                                 </div>
                                             </div>
                                             <div class="form-actions">
                                                 <div class="btn-set pull-right">
-                                                    <button type="button" class="btn blue">Confirmar</button>
-                                                    <button type="button" class="btn red">Cancelar</button>
+                                                    <asp:Button ID="btnConfirmar" class="btn blue" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
+                                                    <asp:Button ID="btnCancelar" class="btn red" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
                                                 </div>
                                             </div>
                                             <!-- END FORM-->
@@ -219,4 +223,5 @@
 
 
 </asp:Content>
+
 

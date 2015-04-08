@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="cambioContraseña.aspx.cs" Inherits="cambioContraseña" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="cambioContraseña.aspx.cs" Inherits="AppRouss.cambioContraseña" %>
 
+<%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dx" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
@@ -21,38 +21,8 @@
                         <a href="cambioContraseña.aspx">Perfil</a>
                     </li>
                 </ul>
-
-
-                
             </div>
-            <!-- END PAGE HEADER-->
-            <!-- BEGIN PAGE CONTENT-->
-            <%--<div class="row">
-                <div class="col-md-12">
-                    <!-- BEGIN ALERTS PORTLET-->
-                    <div class="portlet purple box">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="fa fa-cogs"></i>Notificaciones
-                            </div>
-                            <div class="tools">
-                                <a href="javascript:;" class="collapse"></a>
-                                <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                                <a href="javascript:;" class="reload"></a>
-                                <a href="javascript:;" class="remove"></a>
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <div runat="server" id="NotificacionOK" class="alert alert-success" visible="false">
-                                <strong>Success!</strong> El reloj se conecto correctamente.
-                            </div>
-                            <div id="NotificacionERROR" runat="server" class="alert alert-danger" visible="false">
-                                <strong>Error!</strong> Conecte el Reloj.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>--%>
+
             <!-- BEGIN PAGE CONTENT-->
             <div class="row">
                 <div class="col-md-12">
@@ -80,37 +50,36 @@
                                     <div id="chart_1" class="chart" style="height: 100%;">
                                         <div class="portlet-body form">
                                             <!-- BEGIN FORM-->
-                                            <%--<div class="form-actions top">
-                                                <div class="btn-set pull-left">
-                                                    <button type="submit" class="btn green">Submit</button>
-                                                    <button type="button" class="btn blue">Other Action</button>
-                                                </div>
-                                                <div class="btn-set pull-right">
-                                                    <button type="button" class="btn default">Action 1</button>
-                                                    <button type="button" class="btn red">Action 2</button>
-                                                    <button type="button" class="btn yellow">Action 3</button>
-                                                </div>
-                                            </div>--%>
+
                                             <div class="form-body">
                                                 <div class="form-group">
                                                     <label class="control-label">Usuario</label>
-                                                    <input type="text" class="form-control" placeholder="Enter text">
+                                                    <asp:TextBox class="form-control" type="text" autocomplete="off" placeholder="" name="username" ID="txtUsuario" runat="server"></asp:TextBox>
                                                 </div>
-
                                                 <div class="form-group">
-                                                    <label class="control-label">Password</label>
+                                                    <label class="control-label">Contraseña Anterior</label>
                                                     <div class="input-group">
-                                                        <asp:TextBox class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="ingrese nueva contraseña" name="password" ID="txtNewContraseña" runat="server"></asp:TextBox>
+                                                        <asp:TextBox class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="ingrese contraseña contraseña anterior" name="password" ID="txtOldPassword" runat="server"></asp:TextBox>
                                                         <span class="input-group-addon">
                                                             <i class="fa fa-user"></i>
                                                         </span>
                                                     </div>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label class="control-label">Password</label>
+                                                    <div class="input-group">
+                                                        <asp:TextBox class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="ingrese nueva contraseña" name="password" ID="txtNewPassword" runat="server"></asp:TextBox>
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </span>
+                                                    </div>
+                                                    <label id="lblPassword" class="help-block" style="color: red" visible="false" runat="server"></label>
+                                                </div>
                                             </div>
                                             <div class="form-actions">
                                                 <div class="btn-set pull-right">
-                                                    <button type="button" class="btn blue">Confirmar</button>
-                                                    <button type="button" class="btn red">Cancelar</button>
+                                                    <asp:Button ID="btnConfirmar" class="btn blue" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
+                                                    <asp:Button ID="btnCancelar" class="btn red" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
                                                 </div>
                                             </div>
                                             <!-- END FORM-->
@@ -148,5 +117,39 @@
     </script>
     <!-- END JAVASCRIPTS -->
 
-</asp:Content>
+    <dx:ASPxPopupControl ClientInstanceName="pcCambioPassword" Width="250px" Height="250px"
+        MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" CloseOnEscape="true" ID="pcCambioPassword"
+        AllowDragging="True" PopupElementID="imgButton" HeaderText=""
+        runat="server" EnableViewState="False" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"
+        EnableHierarchyRecreation="True" Modal="True" Theme="Metropolis" PopupAnimationType="Slide">
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
+                <asp:Panel ID="Panel1" runat="server">
+                    <div class="row">
 
+                        <div class="col-md-12">
+                            <div class="portlet box yellow">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="fa fa-gift"></i>Cambio de Contraseña
+                                    </div>
+
+                                </div>
+                                <div class="portlet-body form">
+                                    <!-- BEGIN FORM-->
+
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="control-label">El cambio de contraseña se realizo con exito.</label>
+                                        </div>
+                                    </div>
+                                    <!-- END FORM-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </asp:Panel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+</asp:Content>

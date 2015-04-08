@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="administradoresAdd.aspx.cs" Inherits="AppRouss.administradoresAdd" %>
+
+<%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
       <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
@@ -102,20 +104,23 @@
                                                 </div>
                                             </div>--%>
                                             <div class="form-body">
-                                                <div class="form-group">
+                                                <div class="form-grour">
                                                     <label class="control-label">Usuario</label>
-                                                    <asp:TextBox class="form-control" type="text" autocomplete="off" placeholder="ingrese usuario" name="username" ID="txtUsuario" runat="server"></asp:TextBox>
-<%--                                                    <span class="help-block">El usuario debe ser unico. </span>--%>
+                                                    <asp:TextBox class="form-control" type="text" autocomplete="off" placeholder="ingrese usuario" name="username" ID="txtUsuario" runat="server"></asp:TextBox>                                                       
+                                                    <label id="lblUsuarioRequerido" class="help-block" style="color:red" visible="false" runat="server"> usuario requerido</label>
+
+<%--                                                    <label id="lblUsuarioUnico" class="help-block" style="color:red" visible="false" runat="server"> el usuario debe ser único</label>--%>
                                                 </div>
                                                 
                                                 <div class="form-group">
                                                     <label class="control-label">Contraseña</label>
-                                                    <div class="input-group">
+                                                    <%--<div class="input-group">--%>
                                                         <asp:TextBox class="form-control" type="password" autocomplete="off" placeholder="ingrese contraseña" name="password" ID="txtContraseña" runat="server"></asp:TextBox>
-                                                        <span class="input-group-addon">
+                                                        <%--<span class="input-group-addon">
                                                             <i class="fa fa-user"></i>
-                                                        </span>
-                                                    </div>
+                                                        </span>--%>
+                                                        <label id="lblContraseñaRequerida" class="help-block" style="color:red" visible="false" runat="server"> contraseña requerido</label>
+                                                    <%--</div>--%>
                                                 </div>
                                                 
                                             </div>

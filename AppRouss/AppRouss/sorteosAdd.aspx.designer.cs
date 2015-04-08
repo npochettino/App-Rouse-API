@@ -10,70 +10,106 @@
 namespace AppRouss {
     
     
-    public partial class premios {
+    public partial class sorteosAdd {
         
         /// <summary>
-        /// Control btnEditarPremios.
+        /// Control NotificacionERROR.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditarPremios;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NotificacionERROR;
         
         /// <summary>
-        /// Control gvPremios.
+        /// Control txtDescripcionSorteo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView.ASPxGridView gvPremios;
+        protected global::System.Web.UI.WebControls.TextBox txtDescripcionSorteo;
         
         /// <summary>
-        /// Control pcPremios.
+        /// Control lblDescripcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxPopupControl.ASPxPopupControl pcPremios;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDescripcion;
         
         /// <summary>
-        /// Control Panel1.
+        /// Control deFechaDesde.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::DevExpress.Web.ASPxEditors.ASPxDateEdit deFechaDesde;
         
         /// <summary>
-        /// Control txtDescripcion.
+        /// Control lblFechaDesde.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblFechaDesde;
         
         /// <summary>
-        /// Control txtProbabilidad.
+        /// Control deFechaHasta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProbabilidad;
+        protected global::DevExpress.Web.ASPxEditors.ASPxDateEdit deFechaHasta;
         
         /// <summary>
-        /// Control lblProbabilidadRequerido.
+        /// Control lblFechaHasta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblProbabilidadRequerido;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblFechaHasta;
+        
+        /// <summary>
+        /// Control txtCantidadOportunidades.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadOportunidades;
+        
+        /// <summary>
+        /// Control lblCantidadOportunidades.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblCantidadOportunidades;
+        
+        /// <summary>
+        /// Control txtCantidadVictorias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadVictorias;
+        
+        /// <summary>
+        /// Control lblCantidadVictorias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblCantidadVictorias;
         
         /// <summary>
         /// Control btnConfirmar.
