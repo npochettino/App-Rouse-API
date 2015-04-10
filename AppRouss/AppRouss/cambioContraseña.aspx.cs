@@ -13,11 +13,9 @@ namespace AppRouss
     public partial class cambioContraseña : System.Web.UI.Page
     {
         Administrador oAdministradorActual = new Administrador();
-        int codigoOperacion;
         protected void Page_Load(object sender, EventArgs e)
         {
             //Cargo el form para editar
-
             txtUsuario.ReadOnly = true;
             int test = int.Parse(Session["codigoAdm"].ToString());
             CargarDatosParaEditar(int.Parse(Session["codigoAdm"].ToString()));
@@ -40,7 +38,6 @@ namespace AppRouss
             for (int i = 0; i < dtAdministradores.Rows.Count; i++)
             {
                 int test = int.Parse((dtAdministradores.Rows[i]["idAdministrador"]).ToString());
-                //if ((dtAdministradores.Rows[i]["idAdministrador"]).ToString() == Convert.ToString(codigoAdm))
                 if (test == codigoAdm)
                 {
                     oA.Codigo = codigoAdm;
@@ -60,7 +57,8 @@ namespace AppRouss
                 oAdministradorActual = (Administrador)Session["administradoActual"];
                 ControladorGeneral.InsertarActualizarAdministrador(oAdministradorActual.Codigo, txtUsuario.Text, txtNewPassword.Text);
 
-                //Muestro popUp 
+                txtOldPassword.Text = "";
+                txtNewPassword.Text = "";
                 pcCambioPassword.ShowOnPageLoad = true;
             }
         }
@@ -71,7 +69,7 @@ namespace AppRouss
             { lblPassword.Visible = true; lblPassword.InnerText = " Debe completar los campos de contraseña."; return false; }
             else if (txtNewPassword.Text == "")
             { lblPassword.Visible = true; lblPassword.InnerText = " Debe completar los campos de contraseña."; return false; }
-            else if (txtOldPassword.Text == txtNewPassword.Text)
+            else if (txtOldPassword.Text != txtNewPassword.Text)
             { lblPassword.Visible = true; lblPassword.InnerText = " Las contraseñas no coinciden."; return false; }
             else return true;
         }

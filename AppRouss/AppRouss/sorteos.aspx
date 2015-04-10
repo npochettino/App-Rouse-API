@@ -108,16 +108,17 @@
                                                     <Columns>
                                                         <dx:GridViewDataTextColumn FieldName="codigoSorteo" ShowInCustomizationForm="True" Caption="Codigo" Visible="False" VisibleIndex="1"></dx:GridViewDataTextColumn>
 
-                                                        <dx:GridViewDataDateColumn FieldName="fechaDesde" VisibleIndex="2" Caption="Fecha Desde" PropertiesDateEdit-DisplayFormatString="dd/MM/yyyy HH:mm:ss" PropertiesDateEdit-EditFormat="Custom">
-                                                            <PropertiesDateEdit  DisplayFormatString="dd/MM/yyyy HH:mm:ss" EditFormatString="dd/MM/yyyy HH:mm:ss">
+                                                        <dx:GridViewDataDateColumn FieldName="fechaDesde" VisibleIndex="2" Caption="Fecha Desde" PropertiesDateEdit-DisplayFormatString="dd/MM/yyyy HH:mm:ss" PropertiesDateEdit-EditFormat="DateTime">
+                                                            <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy HH:mm:ss" EditFormatString="dd/MM/yyyy HH:mm:ss">
                                                             </PropertiesDateEdit>
                                                         </dx:GridViewDataDateColumn>
                                                         <dx:GridViewDataDateColumn FieldName="fechaHasta" VisibleIndex="3" Caption="Fecha Hasta">
-                                                            <PropertiesDateEdit DisplayFormatString="dd-MM-yyyy" EditFormatString="dd-MM-yyyy"></PropertiesDateEdit>
+                                                            <PropertiesDateEdit DisplayFormatString="f" UseMaskBehavior="true" EditFormat="DateTime"></PropertiesDateEdit>
                                                         </dx:GridViewDataDateColumn>
                                                         <dx:GridViewDataTextColumn FieldName="descripcion" ShowInCustomizationForm="True" Caption="Descripcion" VisibleIndex="4"></dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn FieldName="cantidadTirosPorUsuario" ShowInCustomizationForm="True" Caption="Cantidad Juegos x Usuario" VisibleIndex="5"></dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn FieldName="cantidadPremiosPorUsuario" ShowInCustomizationForm="True" Caption="Cantidad Premios x Usuario" VisibleIndex="6"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="cantidadPremiosTotales" ShowInCustomizationForm="True" Caption="Cantidad Premios Totales" VisibleIndex="7"></dx:GridViewDataTextColumn>
                                                     </Columns>
                                                     <SettingsBehavior AllowFocusedRow="True" />
                                                     <Settings ShowFilterRow="True" />

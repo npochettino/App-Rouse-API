@@ -1,4 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="reporteParticipantes.aspx.cs" Inherits="reporteParticipantes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="reporteParticipantes.aspx.cs" Inherits="AppRouss.reporteParticipantes" %>
+
+<%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView.Export" TagPrefix="dx" %>
+
+<%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
+
+
+<%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -25,47 +32,8 @@
                         <a href="reporteParticiantes.aspx">Reporte Participantes</a>
                     </li>
                 </ul>
-
-
-                <%--<div class="page-toolbar">
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-fit-height grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
-                            Acciones <i class="fa fa-angle-down"></i>
-                        </button>
-                        <ul class="dropdown-menu pull-right" role="menu">
-                           
-                        </ul>
-                    </div>
-                </div>--%>
             </div>
             <!-- END PAGE HEADER-->
-            <!-- BEGIN PAGE CONTENT-->
-            <%--<div class="row">
-                <div class="col-md-12">
-                    <!-- BEGIN ALERTS PORTLET-->
-                    <div class="portlet purple box">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="fa fa-cogs"></i>Notificaciones
-                            </div>
-                            <div class="tools">
-                                <a href="javascript:;" class="collapse"></a>
-                                <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                                <a href="javascript:;" class="reload"></a>
-                                <a href="javascript:;" class="remove"></a>
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <div runat="server" id="NotificacionOK" class="alert alert-success" visible="false">
-                                <strong>Success!</strong> El reloj se conecto correctamente.
-                            </div>
-                            <div id="NotificacionERROR" runat="server" class="alert alert-danger" visible="false">
-                                <strong>Error!</strong> Conecte el Reloj.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>--%>
             <!-- BEGIN PAGE CONTENT-->
             <div class="row">
                 <div class="col-md-12">
@@ -87,20 +55,119 @@
                                         <a href="javascript:;" class="remove"></a>
                                     </div>
                                 </div>
+
+                                <div class="portlet light bg-inverse">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="icon-equalizer font-red-sunglo"></i>
+                                            <span class="caption-subject font-red-sunglo bold uppercase">Parametros del Reporte</span>
+                                            <span class="caption-helper">seleccione...</span>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="#" class="collapse"></a>
+                                            <a href="#portlet-config" data-toggle="modal" class="config"></a>
+                                            <a href="#" class="reload"></a>
+                                            <a href="#" class="remove"></a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form action="#" class="horizontal-form">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Sorteo</label>
+                                                            <%--<select class="form-control">
+                                                                <option value="">1</option>
+                                                                <option value="">2</option>
+                                                            </select>--%>
+                                                            <asp:DropDownList ID="ddlSorteos" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSorteos_SelectedIndexChanged"></asp:DropDownList>
+                                                            <%--<span class="help-block">Selecciones un sorteo </span>--%>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Ganador</label>
+                                                            <div class="radio-list">
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="optionsRadios" id="Radio1" value="option1" checked>
+                                                                    Ganador
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="optionsRadios" id="Radio2" value="option2">
+                                                                    Segui Participando
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                </div>
+                                            </div>
+                                            <%--<div class="form-actions left">
+                                                <dx:ASPxButton ID="btnCargarReporteParticipante" runat="server" Text="Cargar" UseSubmitBehavior="False"
+                                                    OnClick="btnCargarReporteParticipante_Click" Theme="Metropolis" />
+
+                                            </div>--%>
+                                        </form>
+                                        <!-- END FORM-->
+                                    </div>
+                                </div>
+
                                 <div class="portlet-body">
                                     <div id="chart_1" class="chart" style="height: 500px;">
+                                        <div class="portlet-body form">
+                                            <table class="BottomMargin">
+                                                <tr>
+                                                    <td style="padding-right: 4px">
+                                                        <dx:ASPxButton ID="btnPdfExport" runat="server" Text="Export to PDF" UseSubmitBehavior="False"
+                                                            OnClick="btnPdfExport_Click" Theme="Metropolis" />
+                                                    </td>
+                                                    <td style="padding-right: 4px">
+                                                        <dx:ASPxButton ID="btnXlsxExport" runat="server" Text="Export to XLSX" UseSubmitBehavior="False"
+                                                            OnClick="btnXlsxExport_Click" Theme="Metropolis" />
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+
+                                            <dx:ASPxGridView ID="gvParticipantes" runat="server" KeyFieldName="codigoParticipante" Width="100%" Theme="Metropolis" AutoGenerateColumns="False">
+                                                <Columns>
+                                                    <dx:GridViewDataTextColumn Caption="idUsuario" FieldName="codigoParticipante" Visible="False" VisibleIndex="1">
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn Caption="Fecha Participacion" FieldName="fechaParticipacion" VisibleIndex="2" Visible="true">
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn Caption="Codigo Usuario" FieldName="codigoUsuario" VisibleIndex="3">
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn Caption="Mail" FieldName="mailUsuario" VisibleIndex="4">
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn Caption="Codigo Premio" FieldName="codigoPremio" VisibleIndex="5">
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn Caption="Premio" FieldName="descripcionPremio" VisibleIndex="6">
+                                                    </dx:GridViewDataTextColumn>
+                                                </Columns>
+                                                
+                                            </dx:ASPxGridView>
+                                            <dx:ASPxGridViewExporter ID="gvExporter" GridViewID="gvParticipantes" ExportedRowType="All" PaperKind="A4" FileName="ReporteParticipantes" runat="server">
+                                                <PageHeader Right="[Date Printed] - [Time Printed]">
+                                                </PageHeader>
+                                                <PageFooter Left="2015 © App Rouss " Right="[Page # of Pages #]">
+                                                </PageFooter>
+                                            </dx:ASPxGridViewExporter>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- END CHART PORTLET-->
                         </div>
+                        <!-- END CHART PORTLET-->
                     </div>
-                    <!-- END ROW -->
-
                 </div>
+                <!-- END ROW -->
+
             </div>
-            <!-- END PAGE CONTENT-->
         </div>
+        <!-- END PAGE CONTENT-->
     </div>
     <!-- END CONTENT -->
     <!-- END FOOTER -->

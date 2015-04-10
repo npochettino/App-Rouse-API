@@ -120,8 +120,8 @@
     <dx:ASPxPopupControl ClientInstanceName="pcCambioPassword" Width="250px" Height="250px"
         MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" CloseOnEscape="true" ID="pcCambioPassword"
         AllowDragging="True" PopupElementID="imgButton" HeaderText=""
-        runat="server" EnableViewState="False" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"
-        EnableHierarchyRecreation="True" Modal="True" Theme="Metropolis" PopupAnimationType="Slide">
+        runat="server" EnableViewState="False" PopupHorizontalAlign="Center" PopupVerticalAlign="WindowCenter"
+        EnableHierarchyRecreation="True" Modal="True" Theme="Metropolis" PopupAnimationType="Slide" CloseButtonStyle-Wrap="False">
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
                 <asp:Panel ID="Panel1" runat="server">

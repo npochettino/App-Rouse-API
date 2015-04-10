@@ -14,12 +14,7 @@ namespace AppRouss
     public partial class sorteos : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("es-AR");
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es-AR");
-
-            System.Diagnostics.Debug.WriteLine(DateTime.Today.ToString(new CultureInfo("es-AR")));
- 
+        {            
             if (!IsPostBack)
             {
                 LoadGridSorteos();
@@ -32,8 +27,6 @@ namespace AppRouss
         private void LoadGridSorteos()
         {
             gvSorteos.DataSource = ControladorGeneral.RecuperarTodosSorteos();
-            //gvSorteos.Columns["fechaDesde"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            //gvSorteos.Columns["fechaDesde"].DisplayFormat.FormatString = "dd/MM/yyyy hh:mm:ss";
             gvSorteos.DataBind();
         }
 
@@ -58,7 +51,8 @@ namespace AppRouss
             sorteoActual.Descripcion = gvSorteos.GetRowValues(gvSorteos.FocusedRowIndex, "descripcion").ToString();
             sorteoActual.CantidadTirosPorUsuario = int.Parse(gvSorteos.GetRowValues(gvSorteos.FocusedRowIndex, "cantidadTirosPorUsuario").ToString());
             sorteoActual.CantidadPremiosPorUsuario = int.Parse(gvSorteos.GetRowValues(gvSorteos.FocusedRowIndex, "cantidadPremiosPorUsuario").ToString());
-
+            sorteoActual.CantidadPremiosTotales = int.Parse(gvSorteos.GetRowValues(gvSorteos.FocusedRowIndex, "cantidadPremiosTotales").ToString());
+            
             Session.Add("sorteoActual", sorteoActual);
 
             Response.Redirect("sorteosAdd.aspx");
@@ -66,13 +60,14 @@ namespace AppRouss
 
         protected void btnEliminarSorteo_Click(object sender, EventArgs e)
         {
-            //ControladorGeneral.EliminarSorteo(obtenerCodigoFilaSeleccionada());
+            ControladorGeneral.EliminarSorteo(obtenerCodigoFilaSeleccionada());
+            LoadGridSorteos();
         }
 
         private int obtenerCodigoFilaSeleccionada()
         {
             int codigo = 0;
-            codigo = int.Parse(gvSorteos.GetRowValues(gvSorteos.FocusedRowIndex, "Codigo").ToString());
+            codigo = int.Parse(gvSorteos.GetRowValues(gvSorteos.FocusedRowIndex, "codigoSorteo").ToString());
             return codigo;
         }
     }

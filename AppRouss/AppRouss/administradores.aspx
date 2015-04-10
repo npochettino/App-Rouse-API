@@ -41,33 +41,7 @@
                 </div>
             </div>
             <!-- END PAGE HEADER-->
-            <!-- BEGIN PAGE CONTENT-->
-            <%--<div class="row">
-                <div class="col-md-12">
-                    <!-- BEGIN ALERTS PORTLET-->
-                    <div class="portlet purple box">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="fa fa-cogs"></i>Notificaciones
-                            </div>
-                            <div class="tools">
-                                <a href="javascript:;" class="collapse"></a>
-                                <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                                <a href="javascript:;" class="reload"></a>
-                                <a href="javascript:;" class="remove"></a>
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <div runat="server" id="NotificacionOK" class="alert alert-success" visible="false">
-                                <strong>Success!</strong> El reloj se conecto correctamente.
-                            </div>
-                            <div id="NotificacionERROR" runat="server" class="alert alert-danger" visible="false">
-                                <strong>Error!</strong> Conecte el Reloj.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>--%>
+            
             <!-- BEGIN PAGE CONTENT-->
             <div class="row">
                 <div class="col-md-12">

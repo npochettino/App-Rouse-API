@@ -109,6 +109,32 @@ namespace BibliotecaAppRouss.Controladores
 
         #region Usuario
 
+        public static DataTable RecuperarTodosUsuarios()
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaUsuarios = new DataTable();
+                tablaUsuarios.Columns.Add("idUsuario");
+                tablaUsuarios.Columns.Add("nombre");
+                tablaUsuarios.Columns.Add("apellido");
+                tablaUsuarios.Columns.Add("dni");
+                tablaUsuarios.Columns.Add("mail");
+                tablaUsuarios.Columns.Add("contraseña");
+                tablaUsuarios.Columns.Add("telefono");
+
+                List<Usuario> listaUsuarios = CatalogoUsuario.RecuperarTodos(nhSesion);
+
+                (from s in listaUsuarios select s).Aggregate(tablaUsuarios, (dt, r) => { dt.Rows.Add(r.Codigo, r.Nombre,  r.Apellido, r.Dni, r.Mail, r.Contraseña, r.Telefono); return dt; });
+                return tablaUsuarios;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static void InsertarActualizarUsuario(int codigoUsuario, string nombre, string apellido, string dni, string mail, string contraseña, string telefono)
         {
             ISession nhSesion = ManejoNHibernate.IniciarSesion();
@@ -175,7 +201,7 @@ namespace BibliotecaAppRouss.Controladores
 
         #region Sorteo
 
-        public static void InsertarActualizarSorteo(int codigoSorteo, DateTime fechaDesde, DateTime fechaHasta, string descripcion, int cantidadTirosPorUsuario, int cantidadPremiosPorUsuario)
+        public static void InsertarActualizarSorteo(int codigoSorteo, DateTime fechaDesde, DateTime fechaHasta, string descripcion, int cantidadTirosPorUsuario, int cantidadPremiosPorUsuario, int cantidadTotalPremios)
         {
             ISession nhSesion = ManejoNHibernate.IniciarSesion();
 
@@ -194,6 +220,7 @@ namespace BibliotecaAppRouss.Controladores
 
                 sorteo.CantidadPremiosPorUsuario = cantidadPremiosPorUsuario;
                 sorteo.CantidadTirosPorUsuario = cantidadTirosPorUsuario;
+                sorteo.CantidadPremiosTotales = cantidadTotalPremios;
                 sorteo.Descripcion = descripcion;
                 sorteo.FechaDesde = fechaDesde;
                 sorteo.FechaHasta = fechaHasta;
@@ -219,10 +246,11 @@ namespace BibliotecaAppRouss.Controladores
                 tablaSorteos.Columns.Add("descripcion");
                 tablaSorteos.Columns.Add("cantidadTirosPorUsuario");
                 tablaSorteos.Columns.Add("cantidadPremiosPorUsuario");
+                tablaSorteos.Columns.Add("cantidadPremiosTotales");
 
                 List<Sorteo> listaSorteos = CatalogoSorteo.RecuperarTodos(nhSesion);
 
-                (from s in listaSorteos select s).Aggregate(tablaSorteos, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Descripcion, r.CantidadTirosPorUsuario, r.CantidadPremiosPorUsuario); return dt; });
+                (from s in listaSorteos select s).Aggregate(tablaSorteos, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Descripcion, r.CantidadTirosPorUsuario, r.CantidadPremiosPorUsuario, r.CantidadPremiosTotales); return dt; });
                 return tablaSorteos;
             }
             catch (Exception ex)

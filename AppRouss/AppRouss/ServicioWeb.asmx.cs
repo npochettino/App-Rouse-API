@@ -24,6 +24,24 @@ namespace AppRouss
             {
                 DataTable tablaUsuario = new DataTable();
                 tablaUsuario = ControladorGeneral.RecuperarLogueoUsuario(mail, contraseña);
+        //        if (tablaUsuario.Rows.Count > 0)
+        //        {
+        //            DataSet dsUsuario = new DataSet("dsUsuario");
+        //            dsUsuario.Tables.Add(tablaUsuario);
+        //            dsUsuario.Tables[0].TableName = "tablaUsuario";
+        //            return dsUsuario.GetXml();
+        //        }
+        //        else
+        //        {
+        //            return "LogueoIncorrecto";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
                 return JsonConvert.SerializeObject(tablaUsuario);
             }
             catch (Exception ex)

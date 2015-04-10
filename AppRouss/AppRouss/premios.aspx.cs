@@ -84,8 +84,8 @@ namespace AppRouss
                 lblProbabilidadRequerido.InnerText = " Se requiere un numero entero"; lblProbabilidadRequerido.Visible = true; return false; 
             }
             
-            if (!(int.Parse(txtProbabilidad.Text) >= 0 && int.Parse(txtProbabilidad.Text) <= 10))
-            { lblProbabilidadRequerido.InnerText = " Se requiere un numero entre 0 y 10"; lblProbabilidadRequerido.Visible = true; return false; }
+            if (!(int.Parse(txtProbabilidad.Text) >= 0 && int.Parse(txtProbabilidad.Text) <= 100))
+            { lblProbabilidadRequerido.InnerText = " Se requiere un numero entre 0 y 100"; lblProbabilidadRequerido.Visible = true; return false; }
             else return true;
         }
 

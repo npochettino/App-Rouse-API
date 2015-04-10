@@ -128,6 +128,11 @@
                                                     <asp:TextBox type="text" class="form-control" ID="txtCantidadVictorias" Text="1" runat="server"></asp:TextBox>
                                                     <label id="lblCantidadVictorias" class="help-block" style="color: red" visible="false" runat="server"></label>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label class="control-label">Cantidad Total de Premios a entregar</label>
+                                                    <asp:TextBox type="text" class="form-control" ID="txtCantidadTotalPremios" Text="50" runat="server"></asp:TextBox>
+                                                    <label id="lblCantidadTotalPremios" class="help-block" style="color: red" visible="false" runat="server"></label>
+                                                </div>
                                             </div>
                                             <div class="form-actions">
                                                 <div class="btn-set pull-right">

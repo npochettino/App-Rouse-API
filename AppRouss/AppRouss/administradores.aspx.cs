@@ -63,7 +63,8 @@ namespace AppRouss
         }
         protected void btnEliminarAdministrador_Click(object sender, EventArgs e)
         {
-            //ControladorGeneral.EliminarAdministrador(obtenerCodigoFilaSeleccionada());
+            ControladorGeneral.EliminarAdministrador(obtenerCodigoFilaSeleccionada());
+            LoadGrillaAdministradores();
         }
     }
 }

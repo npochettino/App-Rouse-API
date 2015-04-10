@@ -118,10 +118,10 @@
                                         <i class="icon-key"></i>Cambio de Contraseña </a>
                                 </li>
                                 <li class="divider"></li>
-                                <li>
+                                <%--<li>
                                     <a href="extra_lock.aspx">
                                         <i class="icon-lock"></i>Bloqueo de Pantalla </a>
-                                </li>
+                                </li>--%>
                                 <li>
                                     <a>
                                         <asp:LinkButton ID="lnkSalir" runat="server" OnClick="lnkSalir_Click">Salir</asp:LinkButton>

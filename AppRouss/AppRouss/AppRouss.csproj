@@ -39,7 +39,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -3665,6 +3667,7 @@
     <Content Include="form_validation.html" />
     <Content Include="index.aspx" />
     <Content Include="premios.aspx" />
+    <Content Include="reporteParticipantes.aspx" />
     <Content Include="reporteUsuarios.aspx" />
     <Content Include="reporteGanadores.aspx" />
     <Content Include="ServicioWeb.asmx" />
@@ -3672,7 +3675,6 @@
     <Content Include="sorteosAdd.aspx" />
     <Content Include="livecss.js" />
     <Content Include="login.aspx" />
-    <Content Include="reporteParticipantes.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3727,9 +3729,19 @@
     <Compile Include="premios.aspx.designer.cs">
       <DependentUpon>premios.aspx</DependentUpon>
     </Compile>
+    <Compile Include="reporteParticipantes.aspx.cs">
+      <DependentUpon>reporteParticipantes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="reporteParticipantes.aspx.designer.cs">
+      <DependentUpon>reporteParticipantes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="reporteUsuarios.aspx.cs">
       <DependentUpon>reporteUsuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="reporteUsuarios.aspx.designer.cs">
+      <DependentUpon>reporteUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="reporteGanadores.aspx.cs">
       <DependentUpon>reporteGanadores.aspx</DependentUpon>
@@ -3765,10 +3777,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="reporteParticipantes.aspx.cs">
-      <DependentUpon>reporteParticipantes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\admin\pages\media\blog\Thumbs.db" />

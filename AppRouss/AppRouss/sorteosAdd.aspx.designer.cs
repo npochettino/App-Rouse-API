@@ -112,6 +112,24 @@ namespace AppRouss {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblCantidadVictorias;
         
         /// <summary>
+        /// Control txtCantidadTotalPremios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadTotalPremios;
+        
+        /// <summary>
+        /// Control lblCantidadTotalPremios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblCantidadTotalPremios;
+        
+        /// <summary>
         /// Control btnConfirmar.
         /// </summary>
         /// <remarks>
