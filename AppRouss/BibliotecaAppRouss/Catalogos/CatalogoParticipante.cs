@@ -23,11 +23,37 @@ namespace BibliotecaAppRouss.Catalogos
             }
         }
 
-        public static List<Participante> RecuperarPorUsuarioYSorteo(int codigoUsuario, int codigoSorteo, ISession nhSesion)
+        public static List<Participante> RecuperarSeguiParticipandoPorUsuarioYSorteo(int codigoUsuario, int codigoSorteo, ISession nhSesion)
         {
             try
             {
-                List<Participante> listaParticipantes = RecuperarLista(x => x.Sorteo.Codigo == codigoSorteo && x.Usuario.Codigo == codigoUsuario, nhSesion);
+                List<Participante> listaParticipantes = RecuperarLista(x => x.Sorteo.Codigo == codigoSorteo && x.Usuario.Codigo == codigoUsuario && x.Premio.Codigo == 4, nhSesion);
+                return listaParticipantes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static List<Participante> RecuperarGanadoresPorUsuarioYSorteo(int codigoUsuario, int codigoSorteo, ISession nhSesion)
+        {
+            try
+            {
+                List<Participante> listaParticipantes = RecuperarLista(x => x.Sorteo.Codigo == codigoSorteo && x.Usuario.Codigo == codigoUsuario && x.Premio.Codigo != 4, nhSesion);
+                return listaParticipantes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static List<Participante> RecuperarGanadoresPorUsuario(int codigoUsuario, ISession nhSesion)
+        {
+            try
+            {
+                List<Participante> listaParticipantes = RecuperarLista(x => x.Usuario.Codigo == codigoUsuario && x.Premio.Codigo != 4, nhSesion);
                 return listaParticipantes;
             }
             catch (Exception ex)

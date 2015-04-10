@@ -12,8 +12,7 @@ namespace BibliotecaAppRouss
     {
         public static void Main()
         {
-            //int premio = ControladorGeneral.RecuperarPremio();
-            //DataTable tabla = ControladorGeneral.RecuperarTodosAdministradores();
+            ControladorGeneral.RecuperarPremiosPorUsuario(1);
         }
     }
 }

@@ -59,7 +59,7 @@ namespace AppRouss
                         {
                             if (cantidadPremiosPorUsuario > cantidadPremiosReales)
                             {
-                                int codigoPremio = ControladorGeneral.RecuperarPremio();
+                                int codigoPremio = ControladorGeneral.RecuperarCodigoPremio();
                                 tablaSorteoYPremio.Rows[0]["codigoPremio"] = codigoPremio;
                             }
                             else
@@ -93,6 +93,34 @@ namespace AppRouss
             {
                 ControladorGeneral.InsertarParticipante(codigoUsuario, codigoSorteo, codigoPremio);
                 return "ok";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [WebMethod]
+        public string InsertarActualizarUsuario(int codigoUsuario, string nombre, string apellido, string dni, string mail, string contraseña, string telefono)
+        {
+            try
+            {
+                ControladorGeneral.InsertarActualizarUsuario(codigoUsuario, nombre, apellido, dni, mail, contraseña, telefono);
+                return "ok";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [WebMethod]
+        public string RecuperarPremiosPorUsuario(int codigoUsuario)
+        {
+            try
+            {
+                DataTable tablaPremios = ControladorGeneral.RecuperarPremiosPorUsuario(codigoUsuario);
+                return JsonConvert.SerializeObject(tablaPremios);
             }
             catch (Exception ex)
             {

@@ -330,7 +330,7 @@ namespace BibliotecaAppRouss.Controladores
             }
         }
 
-        public static int RecuperarPremio()
+        public static int RecuperarCodigoPremio()
         {
             ISession nhSesion = ManejoNHibernate.IniciarSesion();
 
@@ -358,6 +358,31 @@ namespace BibliotecaAppRouss.Controladores
                 }
 
                 return codigoPremio;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataTable RecuperarPremiosPorUsuario(int codigoUsuario)
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaPremios = new DataTable();
+                tablaPremios.Columns.Add("codigoPremio");
+                tablaPremios.Columns.Add("descripcionPremio");
+                tablaPremios.Columns.Add("codigoSorteo");
+                tablaPremios.Columns.Add("descripcionSorteo");
+                tablaPremios.Columns.Add("fechaHoraDesde");
+
+                List<Participante> listaParticipantes = CatalogoParticipante.RecuperarGanadoresPorUsuario(codigoUsuario, nhSesion);
+
+                (from s in listaParticipantes select s).OrderBy(x => x.Sorteo.FechaDesde).Aggregate(tablaPremios, (dt, r) => { dt.Rows.Add(r.Premio.Codigo, r.Premio.Descripcion,
+                    r.Sorteo.Codigo, r.Sorteo.Descripcion, r.Sorteo.FechaDesde); return dt; });
+                return tablaPremios;
             }
             catch (Exception ex)
             {
@@ -415,9 +440,7 @@ namespace BibliotecaAppRouss.Controladores
             }
         }
 
-        #endregion
-
-        public static DataTable RecuperarParticipacionesDeUsuarioPorSorteo(int codigoSorteo, int codigoUsuario)
+        public static DataTable RecuperarParticipacionesDeUsuarioPorSorteo(int codigoSorteo, int codigoUsuario, bool isGanadores)
         {
             ISession nhSesion = ManejoNHibernate.IniciarSesion();
 
@@ -427,12 +450,31 @@ namespace BibliotecaAppRouss.Controladores
                 tablaParticipantes.Columns.Add("codigoParticipante");
                 tablaParticipantes.Columns.Add("fechaParticipacion");
                 tablaParticipantes.Columns.Add("codigoUsuario");
+                tablaParticipantes.Columns.Add("nombre");
+                tablaParticipantes.Columns.Add("apellido");
+                tablaParticipantes.Columns.Add("dni");
+                tablaParticipantes.Columns.Add("telefono");
+                tablaParticipantes.Columns.Add("mail");
                 tablaParticipantes.Columns.Add("codigoSorteo");
                 tablaParticipantes.Columns.Add("codigoPremio");
+                tablaParticipantes.Columns.Add("descripcionPremio");
 
-                List<Participante> listaParticipantes = CatalogoParticipante.RecuperarPorUsuarioYSorteo(codigoUsuario, codigoSorteo, nhSesion);
+                List<Participante> listaParticipantes = new List<Participante>();
 
-                (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo, r.Sorteo.Codigo, r.Premio.Codigo); return dt; });
+                if (isGanadores)
+                {
+                    listaParticipantes = CatalogoParticipante.RecuperarGanadoresPorUsuarioYSorteo(codigoUsuario, codigoSorteo, nhSesion);
+                }
+                else
+                {
+                    listaParticipantes = CatalogoParticipante.RecuperarSeguiParticipandoPorUsuarioYSorteo(codigoUsuario, codigoSorteo, nhSesion);
+                }
+
+                (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo, r.Usuario.Nombre, r.Usuario.Apellido, r.Usuario.Dni, r.Usuario.Telefono,
+                        r.Usuario.Mail, r.Sorteo.Codigo, r.Premio.Codigo, r.Premio.Descripcion); return dt;
+                });
 
                 return tablaParticipantes;
             }
@@ -441,5 +483,7 @@ namespace BibliotecaAppRouss.Controladores
                 throw ex;
             }
         }
+
+        #endregion
     }
 }
