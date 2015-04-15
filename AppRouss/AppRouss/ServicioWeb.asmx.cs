@@ -39,10 +39,10 @@ namespace AppRouss
             {
                 DataTable tablaSorteoYPremio = ControladorGeneral.RecuperarSorteoActual();
                 tablaSorteoYPremio.Columns.Add("codigoPremio");
+                int codigoSorteo = Convert.ToInt32(tablaSorteoYPremio.Rows[0]["codigoSorteo"]);
 
-                if (tablaSorteoYPremio.Rows.Count > 0)
+                if (codigoSorteo != 0)
                 {
-                    int codigoSorteo = Convert.ToInt32(tablaSorteoYPremio.Rows[0]["codigoSorteo"]);
                     int cantidadPremiosTotales = Convert.ToInt32(tablaSorteoYPremio.Rows[0]["cantidadPremiosTotales"]);
                     int cantidadTirosPorUsuario = Convert.ToInt32(tablaSorteoYPremio.Rows[0]["cantidadTirosPorUsuario"]);
                     int cantidadPremiosPorUsuario = Convert.ToInt32(tablaSorteoYPremio.Rows[0]["cantidadPremiosPorUsuario"]);
@@ -76,6 +76,10 @@ namespace AppRouss
                     {
                         tablaSorteoYPremio.Rows[0]["codigoPremio"] = 9; //ya se entregaron todos los premios
                     }
+                }
+                else
+                {
+                    tablaSorteoYPremio.Rows[0]["codigoPremio"] = 10; //no existe sorteo
                 }
 
                 return JsonConvert.SerializeObject(tablaSorteoYPremio);

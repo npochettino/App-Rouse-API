@@ -295,6 +295,10 @@ namespace BibliotecaAppRouss.Controladores
                 {
                     tablaSorteo.Rows.Add(new object[] { sorteo.Codigo, sorteo.FechaDesde, sorteo.FechaHasta, sorteo.Descripcion, sorteo.CantidadTirosPorUsuario, sorteo.CantidadPremiosPorUsuario, sorteo.CantidadPremiosTotales });
                 }
+                else
+                {
+                    tablaSorteo.Rows.Add(new object[] { 0, DateTime.MinValue, DateTime.MinValue, string.Empty, 0, 0, 0 });
+                }
 
                 return tablaSorteo;
             }
