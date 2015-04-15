@@ -408,8 +408,9 @@ namespace BibliotecaAppRouss.Controladores
 
                 List<Participante> listaParticipantes = CatalogoParticipante.RecuperarGanadoresPorUsuario(codigoUsuario, nhSesion);
 
-                (from s in listaParticipantes select s).OrderBy(x => x.Sorteo.FechaDesde).Aggregate(tablaPremios, (dt, r) => { dt.Rows.Add(r.Premio.Codigo, r.Premio.Descripcion,
-                    r.Sorteo.Codigo, r.Sorteo.Descripcion, r.Sorteo.FechaDesde); return dt; });
+                (from s in listaParticipantes select s).OrderBy(x => x.RecuperarSorteo(nhSesion).FechaDesde).Aggregate(tablaPremios, (dt, r) => { dt.Rows.Add(r.Premio.Codigo, r.Premio.Descripcion,
+                    r.RecuperarSorteo(nhSesion).Codigo, r.RecuperarSorteo(nhSesion).Descripcion, r.RecuperarSorteo(nhSesion).FechaDesde); return dt;
+                });
                 return tablaPremios;
             }
             catch (Exception ex)
@@ -471,9 +472,9 @@ namespace BibliotecaAppRouss.Controladores
                 tablaParticipantes.Columns.Add("codigoPremio");
                 tablaParticipantes.Columns.Add("descripcionPremio");
 
-                List<Participante> listaParticipantes = CatalogoParticipante.RecuperarPorSorteo(codigoSorteo, nhSesion);
+                Sorteo sorteo = CatalogoSorteo.RecuperarPorCodigo(codigoSorteo, nhSesion);
 
-                (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo,r.Usuario.Dni,r.Usuario.Apellido,r.Usuario.Nombre,r.Usuario.Telefono, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0, r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt; });
+                (from p in sorteo.Participantes select p).Aggregate(tablaParticipantes, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo,r.Usuario.Dni,r.Usuario.Apellido,r.Usuario.Nombre,r.Usuario.Telefono, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0, r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt; });
 
                 return tablaParticipantes;
             }
@@ -501,15 +502,16 @@ namespace BibliotecaAppRouss.Controladores
                 tablaParticipantes.Columns.Add("codigoPremio");
                 tablaParticipantes.Columns.Add("descripcionPremio");
 
-                List<Participante> listaParticipantes = new List<Participante>();//CatalogoParticipante.RecuperarPorSorteo(codigoSorteo, nhSesion);
+                Sorteo sorteo = CatalogoSorteo.RecuperarPorCodigo(codigoSorteo, nhSesion);
+                List<Participante> listaParticipantes = new List<Participante>();
 
                 if (isGanador)
                 {
-                    listaParticipantes = CatalogoParticipante.RecuperarGanadoresPorSorteo(codigoSorteo,nhSesion);//RecuperarGanadoresPorUsuarioYSorteo(codigoUsuario, codigoSorteo, nhSesion);
+                    listaParticipantes = (from p in sorteo.Participantes where p.Premio.Codigo != 4 select p).ToList();
                 }
                 else
                 {
-                    listaParticipantes = CatalogoParticipante.RecuperarSeguiParticipandoPorSorteo(codigoSorteo,nhSesion);//RecuperarSeguiParticipandoPorUsuarioYSorteo(codigoUsuario, codigoSorteo, nhSesion);
+                    listaParticipantes = (from p in sorteo.Participantes where p.Premio.Codigo == 4 select p).ToList();
                 }
 
                 (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) => 
@@ -532,13 +534,16 @@ namespace BibliotecaAppRouss.Controladores
 
             try
             {
+                Sorteo sorteo = CatalogoSorteo.RecuperarPorCodigo(codigoSorteo, nhSesion);
+
                 Participante participante = new Participante();
                 participante.FechaParticipacion = DateTime.Now;
                 participante.Premio = CatalogoPremio.RecuperarPorCodigo(codigoPremio, nhSesion);
-                participante.Sorteo = CatalogoSorteo.RecuperarPorCodigo(codigoSorteo, nhSesion);
                 participante.Usuario = CatalogoUsuario.RecuperarPorCodigo(codigoUsuario, nhSesion);
 
-                CatalogoParticipante.InsertarActualizar(participante, nhSesion);
+                sorteo.Participantes.Add(participante);
+                
+                CatalogoSorteo.InsertarActualizar(sorteo, nhSesion);
             }
             catch (Exception ex)
             {
@@ -565,21 +570,22 @@ namespace BibliotecaAppRouss.Controladores
                 tablaParticipantes.Columns.Add("codigoPremio");
                 tablaParticipantes.Columns.Add("descripcionPremio");
 
+                Sorteo sorteo = CatalogoSorteo.RecuperarPorCodigo(codigoSorteo, nhSesion);
                 List<Participante> listaParticipantes = new List<Participante>();
 
                 if (isGanadores)
                 {
-                    listaParticipantes = CatalogoParticipante.RecuperarGanadoresPorUsuarioYSorteo(codigoUsuario, codigoSorteo, nhSesion);
+                    listaParticipantes = (from p in sorteo.Participantes where p.Premio.Codigo != 4 && p.Usuario.Codigo == codigoUsuario select p).ToList();
                 }
                 else
                 {
-                    listaParticipantes = CatalogoParticipante.RecuperarSeguiParticipandoPorUsuarioYSorteo(codigoUsuario, codigoSorteo, nhSesion);
+                    listaParticipantes = (from p in sorteo.Participantes where p.Premio.Codigo == 4 && p.Usuario.Codigo == codigoUsuario select p).ToList();
                 }
 
                 (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) =>
                 {
                     dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo, r.Usuario.Nombre, r.Usuario.Apellido, r.Usuario.Dni, r.Usuario.Telefono,
-                        r.Usuario.Mail, r.Sorteo.Codigo, r.Premio.Codigo, r.Premio.Descripcion); return dt;
+                        r.Usuario.Mail, sorteo.Codigo, r.Premio.Codigo, r.Premio.Descripcion); return dt;
                 });
 
                 return tablaParticipantes;

@@ -8,6 +8,11 @@ namespace BibliotecaAppRouss.Clases
 {
     public class Sorteo
     {
+        public Sorteo()
+        {
+            Participantes = new List<Participante>();
+        }
+
         public virtual int Codigo { get; set; }
         public virtual DateTime FechaDesde { get; set; }
         public virtual DateTime FechaHasta { get; set; }
@@ -15,5 +20,7 @@ namespace BibliotecaAppRouss.Clases
         public virtual int CantidadTirosPorUsuario { get; set; }
         public virtual int CantidadPremiosPorUsuario { get; set; }
         public virtual int CantidadPremiosTotales { get; set; }
+
+        public virtual IList<Participante> Participantes { get; set; }
     }
 }

@@ -17,7 +17,6 @@ namespace BibliotecaAppRouss.Mapeos
             Map(x => x.FechaParticipacion).Column("fechaParticipacion");
             
             References(x => x.Premio).Column("idPremio").Cascade.None().LazyLoad(Laziness.Proxy);
-            References(x => x.Sorteo).Column("idSorteo").Cascade.None().LazyLoad(Laziness.Proxy);
             References(x => x.Usuario).Column("idUsuario").Cascade.None().LazyLoad(Laziness.Proxy);
         }
     }
