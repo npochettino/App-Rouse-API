@@ -21,7 +21,7 @@ namespace BibliotecaAppRouss.Mapeos
             Map(x => x.FechaHasta).Column("fechaHasta");
             Map(x => x.CantidadPremiosTotales).Column("cantidadPremiosTotales");
 
-            HasMany<Participante>(x => x.Participantes).Table("Participantes").KeyColumn("idSorteo").Cascade.AllDeleteOrphan();
+            HasMany<Participante>(x => x.Participantes).Table("Participantes").KeyColumn("idSorteo").Not.KeyNullable().Cascade.AllDeleteOrphan();
         }
     }
 }
