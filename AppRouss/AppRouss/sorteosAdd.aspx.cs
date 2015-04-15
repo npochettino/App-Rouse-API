@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -17,9 +18,9 @@ namespace AppRouss
         Sorteo oSorteoActual;
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {            
             if (!IsPostBack)
-            {
+            {                
                 //Cargo el form para editar
                 if ((Sorteo)Session["sorteoActual"] != null)
                 {
@@ -32,7 +33,7 @@ namespace AppRouss
                     deFechaHasta.Date = deFechaDesde.Date.AddDays(1);
                 }
             }
-        }
+        }        
 
         private void CargarDatosParaEditar(Sorteo oSorteoActual)
         {
@@ -67,7 +68,13 @@ namespace AppRouss
         private bool validar()
         {
             Int32 CantidadTotalPremios = 0;
-                 
+
+            if (txtDescripcionSorteo.Text == "")
+            { lblDescripcion.InnerText = " El campo es requerido"; lblDescripcion.Visible = true; lblFechaDesde.Visible = false; return false; }            
+            if (string.IsNullOrWhiteSpace(txtDescripcionSorteo.Text))
+            { lblDescripcion.InnerText = " El campo es requerido"; lblDescripcion.Visible = true; lblFechaDesde.Visible = false; return false; }            
+            if (string.IsNullOrEmpty(txtDescripcionSorteo.Text))
+            { lblDescripcion.InnerText = " El campo es requerido"; lblDescripcion.Visible = true; lblFechaDesde.Visible = false; return false; }            
             if (Convert.ToString(deFechaDesde.Date) == "01/01/0001 0:00:00" || deFechaDesde.Date == null)
             { lblFechaDesde.InnerText = " El campo es requerido"; lblFechaDesde.Visible = true; lblFechaHasta.Visible = false; return false; }
             if (Convert.ToString(deFechaHasta.Date) == "01/01/0001 0:00:00" || deFechaHasta.Date == null)
@@ -84,9 +91,28 @@ namespace AppRouss
             { lblCantidadTotalPremios.InnerText = " El campo debe ser un numero."; lblCantidadTotalPremios.Visible = true; lblFechaDesde.Visible = false; lblFechaHasta.Visible = false; lblCantidadOportunidades.Visible = false; return false; }
             if (!char.IsNumber(char.Parse(txtCantidadVictorias.Text)))
             { lblCantidadVictorias.InnerText = " El campo debe ser un numero."; lblCantidadVictorias.Visible = true; lblFechaDesde.Visible = false; lblFechaHasta.Visible = false; lblCantidadOportunidades.Visible = false; return false; }
-            else if (!char.IsNumber(char.Parse(txtCantidadOportunidades.Text)))
-            { lblCantidadOportunidades.InnerText = " El campo debe ser un numero"; lblCantidadOportunidades.Visible = true; lblFechaDesde.Visible = false; lblFechaHasta.Visible = false; lblCantidadVictorias.Visible = false; return false; }                
+            if (!char.IsNumber(char.Parse(txtCantidadOportunidades.Text)))
+            { lblCantidadOportunidades.InnerText = " El campo debe ser un numero"; lblCantidadOportunidades.Visible = true; lblFechaDesde.Visible = false; lblFechaHasta.Visible = false; lblCantidadVictorias.Visible = false; return false; }
+            else if (!validarFechas())
+            { lblFechaDesde.InnerText = " El rango de Fecha se corresponde con las fechas de un sorte existente. Pruebe con otra fecha. "; lblFechaDesde.Visible = true; lblFechaHasta.Visible = false; lblCantidadVictorias.Visible = false; lblCantidadOportunidades.Visible = false; lblCantidadTotalPremios.Visible = false; return false; }
             else return true;
+        }
+
+        private bool validarFechas()
+        {
+            DataTable dtSorteos = ControladorGeneral.RecuperarTodosSorteos();
+            for (int i = 0; i < dtSorteos.Rows.Count; i++)
+            {
+                if (DateTime.Parse(dtSorteos.Rows[i]["fechaDesde"].ToString()) < deFechaDesde.Date && DateTime.Parse(dtSorteos.Rows[i]["fechaHasta"].ToString()) > deFechaHasta.Date)
+                    return false;
+                else if (DateTime.Parse(dtSorteos.Rows[i]["fechaDesde"].ToString()) > deFechaDesde.Date && DateTime.Parse(dtSorteos.Rows[i]["fechaDesde"].ToString()) < deFechaHasta.Date)
+                    return false;
+                else if (DateTime.Parse(dtSorteos.Rows[i]["fechaHasta"].ToString()) > deFechaDesde.Date && DateTime.Parse(dtSorteos.Rows[i]["fechaHasta"].ToString()) < deFechaHasta.Date)
+                    return false;
+                else if (DateTime.Parse(dtSorteos.Rows[i]["fechaDesde"].ToString()) > deFechaDesde.Date && DateTime.Parse(dtSorteos.Rows[i]["fechaHasta"].ToString()) < deFechaHasta.Date)
+                    return false;
+            }
+            return true;
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {

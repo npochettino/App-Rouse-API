@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -28,22 +29,35 @@ namespace AppRouss
 
         protected void btnEditarPremios_Click(object sender, EventArgs e)
         {
-            Modificar();
+            //Modificar();
             ShowPopUpPremios();
         }
 
         private void ShowPopUpPremios()
         {
             pcPremios.ShowOnPageLoad = true;
-            txtDescripcion.ReadOnly = true;
-            CargarDatosParaEditar((Premio)Session["premioActual"]);
+            CargarDatosParaEditar();
 
         }
 
-        private void CargarDatosParaEditar(Premio premio)
+        private void CargarDatosParaEditar()
         {
-            txtDescripcion.Text = premio.Descripcion;
-            txtProbabilidad.Text = premio.Probabilidad.ToString();
+            DataTable dtPremios = ControladorGeneral.RecuperarTodosPremios();
+            for (int i = 0; i < dtPremios.Rows.Count; i++)
+            {
+                if (i == 0)
+                    txtTrago.Text = dtPremios.Rows[i]["probabilidad"].ToString();
+                if (i == 1)
+                    txtDescuento.Text = dtPremios.Rows[i]["probabilidad"].ToString();
+                if (i == 2)
+                    txtChampagne.Text = dtPremios.Rows[i]["probabilidad"].ToString();
+                if (i == 3)
+                    txtSigueParticipando.Text = dtPremios.Rows[i]["probabilidad"].ToString();
+                if (i == 4)
+                    txtEntrada.Text = dtPremios.Rows[i]["probabilidad"].ToString();
+                if (i == 5)
+                    txt2x1.Text = dtPremios.Rows[i]["probabilidad"].ToString();
+            }
         }
 
         private void Modificar()
@@ -59,34 +73,38 @@ namespace AppRouss
         {
             if (validar())
             {
-                oPremioActual = (Premio)Session["premioActual"];
-                ControladorGeneral.InsertarActualizarPremio(oPremioActual.Codigo, oPremioActual.Descripcion, int.Parse(txtProbabilidad.Text));
-
+                DataTable dtPremios = ControladorGeneral.RecuperarTodosPremios();
+                for (int i = 0; i < dtPremios.Rows.Count; i++)
+                {
+                    if (i == 0)
+                        ControladorGeneral.InsertarActualizarPremio(1, dtPremios.Rows[i]["descripcion"].ToString(), int.Parse(txtTrago.Text));
+                        
+                    if (i == 1)
+                        ControladorGeneral.InsertarActualizarPremio(2, dtPremios.Rows[i]["descripcion"].ToString(), int.Parse(txtDescuento.Text));
+                    if (i == 2)
+                        ControladorGeneral.InsertarActualizarPremio(3, dtPremios.Rows[i]["descripcion"].ToString(), int.Parse(txtChampagne.Text));
+                    if (i == 3)
+                        ControladorGeneral.InsertarActualizarPremio(4, dtPremios.Rows[i]["descripcion"].ToString(), int.Parse(txtSigueParticipando.Text));
+                    if (i == 4)
+                        ControladorGeneral.InsertarActualizarPremio(5, dtPremios.Rows[i]["descripcion"].ToString(), int.Parse(txtEntrada.Text));
+                    if (i == 5)
+                        ControladorGeneral.InsertarActualizarPremio(6, dtPremios.Rows[i]["descripcion"].ToString(), int.Parse(txt2x1.Text));
+                }
+               
                 pcPremios.ShowOnPageLoad = false;
                 LoadGridPremios();
             }
-            txtDescripcion.ReadOnly = true;
+            
         }
 
         private bool validar()
         {
             int number;
-
-            if (txtProbabilidad.Text == "")
-            { lblProbabilidadRequerido.InnerText = " El campo es requerido"; lblProbabilidadRequerido.Visible = true; return false; }
-            try
-            {
-                if (!(Int32.TryParse(txtProbabilidad.Text.ToString(), out number)))
-                { lblProbabilidadRequerido.InnerText = " Se requiere un numero entero"; lblProbabilidadRequerido.Visible = true; return false; }
-            }
-            catch 
-            { 
-                lblProbabilidadRequerido.InnerText = " Se requiere un numero entero"; lblProbabilidadRequerido.Visible = true; return false; 
-            }
-            
-            if (!(int.Parse(txtProbabilidad.Text) >= 0 && int.Parse(txtProbabilidad.Text) <= 100))
-            { lblProbabilidadRequerido.InnerText = " Se requiere un numero entre 0 y 100"; lblProbabilidadRequerido.Visible = true; return false; }
-            else return true;
+            number = int.Parse(txt2x1.Text) + int.Parse(txtChampagne.Text) + int.Parse(txtDescuento.Text) + int.Parse(txtEntrada.Text) + int.Parse(txtSigueParticipando.Text) + int.Parse(txtTrago.Text);
+            if (number != 100)
+            { lblProbabilidadRequerido.InnerText = " Error. La sumatoria de las probabilidades debe ser igual a 100."; lblProbabilidadRequerido.Visible = true; return false; }
+           
+            return true;
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)

@@ -35,7 +35,13 @@ namespace AppRouss
 
         protected void btnPdfExport_Click(object sender, EventArgs e)
         {
-            LoadGrillaParticipante();
+            if (rbTodos.Checked == true)
+                LoadGrillaParticipante(1);
+            else if (rbGanador.Checked == true)
+                LoadGrillaParticipante(2);
+            else
+                LoadGrillaParticipante(3);
+
             gvExporter.ReportHeader = "Reporte de Participantes para el Sorteo: " + ddlSorteos.SelectedItem.Text.ToString();
             gvExporter.ExportedRowType = DevExpress.Web.ASPxGridView.Export.GridViewExportedRowType.All;
             gvExporter.WritePdfToResponse();
@@ -43,27 +49,64 @@ namespace AppRouss
 
         protected void btnXlsxExport_Click(object sender, EventArgs e)
         {
-            LoadGrillaParticipante();
+            if (rbTodos.Checked == true)
+                LoadGrillaParticipante(1);
+            else if (rbGanador.Checked == true)
+                LoadGrillaParticipante(2);
+            else
+                LoadGrillaParticipante(3);
+
             gvExporter.ReportHeader = "Reporte de Participantes para el Sorteo: " + ddlSorteos.SelectedItem.Text.ToString();
             gvExporter.ExportedRowType = DevExpress.Web.ASPxGridView.Export.GridViewExportedRowType.All;
             gvExporter.WriteXlsxToResponse();
         }
 
-        protected void btnCargarReporteParticipante_Click(object sender, EventArgs e)
+        private void LoadGrillaParticipante(int opcion)
         {
-            int test = int.Parse(ddlSorteos.SelectedValue);
-            LoadGrillaParticipante();
-        }
-
-        private void LoadGrillaParticipante()
-        {
-            gvParticipantes.DataSource = ControladorGeneral.RecuperarParticipantesPorSorteo(int.Parse(ddlSorteos.SelectedValue));
-            gvParticipantes.DataBind();
+            if (opcion == 1)//Muestro todos
+            {
+                gvParticipantes.DataSource = ControladorGeneral.RecuperarParticipantesPorSorteo(int.Parse(ddlSorteos.SelectedValue));
+                gvParticipantes.DataBind();
+            }
+            else if (opcion == 2)//Muestro Ganadores
+            {
+                gvParticipantes.DataSource = ControladorGeneral.RecuperarParticipantesPorSorteoGanadorONo(int.Parse(ddlSorteos.SelectedValue), true);
+                gvParticipantes.DataBind();
+            }
+            else
+            {   //Muestro Segui Participando
+                gvParticipantes.DataSource = ControladorGeneral.RecuperarParticipantesPorSorteoGanadorONo(int.Parse(ddlSorteos.SelectedValue), false);
+                gvParticipantes.DataBind();
+            }
         }
 
         protected void ddlSorteos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadGrillaParticipante();
+            if (rbTodos.Checked == true)
+                LoadGrillaParticipante(1);
+            else if (rbGanador.Checked == true)
+                LoadGrillaParticipante(2);
+            else
+                LoadGrillaParticipante(3);
         }
+
+        protected void rbTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbTodos.Checked == true)
+                LoadGrillaParticipante(1);
+        }
+
+        protected void rbGanador_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbGanador.Checked == true)
+                LoadGrillaParticipante(2);                
+        }
+
+        protected void rbSeguiParticipando_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbSeguiParticipando.Checked == true)
+                LoadGrillaParticipante(3);
+        }
+        
     }
 }

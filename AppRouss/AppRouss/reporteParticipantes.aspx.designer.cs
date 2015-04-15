@@ -22,6 +22,33 @@ namespace AppRouss {
         protected global::System.Web.UI.WebControls.DropDownList ddlSorteos;
         
         /// <summary>
+        /// Control rbTodos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbTodos;
+        
+        /// <summary>
+        /// Control rbGanador.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbGanador;
+        
+        /// <summary>
+        /// Control rbSeguiParticipando.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbSeguiParticipando;
+        
+        /// <summary>
         /// Control btnPdfExport.
         /// </summary>
         /// <remarks>

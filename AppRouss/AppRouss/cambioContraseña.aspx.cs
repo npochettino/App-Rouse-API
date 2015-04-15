@@ -59,6 +59,7 @@ namespace AppRouss
 
                 txtOldPassword.Text = "";
                 txtNewPassword.Text = "";
+                lblPassword.Visible = false;
                 pcCambioPassword.ShowOnPageLoad = true;
             }
         }

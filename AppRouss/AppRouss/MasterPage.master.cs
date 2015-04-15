@@ -5,21 +5,25 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class MasterPage : System.Web.UI.MasterPage
+namespace AppRouss
 {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class MasterPage : System.Web.UI.MasterPage
     {
-        if (Session["logueado"] == null)
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["logueado"] == null)
+            {
+                Session.Clear();
+                Session.Abandon();
+                Response.Redirect("login.aspx");
+            }
+            lblUsuario.Text = " " + Session["usuarioAdm"].ToString();
+        }
+        protected void lnkSalir_Click(object sender, EventArgs e)
         {
             Session.Clear();
             Session.Abandon();
             Response.Redirect("login.aspx");
         }
-    }
-    protected void lnkSalir_Click(object sender, EventArgs e)
-    {
-        Session.Clear();
-        Session.Abandon();
-        Response.Redirect("login.aspx");
     }
 }

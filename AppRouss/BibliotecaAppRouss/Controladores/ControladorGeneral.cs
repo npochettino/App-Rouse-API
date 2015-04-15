@@ -422,6 +422,37 @@ namespace BibliotecaAppRouss.Controladores
 
         #region Participante
 
+
+        public static DataTable RecuperarTodosParticipantes()
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaParticipantes = new DataTable();
+                tablaParticipantes.Columns.Add("codigoParticipante");
+                tablaParticipantes.Columns.Add("fechaParticipacion");
+                tablaParticipantes.Columns.Add("codigoUsuario");
+                tablaParticipantes.Columns.Add("dniUsuario");
+                tablaParticipantes.Columns.Add("apellidoUsuario");
+                tablaParticipantes.Columns.Add("nombreUsuario");
+                tablaParticipantes.Columns.Add("telefonoUsuario");
+                tablaParticipantes.Columns.Add("mailUsuario");
+                tablaParticipantes.Columns.Add("codigoPremio");
+                tablaParticipantes.Columns.Add("descripcionPremio");
+
+                List<Participante> listaParticipantes = CatalogoParticipante.RecuperarTodos(nhSesion);
+
+                (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo, r.Usuario.Dni, r.Usuario.Apellido, r.Usuario.Nombre, r.Usuario.Telefono, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0, r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt; });
+
+                return tablaParticipantes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static DataTable RecuperarParticipantesPorSorteo(int codigoSorteo)
         {
             ISession nhSesion = ManejoNHibernate.IniciarSesion();
@@ -432,13 +463,60 @@ namespace BibliotecaAppRouss.Controladores
                 tablaParticipantes.Columns.Add("codigoParticipante");
                 tablaParticipantes.Columns.Add("fechaParticipacion");
                 tablaParticipantes.Columns.Add("codigoUsuario");
+                tablaParticipantes.Columns.Add("dniUsuario");                
+                tablaParticipantes.Columns.Add("apellidoUsuario");
+                tablaParticipantes.Columns.Add("nombreUsuario");
+                tablaParticipantes.Columns.Add("telefonoUsuario");
                 tablaParticipantes.Columns.Add("mailUsuario");
                 tablaParticipantes.Columns.Add("codigoPremio");
                 tablaParticipantes.Columns.Add("descripcionPremio");
 
                 List<Participante> listaParticipantes = CatalogoParticipante.RecuperarPorSorteo(codigoSorteo, nhSesion);
 
-                (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0, r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt; });
+                (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo,r.Usuario.Dni,r.Usuario.Apellido,r.Usuario.Nombre,r.Usuario.Telefono, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0, r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt; });
+
+                return tablaParticipantes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataTable RecuperarParticipantesPorSorteoGanadorONo(int codigoSorteo,bool isGanador)
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaParticipantes = new DataTable();
+                tablaParticipantes.Columns.Add("codigoParticipante");
+                tablaParticipantes.Columns.Add("fechaParticipacion");
+                tablaParticipantes.Columns.Add("codigoUsuario");
+                tablaParticipantes.Columns.Add("dniUsuario");
+                tablaParticipantes.Columns.Add("apellidoUsuario");
+                tablaParticipantes.Columns.Add("nombreUsuario");
+                tablaParticipantes.Columns.Add("telefonoUsuario");
+                tablaParticipantes.Columns.Add("mailUsuario");
+                tablaParticipantes.Columns.Add("codigoPremio");
+                tablaParticipantes.Columns.Add("descripcionPremio");
+
+                List<Participante> listaParticipantes = new List<Participante>();//CatalogoParticipante.RecuperarPorSorteo(codigoSorteo, nhSesion);
+
+                if (isGanador)
+                {
+                    listaParticipantes = CatalogoParticipante.RecuperarGanadoresPorSorteo(codigoSorteo,nhSesion);//RecuperarGanadoresPorUsuarioYSorteo(codigoUsuario, codigoSorteo, nhSesion);
+                }
+                else
+                {
+                    listaParticipantes = CatalogoParticipante.RecuperarSeguiParticipandoPorSorteo(codigoSorteo,nhSesion);//RecuperarSeguiParticipandoPorUsuarioYSorteo(codigoUsuario, codigoSorteo, nhSesion);
+                }
+
+                (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) => 
+                { dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo, r.Usuario.Dni, r.Usuario.Apellido, 
+                    r.Usuario.Nombre, r.Usuario.Telefono, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0, 
+                    r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt; 
+                });
 
                 return tablaParticipantes;
             }

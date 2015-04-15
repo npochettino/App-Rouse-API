@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -18,10 +19,28 @@ namespace AppRouss
             if (!IsPostBack)
             {
                 LoadGridSorteos();
+                LoadNotificaciones();
             }
             Session["idSorteo"] = null;
             Session["sorteoActual"] = null;
             Session["codigoOperacion"] = null;
+        }
+
+        private void LoadNotificaciones()
+        {
+            DataTable dtSorteoActual = ControladorGeneral.RecuperarSorteoActual();
+            if (dtSorteoActual.Rows.Count != 0)
+            {
+                NotificacionSorteoEnCurso.Visible = true;
+                NotificacionSinSorteoEnCurso.Visible = false;
+                btnNewSorteo.Visible = false;
+            }
+            else
+            {
+                NotificacionSorteoEnCurso.Visible = false;
+                NotificacionSinSorteoEnCurso.Visible = true;
+                btnNewSorteo.Visible = true;    
+            }            
         }
 
         private void LoadGridSorteos()
@@ -60,8 +79,17 @@ namespace AppRouss
 
         protected void btnEliminarSorteo_Click(object sender, EventArgs e)
         {
-            ControladorGeneral.EliminarSorteo(obtenerCodigoFilaSeleccionada());
-            LoadGridSorteos();
+            DataTable dtParticipantesPorSorteo = ControladorGeneral.RecuperarParticipantesPorSorteo(obtenerCodigoFilaSeleccionada());
+            
+            if (dtParticipantesPorSorteo.Rows.Count != 0)
+            {
+                lblMensajeEliminarSorteo.Text = "Adevertencia, El sorteo que quiere elimina posee usuario que ya han participado. Precione ACEPTAR si desea continuar y eliminar todos los juegos del mismo o precione CANCELAR para volver.";
+            }
+            else
+            {
+                lblMensajeEliminarSorteo.Text = "¿Esta seguro que desea eliminar el sorteo?";
+            }
+            pcSorteos.ShowOnPageLoad = true;
         }
 
         private int obtenerCodigoFilaSeleccionada()
@@ -69,6 +97,18 @@ namespace AppRouss
             int codigo = 0;
             codigo = int.Parse(gvSorteos.GetRowValues(gvSorteos.FocusedRowIndex, "codigoSorteo").ToString());
             return codigo;
+        }
+
+        protected void btnConfirmar_Click(object sender, EventArgs e)
+        {            
+            ControladorGeneral.EliminarSorteo(obtenerCodigoFilaSeleccionada());
+            pcSorteos.ShowOnPageLoad = false;
+            Response.Redirect("sorteos.aspx");
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            pcSorteos.ShowOnPageLoad = false;
         }
     }
 }

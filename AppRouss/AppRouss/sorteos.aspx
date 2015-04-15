@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="sorteos.aspx.cs" Inherits="AppRouss.sorteos" %>
 
+<%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dx" %>
+
 <%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
@@ -29,7 +31,7 @@
                 </ul>
 
 
-                <div class="page-toolbar">
+                <%--                <div class="page-toolbar">
                     <div class="btn-group pull-right">
                         <button type="button" class="btn btn-fit-height grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
                             Acciones <i class="fa fa-angle-down"></i>
@@ -41,7 +43,7 @@
 
                         </ul>
                     </div>
-                </div>
+                </div>--%>
             </div>
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
@@ -61,8 +63,11 @@
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <div runat="server" id="Notificacion1" class="alert alert-success">
-                                <strong>Sorteo en Curso!</strong> Un sorteo se encuentra vigente.
+                            <div runat="server" id="NotificacionSinSorteoEnCurso" class="alert alert-success">
+                                <strong>No se encuentran Sorteos en Curso!</strong> Usted puede crear un nuevo sorteo.
+                            </div>
+                            <div runat="server" id="NotificacionSorteoEnCurso" class="alert alert-danger">
+                                <strong>Existe un Sorteos en Curso!</strong> No se pueden crear nuevos sorteos.
                             </div>
                         </div>
                     </div>
@@ -107,13 +112,10 @@
                                                 <dx:ASPxGridView ID="gvSorteos" runat="server" KeyFieldName="codigoSorteo" Width="100%" Theme="Metropolis" AutoGenerateColumns="False">
                                                     <Columns>
                                                         <dx:GridViewDataTextColumn FieldName="codigoSorteo" ShowInCustomizationForm="True" Caption="Codigo" Visible="False" VisibleIndex="1"></dx:GridViewDataTextColumn>
-
-                                                        <dx:GridViewDataDateColumn FieldName="fechaDesde" VisibleIndex="2" Caption="Fecha Desde" PropertiesDateEdit-DisplayFormatString="dd/MM/yyyy HH:mm:ss" PropertiesDateEdit-EditFormat="DateTime">
-                                                            <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy HH:mm:ss" EditFormatString="dd/MM/yyyy HH:mm:ss">
-                                                            </PropertiesDateEdit>
-                                                        </dx:GridViewDataDateColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="fechaDesde" VisibleIndex="2" Caption="test" PropertiesTextEdit-DisplayFormatString="dd/MM/yyyy H:mm"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataDateColumn FieldName="fechaDesde" VisibleIndex="2" Caption="Fecha Desde">
+                                                        </dx:GridViewDataDateColumn>                                                       
                                                         <dx:GridViewDataDateColumn FieldName="fechaHasta" VisibleIndex="3" Caption="Fecha Hasta">
-                                                            <PropertiesDateEdit DisplayFormatString="f" UseMaskBehavior="true" EditFormat="DateTime"></PropertiesDateEdit>
                                                         </dx:GridViewDataDateColumn>
                                                         <dx:GridViewDataTextColumn FieldName="descripcion" ShowInCustomizationForm="True" Caption="Descripcion" VisibleIndex="4"></dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn FieldName="cantidadTirosPorUsuario" ShowInCustomizationForm="True" Caption="Cantidad Juegos x Usuario" VisibleIndex="5"></dx:GridViewDataTextColumn>
@@ -206,5 +208,52 @@
         });
     </script>
     <!-- END JAVASCRIPTS -->
+    
+    <dx:ASPxPopupControl ClientInstanceName="pcSorteos" Width="330px" Height="250px"
+            MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" CloseOnEscape="true" ID="pcSorteos"
+            AllowDragging="True" PopupElementID="imgButton" HeaderText="Eliminar de Premios" ShowHeader="false"
+            runat="server" EnableViewState="False" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"
+            EnableHierarchyRecreation="True" Modal="True" Theme="Metropolis" PopupAnimationType="Slide">
+            <ContentCollection>
+                <dx:PopupControlContentControl runat="server">
+                    <asp:Panel ID="Panel1" runat="server">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="portlet box red">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i>Eliminar Sorteo
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+
+                                        <div class="form-body">
+
+                                            <div class="form-group">
+                                                <label class="control-label">
+                                                    <asp:Label ID="lblMensajeEliminarSorteo" runat="server" Text="Label"></asp:Label></label>
+                                                
+                                            </div>
+                                            
+
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="btn-set pull-right">
+                                                <asp:Button ID="btnConfirmar" class="btn blue" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
+                                                <asp:Button ID="btnCancelar" class="btn red" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
+                                            </div>
+                                        </div>
+                                        <!-- END FORM-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
 
 </asp:Content>

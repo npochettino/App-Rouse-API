@@ -1,4 +1,5 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="AppRouss.MasterPage" %>
+
 
 <!DOCTYPE html>
 
@@ -78,7 +79,7 @@
 <!-- DOC: Apply "page-full-width" class to the body element to have full width page without the sidebar menu -->
 <body class="page-header-fixed page-quick-sidebar-over-content page-style-square">
     <!-- BEGIN HEADER -->
-    <form runat="server">
+    <form id="Form1" runat="server">
         <div class="page-header navbar navbar-fixed-top">
             <!-- BEGIN HEADER INNER -->
             <div class="page-header-inner">
@@ -104,7 +105,8 @@
                         <li class="dropdown dropdown-user">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <img alt="" class="img-circle" src="assets/rouss/avatar_1.png" />
-                                <span class="username username-hide-on-mobile">Administrador </span>
+                                <span class="username username-hide-on-mobile">
+                                    <asp:Label ID="lblUsuario" runat="server" Text=""></asp:Label> </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
@@ -210,9 +212,9 @@
                                 <span class="arrow "></span>
                             </a>
                             <ul class="sub-menu">
-                                <li>
+                                <%--<li>
                                     <a href="reporteGanadores.aspx">Reporte Ganadores</a>
-                                </li>
+                                </li>--%>
                                 <li>
                                     <a href="reporteParticipantes.aspx">Reporte Participantes</a>
                                 </li>
@@ -315,3 +317,4 @@
 </body>
 <!-- END BODY -->
 </html>
+

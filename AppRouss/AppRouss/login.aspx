@@ -84,13 +84,13 @@
                     </label>
                     <asp:Button type="submit" class="btn blue pull-right" ID="txtLogin" runat="server" Text="Login" OnClick="txtLogin_Click" /><%--<i class="m-icon-swapright m-icon-white"></i>--%>
                 </div>
-                <div class="forget-password">
+                <%--<div class="forget-password">
                     <h4>Olvidaste tu contraseña ?</h4>
                     <p>
                         no te preocupes, click <a href="javascript:;" id="forget-password">aqui </a>
                         para resetear la contraseña.
                     </p>
-                </div>
+                </div>--%>
             </form>
             <!-- END LOGIN FORM -->
             <!-- BEGIN FORGOT PASSWORD FORM -->

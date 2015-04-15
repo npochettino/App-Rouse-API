@@ -31,7 +31,7 @@
                         </div>
                         <div class="details">
                             <div class="number">
-                                1349
+                                <asp:Label ID="lblCantidadDeSorteosTotales" runat="server" Text=""></asp:Label>
                             </div>
                             <div class="desc">
                                 Sorteos
@@ -48,7 +48,7 @@
                         </div>
                         <div class="details">
                             <div class="number">
-                                498
+                                <asp:Label ID="lblCantidadDeUsuariosTotales" runat="server" Text=""></asp:Label>
                             </div>
                             <div class="desc">
                                 Usuarios
@@ -65,7 +65,7 @@
                         </div>
                         <div class="details">
                             <div class="number">
-                                549564
+                                <asp:Label ID="lblCantidadDeJuegosTotales" runat="server" Text=""></asp:Label>
                             </div>
                             <div class="desc">
                                 Juegos
@@ -82,7 +82,7 @@
                         </div>
                         <div class="details">
                             <div class="number">
-                                987
+                                <asp:Label ID="lblCantidadDeGanadoresTotales" runat="server" Text=""></asp:Label>
                             </div>
                             <div class="desc">
                                 Ganadores
@@ -107,7 +107,7 @@
                                             <i class="fa fa-android"></i>Ultimo sorteo
                                         </div>
                                         <div class="actions">
-                                            <a href="reporteGanadores.aspx" class="btn btn-default btn-sm">
+                                            <a href="reporteParticipantes.aspx" class="btn btn-default btn-sm">
                                                 <i class="fa fa-dashboard"></i>ver reporte </a>
                                         </div>
                                     </div>
@@ -117,7 +117,7 @@
                                                 Descripción:
                                             </div>
                                             <div class="col-md-7 value">
-                                                12313232
+                                               <asp:Label ID="lblDescripcionSorteo" runat="server" Text=""></asp:Label>
                                             </div>
                                         </div>
                                         <div class="row static-info">
@@ -125,7 +125,7 @@
                                                 Fecha Desde & Fecha Hasta:
                                             </div>
                                             <div class="col-md-7 value">
-                                                17/03/2015 - 20/03/2015
+                                                <asp:Label ID="lblFechaDesdeHasta" runat="server" Text=""></asp:Label>
                                             </div>
                                         </div>
                                         <div class="row static-info">
@@ -133,7 +133,7 @@
                                                 Estado del Sorteo:
                                             </div>
                                             <div class="col-md-7 value">
-                                                <span class="label label-success">Cerrado </span>
+                                                <asp:Label ID="lblEstadoSorteo" runat="server" Text=""></asp:Label>
                                             </div>
                                         </div>
                                         <div class="row static-info">
@@ -141,7 +141,7 @@
                                                 Cantidad de Ganadores:
                                             </div>
                                             <div class="col-md-7 value">
-                                                46
+                                                <asp:Label ID="lblCantidadGanadores" runat="server" Text=""></asp:Label>
                                             </div>
                                         </div>
                                         <div class="row static-info">
@@ -149,7 +149,7 @@
                                                 Cantidad de Participantes:
                                             </div>
                                             <div class="col-md-7 value">
-                                                157
+                                                <asp:Label ID="lblCantidadParticipantes" runat="server" Text=""></asp:Label>
                                             </div>
                                         </div>
                                     </div>

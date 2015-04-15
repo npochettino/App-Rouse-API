@@ -92,11 +92,18 @@
                                                             <label class="control-label">Ganador</label>
                                                             <div class="radio-list">
                                                                 <label class="radio-inline">
-                                                                    <input type="radio" name="optionsRadios" id="Radio1" value="option1" checked>
+                                                                    <asp:RadioButton type="radio" ID="rbTodos" AutoPostBack="true" GroupName="optionsRadios" Checked="true" runat="server" OnCheckedChanged="rbTodos_CheckedChanged" />
+                                                                    <%--<input type="radio" name="optionsRadios" id="Radio3" value="option1" checked>--%>
+                                                                    Todos
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <asp:RadioButton type="radio" ID="rbGanador" AutoPostBack="true" GroupName="optionsRadios" runat="server" OnCheckedChanged="rbGanador_CheckedChanged" />
+                                                                    <%--<input type="radio" name="optionsRadios" id="Radio1" value="option1" checked>--%>
                                                                     Ganador
                                                                 </label>
                                                                 <label class="radio-inline">
-                                                                    <input type="radio" name="optionsRadios" id="Radio2" value="option2">
+                                                                    <asp:RadioButton type="radio" ID="rbSeguiParticipando" AutoPostBack="true" GroupName="optionsRadios" runat="server" OnCheckedChanged="rbSeguiParticipando_CheckedChanged" />
+                                                                    <%--<input type="radio" name="optionsRadios" id="Radio2" value="option2">--%>
                                                                     Segui Participando
                                                                 </label>
                                                             </div>
@@ -116,7 +123,7 @@
                                 </div>
 
                                 <div class="portlet-body">
-                                    <div id="chart_1" class="chart" style="height: 500px;">
+                                    <div id="chart_1" class="chart" style="height: auto;">
                                         <div class="portlet-body form">
                                             <table class="BottomMargin">
                                                 <tr>
@@ -132,22 +139,32 @@
                                                 </tr>
                                             </table>
 
-                                            <dx:ASPxGridView ID="gvParticipantes" runat="server" KeyFieldName="codigoParticipante" Width="100%" Theme="Metropolis" AutoGenerateColumns="False">
+                                            <dx:ASPxGridView ID="gvParticipantes"  Settings-HorizontalScrollBarMode="Auto" runat="server" KeyFieldName="codigoParticipante" Width="100%" Theme="Metropolis" AutoGenerateColumns="False">
                                                 <Columns>
                                                     <dx:GridViewDataTextColumn Caption="idUsuario" FieldName="codigoParticipante" Visible="False" VisibleIndex="1">
                                                     </dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataTextColumn Caption="Fecha Participacion" FieldName="fechaParticipacion" VisibleIndex="2" Visible="true">
+                                                    <dx:GridViewDataTextColumn Caption="Fecha Participacion" Width="20%" FieldName="fechaParticipacion" VisibleIndex="2" Visible="true">
                                                     </dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataTextColumn Caption="Codigo Usuario" FieldName="codigoUsuario" VisibleIndex="3">
+                                                    <dx:GridViewDataTextColumn Caption="Codigo Usuario" FieldName="codigoUsuario" VisibleIndex="3" Visible="false">
                                                     </dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataTextColumn Caption="Mail" FieldName="mailUsuario" VisibleIndex="4">
+                                                    <dx:GridViewDataTextColumn Caption="DNI" Width="10%" FieldName="dniUsuario" VisibleIndex="4">
                                                     </dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataTextColumn Caption="Codigo Premio" FieldName="codigoPremio" VisibleIndex="5">
+                                                    <dx:GridViewDataTextColumn Caption="Apellido" Width="20%" FieldName="apellidoUsuario" VisibleIndex="5">
                                                     </dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataTextColumn Caption="Premio" FieldName="descripcionPremio" VisibleIndex="6">
+                                                    <dx:GridViewDataTextColumn Caption="Nombre" Width="20%" FieldName="nombreUsuario" VisibleIndex="6">
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn Caption="Teléfono" FieldName="telefonoUsuario" Width="15%" VisibleIndex="7">
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn Caption="Mail" FieldName="mailUsuario" Width="20%" VisibleIndex="8" Visible="false">
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn Caption="Codigo Premio" FieldName="codigoPremio" VisibleIndex="9" Visible="false">
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn Caption="Premio" Width="18%" FieldName="descripcionPremio" VisibleIndex="10">
                                                     </dx:GridViewDataTextColumn>
                                                 </Columns>
-                                                
+                                                <SettingsBehavior ColumnResizeMode="Control" />
+                                                <SettingsPager Mode="ShowAllRecords">
+                                                </SettingsPager>
                                             </dx:ASPxGridView>
                                             <dx:ASPxGridViewExporter ID="gvExporter" GridViewID="gvParticipantes" ExportedRowType="All" PaperKind="A4" FileName="ReporteParticipantes" runat="server">
                                                 <PageHeader Right="[Date Printed] - [Time Printed]">

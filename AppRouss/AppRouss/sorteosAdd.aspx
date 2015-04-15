@@ -44,7 +44,7 @@
             </div>
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
-            <div class="row">
+            <%--<div class="row">
                 <div class="col-md-12">
                     <!-- BEGIN ALERTS PORTLET-->
                     <div class="portlet purple box">
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
             <!-- BEGIN PAGE CONTENT-->
             <div class="row">
                 <div class="col-md-12">

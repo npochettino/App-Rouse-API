@@ -59,7 +59,7 @@
                                                 <div class="form-group">
                                                     <label class="control-label">Contraseña Anterior</label>
                                                     <div class="input-group">
-                                                        <asp:TextBox class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="ingrese contraseña contraseña anterior" name="password" ID="txtOldPassword" runat="server"></asp:TextBox>
+                                                        <asp:TextBox class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="ingrese contraseña anterior" name="password" ID="txtOldPassword" runat="server"></asp:TextBox>
                                                         <span class="input-group-addon">
                                                             <i class="fa fa-user"></i>
                                                         </span>
@@ -120,7 +120,7 @@
     <dx:ASPxPopupControl ClientInstanceName="pcCambioPassword" Width="250px" Height="250px"
         MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" CloseOnEscape="true" ID="pcCambioPassword"
         AllowDragging="True" PopupElementID="imgButton" HeaderText=""
-        runat="server" EnableViewState="False" PopupHorizontalAlign="Center" PopupVerticalAlign="WindowCenter"
+        runat="server" EnableViewState="False" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"
         EnableHierarchyRecreation="True" Modal="True" Theme="Metropolis" PopupAnimationType="Slide" CloseButtonStyle-Wrap="False">
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
