@@ -126,7 +126,7 @@ namespace BibliotecaAppRouss.Controladores
 
                 List<Usuario> listaUsuarios = CatalogoUsuario.RecuperarTodos(nhSesion);
 
-                (from s in listaUsuarios select s).Aggregate(tablaUsuarios, (dt, r) => { dt.Rows.Add(r.Codigo, r.Nombre,  r.Apellido, r.Dni, r.Mail, r.Contraseña, r.Telefono); return dt; });
+                (from s in listaUsuarios select s).Aggregate(tablaUsuarios, (dt, r) => { dt.Rows.Add(r.Codigo, r.Nombre, r.Apellido, r.Dni, r.Mail, r.Contraseña, r.Telefono); return dt; });
                 return tablaUsuarios;
             }
             catch (Exception ex)
@@ -412,8 +412,10 @@ namespace BibliotecaAppRouss.Controladores
 
                 List<Participante> listaParticipantes = CatalogoParticipante.RecuperarGanadoresPorUsuario(codigoUsuario, nhSesion);
 
-                (from s in listaParticipantes select s).OrderBy(x => x.RecuperarSorteo(nhSesion).FechaDesde).Aggregate(tablaPremios, (dt, r) => { dt.Rows.Add(r.Premio.Codigo, r.Premio.Descripcion,
-                    r.RecuperarSorteo(nhSesion).Codigo, r.RecuperarSorteo(nhSesion).Descripcion, r.RecuperarSorteo(nhSesion).FechaDesde); return dt;
+                (from s in listaParticipantes select s).OrderBy(x => x.RecuperarSorteo(nhSesion).FechaDesde).Aggregate(tablaPremios, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Premio.Codigo, r.Premio.Descripcion,
+                        r.RecuperarSorteo(nhSesion).Codigo, r.RecuperarSorteo(nhSesion).Descripcion, r.RecuperarSorteo(nhSesion).FechaDesde); return dt;
                 });
                 return tablaPremios;
             }
@@ -468,7 +470,7 @@ namespace BibliotecaAppRouss.Controladores
                 tablaParticipantes.Columns.Add("codigoParticipante");
                 tablaParticipantes.Columns.Add("fechaParticipacion");
                 tablaParticipantes.Columns.Add("codigoUsuario");
-                tablaParticipantes.Columns.Add("dniUsuario");                
+                tablaParticipantes.Columns.Add("dniUsuario");
                 tablaParticipantes.Columns.Add("apellidoUsuario");
                 tablaParticipantes.Columns.Add("nombreUsuario");
                 tablaParticipantes.Columns.Add("telefonoUsuario");
@@ -478,7 +480,7 @@ namespace BibliotecaAppRouss.Controladores
 
                 Sorteo sorteo = CatalogoSorteo.RecuperarPorCodigo(codigoSorteo, nhSesion);
 
-                (from p in sorteo.Participantes select p).Aggregate(tablaParticipantes, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo,r.Usuario.Dni,r.Usuario.Apellido,r.Usuario.Nombre,r.Usuario.Telefono, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0, r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt; });
+                (from p in sorteo.Participantes select p).Aggregate(tablaParticipantes, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo, r.Usuario.Dni, r.Usuario.Apellido, r.Usuario.Nombre, r.Usuario.Telefono, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0, r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt; });
 
                 return tablaParticipantes;
             }
@@ -488,7 +490,7 @@ namespace BibliotecaAppRouss.Controladores
             }
         }
 
-        public static DataTable RecuperarParticipantesPorSorteoGanadorONo(int codigoSorteo,bool isGanador)
+        public static DataTable RecuperarParticipantesPorSorteoGanadorONo(int codigoSorteo, bool isGanador)
         {
             ISession nhSesion = ManejoNHibernate.IniciarSesion();
 
@@ -518,10 +520,11 @@ namespace BibliotecaAppRouss.Controladores
                     listaParticipantes = (from p in sorteo.Participantes where p.Premio.Codigo == 4 select p).ToList();
                 }
 
-                (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) => 
-                { dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo, r.Usuario.Dni, r.Usuario.Apellido, 
-                    r.Usuario.Nombre, r.Usuario.Telefono, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0, 
-                    r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt; 
+                (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo, r.Usuario.Dni, r.Usuario.Apellido,
+                      r.Usuario.Nombre, r.Usuario.Telefono, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0,
+                      r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt;
                 });
 
                 return tablaParticipantes;
@@ -546,7 +549,7 @@ namespace BibliotecaAppRouss.Controladores
                 participante.Usuario = CatalogoUsuario.RecuperarPorCodigo(codigoUsuario, nhSesion);
 
                 sorteo.Participantes.Add(participante);
-                
+
                 CatalogoSorteo.InsertarActualizar(sorteo, nhSesion);
             }
             catch (Exception ex)
@@ -601,5 +604,40 @@ namespace BibliotecaAppRouss.Controladores
         }
 
         #endregion
+
+        public static DataTable RecuperarContraseña(string mail)
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaUsuarios = new DataTable();
+                tablaUsuarios.Columns.Add("idUsuario");
+                tablaUsuarios.Columns.Add("nombre");
+                tablaUsuarios.Columns.Add("apellido");
+                tablaUsuarios.Columns.Add("dni");
+                tablaUsuarios.Columns.Add("mail");
+                tablaUsuarios.Columns.Add("contraseña");
+                tablaUsuarios.Columns.Add("telefono");
+
+                Usuario usuario = CatalogoUsuario.RecuperarPor(x => x.Mail == mail, nhSesion);
+
+                if (usuario != null)
+                {
+                    Random rnd = new Random();
+                    int nuevaContraseña = rnd.Next(111111, 999999);
+                    usuario.Contraseña = nuevaContraseña.ToString();
+                    CatalogoUsuario.InsertarActualizar(usuario, nhSesion);
+
+                    tablaUsuarios.Rows.Add(new object[] { usuario.Codigo, usuario.Nombre, usuario.Apellido, usuario.Dni, usuario.Mail, usuario.Contraseña, usuario.Telefono });
+                }
+
+                return tablaUsuarios;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

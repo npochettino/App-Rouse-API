@@ -131,5 +131,28 @@ namespace AppRouss
                 throw ex;
             }
         }
+
+        [WebMethod]
+        public string RecuperarContraseña(string mail)
+        {
+            try
+            {
+                DataTable tablaUsuario = ControladorGeneral.RecuperarContraseña(mail);
+                
+                if (tablaUsuario.Rows.Count > 0)
+                {
+                    //ControladorGeneral.EnviarMail();
+                    return "ok";
+                }
+                else
+                {
+                    return "UsuarioInexistente";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
