@@ -29,7 +29,7 @@ namespace AppRouss
         private void LoadNotificaciones()
         {
             DataTable dtSorteoActual = ControladorGeneral.RecuperarSorteoActual();
-            if (dtSorteoActual.Rows.Count != 0)
+            if (Convert.ToInt32(dtSorteoActual.Rows[0]["codigoSorteo"]) != 0)
             {
                 NotificacionSorteoEnCurso.Visible = true;
                 NotificacionSinSorteoEnCurso.Visible = false;

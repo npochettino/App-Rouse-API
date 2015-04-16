@@ -49,7 +49,7 @@ namespace AppRouss
             lblCantidadDeSorteosTotales.Text = dtSorteoAnterios.Rows.Count.ToString();
             DataTable dtSorteo = ControladorGeneral.RecuperarSorteoActual();
 
-            if (dtSorteo.Rows.Count != 0)
+            if (Convert.ToInt32(dtSorteo.Rows[0]["codigoSorteo"]) != 0)
             {
                 lblDescripcionSorteo.Text = dtSorteo.Rows[0]["descripcion"].ToString();
                 lblEstadoSorteo.Text = "En Curso";
