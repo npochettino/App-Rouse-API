@@ -14,7 +14,7 @@ namespace AppRouss
         protected void Page_Load(object sender, EventArgs e)
         {
             cargarHTML();
-            enviaEmail("info@sempait.com.ar","nico.pochettino@gmail.com","Cambio de Contraseña",Html);
+            enviaEmail("info@sempait.com.ar","nico.pochettino@gmail.com","Bienvenido a AppRouss",Html);
         }
         
         private void enviaEmail(string from, string to, string subject, string mensaje)
@@ -25,7 +25,7 @@ namespace AppRouss
             mail.To.Add(to);
             //mail.Bcc.Add("" + emailSempait + "," + direccionEmail + "");
 
-            mail.From = new MailAddress(from, "Cambio de Contraseña");
+            mail.From = new MailAddress(from, "Bienvenido a AppRouss");
             //email's subject
             mail.Subject = subject;
             //email's body, this is going to be html. note that we attach the image as using cid
@@ -49,11 +49,11 @@ namespace AppRouss
         private void cargarHTML()
         {
             //string textHTML = File.ReadAllText(@"C:\Users\Nicolas\SempaIT\approuss\AppRouss\AppRouss\emailPassword\index.html");
-            string textHTML = File.ReadAllText(Server.MapPath("/rouss/emailPassword/index.html"));
+            string textHTML = File.ReadAllText(Server.MapPath("/rouss/emailRegistro/index.html"));
 
             textHTML = textHTML.Replace("varNombre", "Nicolas");
             textHTML = textHTML.Replace("varApellido", "Pochettino");
-            textHTML = textHTML.Replace("varContraseña", "123asdasd");
+            //textHTML = textHTML.Replace("varContraseña", "123asdasd");
 
             Html = textHTML;
         }

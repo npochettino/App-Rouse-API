@@ -3659,6 +3659,15 @@
     <Content Include="cambioContraseña.aspx" />
     <Content Include="components.aspx" />
     <Content Include="components_pickers.html" />
+    <Content Include="emailRegistro\images\confirm-reg.gif" />
+    <Content Include="emailRegistro\images\dot.gif" />
+    <Content Include="emailRegistro\images\dribbble.gif" />
+    <Content Include="emailRegistro\images\facebook.gif" />
+    <Content Include="emailRegistro\images\logo-sempait-200x200.png" />
+    <Content Include="emailRegistro\images\logo.gif" />
+    <Content Include="emailRegistro\images\rouss.png" />
+    <Content Include="emailRegistro\images\twitter.gif" />
+    <Content Include="emailRegistro\index.html" />
     <Content Include="ecommerce_orders_view.html" />
     <Content Include="emailPassword\images\confirm-reg.gif" />
     <Content Include="emailPassword\images\dot.gif" />

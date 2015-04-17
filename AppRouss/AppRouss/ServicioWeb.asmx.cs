@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
 using BibliotecaAppRouss.Controladores;
 using Newtonsoft.Json;
+using System.Net.Mail;
+using System.Web;
+using System.Web.UI;
 
 namespace AppRouss
 {
@@ -110,6 +114,8 @@ namespace AppRouss
             try
             {
                 ControladorGeneral.InsertarActualizarUsuario(codigoUsuario, nombre, apellido, dni, mail, contraseña, telefono);
+                if (codigoUsuario == 0)
+                    EnviarEmailNewRegistro(nombre,apellido,mail);
                 return "ok";
             }
             catch (Exception ex)
@@ -117,7 +123,7 @@ namespace AppRouss
                 throw ex;
             }
         }
-
+                
         [WebMethod]
         public string RecuperarPremiosPorUsuario(int codigoUsuario)
         {
@@ -141,7 +147,8 @@ namespace AppRouss
                 
                 if (tablaUsuario.Rows.Count > 0)
                 {
-                    //ControladorGeneral.EnviarMail();
+                    //ControladorGeneral.EnviarMail();                    
+                    EnviarEmailRecuperarContraseña(tablaUsuario.Rows[0]["nombre"].ToString(), tablaUsuario.Rows[0]["apellido"].ToString(), tablaUsuario.Rows[0]["contraseña"].ToString(), tablaUsuario.Rows[0]["mail"].ToString());
                     return "ok";
                 }
                 else
@@ -154,5 +161,76 @@ namespace AppRouss
                 throw ex;
             }
         }
+
+        private void EnviarEmailNewRegistro(string nombre, string apellido, string email)
+        {
+            string HTMLRecuperarContraseña = "";
+
+            HTMLRecuperarContraseña = File.ReadAllText(Server.MapPath("/rouss/emailRegistro/index.html"));
+            HTMLRecuperarContraseña = HTMLRecuperarContraseña.Replace("varNombre", nombre);
+            HTMLRecuperarContraseña = HTMLRecuperarContraseña.Replace("varApellido", apellido);
+            
+            //Envio el mail
+            MailMessage mail = new MailMessage();
+
+            mail.To.Add(email);
+
+            mail.From = new MailAddress("info@sempait.com.ar", "Bienvenido a AppRous");
+            //email's subject
+            mail.Subject = "Bienvenido a AppRous";
+            //email's body, this is going to be html. note that we attach the image as using cid
+            mail.Body = HTMLRecuperarContraseña;
+            //set email's body to html
+            mail.IsBodyHtml = true;
+            mail.Priority = MailPriority.Normal;
+            //client.EnableSsl = true; 
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = System.Configuration.ConfigurationManager.AppSettings["SMTP_SERVER"].ToString();
+            try
+            {
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        private void EnviarEmailRecuperarContraseña(string nombre, string apellido, string contraseña, string email)
+        {
+            string HTMLRecuperarContraseña = "";
+
+            HTMLRecuperarContraseña = File.ReadAllText(Server.MapPath("/rouss/emailPassword/index.html"));
+            HTMLRecuperarContraseña = HTMLRecuperarContraseña.Replace("varNombre", nombre);
+            HTMLRecuperarContraseña = HTMLRecuperarContraseña.Replace("varApellido", apellido);
+            HTMLRecuperarContraseña = HTMLRecuperarContraseña.Replace("varContraseña", contraseña);
+
+            //Envio el mail
+            MailMessage mail = new MailMessage();
+
+            mail.To.Add(email);
+            
+            mail.From = new MailAddress("info@sempait.com.ar", "Cambio de Contraseña");
+            //email's subject
+            mail.Subject = "Cambio de Contraseña";
+            //email's body, this is going to be html. note that we attach the image as using cid
+            mail.Body = HTMLRecuperarContraseña;
+            //set email's body to html
+            mail.IsBodyHtml = true;
+            mail.Priority = MailPriority.Normal;
+            //client.EnableSsl = true; 
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = System.Configuration.ConfigurationManager.AppSettings["SMTP_SERVER"].ToString();
+            try
+            {
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        
     }
 }
