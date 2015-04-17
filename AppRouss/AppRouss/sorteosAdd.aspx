@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="sorteosAdd.aspx.cs" Inherits="AppRouss.sorteosAdd" %>
 
+<%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dx" %>
+
 <%@ Register Assembly="DevExpress.Web.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
 
 
@@ -206,24 +208,48 @@
     <!-- Script para pop up fecha-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
-    <%--<script type="text/javascript">
-        $(function () {
-            $("[id$=txtFechaDesde]").datepicker({
-            });           
+    
+    <dx:ASPxPopupControl ClientInstanceName="pcSorteos" Width="330px" Height="250px"
+            MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" CloseOnEscape="true" ID="pcSorteos"
+            AllowDragging="True" PopupElementID="imgButton" ShowHeader="false"
+            runat="server" EnableViewState="False" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"
+            EnableHierarchyRecreation="True" Modal="True" Theme="Metropolis" PopupAnimationType="Slide">
+            <ContentCollection>
+                <dx:PopupControlContentControl runat="server">
+                    <asp:Panel ID="Panel1" runat="server">
+                        <div class="row">
 
-        });
-    </script>
-    <script type="text/javascript">
-        $(function () {
-            $("[id$=txtFechaHasta]").datepicker({
-            });
-            $("[id$=txtFechaHasta]").datepicker.parseDate("yy-mm-dd", "2007-01-26");
-        });
-    </script>--%>
+                            <div class="col-md-12">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i>Sorteo
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
 
+                                        <div class="form-body">
 
-    <!-- END JAVASCRIPTS -->
-
+                                            <div class="form-group">
+                                                <label class="control-label">
+                                                    <asp:Label ID="lblMensajeSorteo" runat="server" Text=""></asp:Label></label>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="btn-set pull-right">
+                                                <asp:Button ID="btnAceptarMensaje" class="btn blue" runat="server" Text="Aceptar" OnClick="btnAceptarMensaje_Click" />
+                                            </div>
+                                        </div>
+                                        <!-- END FORM-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>
+                </dx:PopupControlContentControl>
+            </ContentCollection>
+        </dx:ASPxPopupControl>
 
 
 

@@ -55,13 +55,16 @@ namespace AppRouss
                 {
                     oSorteoActual = (Sorteo)Session["sorteoActual"];
                     ControladorGeneral.InsertarActualizarSorteo(oSorteoActual.Codigo,deFechaDesde.Date,deFechaHasta.Date,txtDescripcionSorteo.Text,int.Parse(txtCantidadOportunidades.Text),int.Parse(txtCantidadVictorias.Text), int.Parse(txtCantidadTotalPremios.Text));
+                    lblMensajeSorteo.Text = "El sorteo se modificó correctamente.";
+                    pcSorteos.ShowOnPageLoad = true;
                 }
                 //si el codigoOperacion es != null hago un insert.
                 else
                 {
                     ControladorGeneral.InsertarActualizarSorteo(0, DateTime.Parse(deFechaDesde.Text), DateTime.Parse(deFechaHasta.Text), txtDescripcionSorteo.Text, int.Parse(txtCantidadOportunidades.Text), int.Parse(txtCantidadVictorias.Text), int.Parse(txtCantidadTotalPremios.Text));
+                    lblMensajeSorteo.Text = "El sorteo se ha creado correctamente.";
+                    pcSorteos.ShowOnPageLoad = true;
                 }
-                Response.Redirect("sorteos.aspx");
             }
         }
 
@@ -93,7 +96,7 @@ namespace AppRouss
             { lblCantidadVictorias.InnerText = " El campo debe ser un numero."; lblCantidadVictorias.Visible = true; lblFechaDesde.Visible = false; lblFechaHasta.Visible = false; lblCantidadOportunidades.Visible = false; return false; }
             if (!char.IsNumber(char.Parse(txtCantidadOportunidades.Text)))
             { lblCantidadOportunidades.InnerText = " El campo debe ser un numero"; lblCantidadOportunidades.Visible = true; lblFechaDesde.Visible = false; lblFechaHasta.Visible = false; lblCantidadVictorias.Visible = false; return false; }
-            else if (!validarFechas())
+            else if (!validarFechas2())
             { lblFechaDesde.InnerText = " El rango de Fecha se corresponde con las fechas de un sorte existente. Pruebe con otra fecha. "; lblFechaDesde.Visible = true; lblFechaHasta.Visible = false; lblCantidadVictorias.Visible = false; lblCantidadOportunidades.Visible = false; lblCantidadTotalPremios.Visible = false; return false; }
             else return true;
         }
@@ -114,8 +117,36 @@ namespace AppRouss
             }
             return true;
         }
+
+        private bool validarFechas2()
+        {
+             DataTable dtSorteos = ControladorGeneral.RecuperarTodosSorteos();
+             for (int i = 0; i < dtSorteos.Rows.Count; i++)
+             {
+                 DateTime iFechaDesde = Convert.ToDateTime(dtSorteos.Rows[i]["fechaDesde"]);
+                 DateTime iFechaHasta = Convert.ToDateTime(dtSorteos.Rows[i]["fechaHasta"]);
+                 if (deFechaDesde.Date < iFechaDesde && deFechaHasta.Date > iFechaHasta)
+                     return false;
+                 if ((iFechaDesde < deFechaDesde.Date && deFechaDesde.Date < iFechaHasta) || (iFechaDesde < deFechaHasta.Date && deFechaHasta.Date < iFechaHasta))
+                 {
+                     if (Session["codigoOperacion"] == null)
+                     {
+                         oSorteoActual = (Sorteo)Session["sorteoActual"];
+                         if (oSorteoActual.Codigo == Convert.ToInt32(dtSorteos.Rows[i]["codigoSorteo"]))
+                             return true;
+                     }
+                 }
+             }
+             return true;
+        }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
+            Response.Redirect("sorteos.aspx");
+        }
+
+        protected void btnAceptarMensaje_Click(object sender, EventArgs e)
+        {
+            pcSorteos.ShowOnPageLoad = false;
             Response.Redirect("sorteos.aspx");
         }
     }
