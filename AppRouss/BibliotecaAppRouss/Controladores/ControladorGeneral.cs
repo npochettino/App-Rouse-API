@@ -135,12 +135,26 @@ namespace BibliotecaAppRouss.Controladores
             }
         }
 
-        public static void InsertarActualizarUsuario(int codigoUsuario, string nombre, string apellido, string dni, string mail, string contraseña, string telefono)
+        public static int InsertarActualizarUsuario(int codigoUsuario, string nombre, string apellido, string dni, string mail, string contraseña, string telefono)
         {
             ISession nhSesion = ManejoNHibernate.IniciarSesion();
 
             try
             {
+                Usuario usuarioDni = CatalogoUsuario.RecuperarPor(x => x.Dni == dni, nhSesion);
+
+                if (usuarioDni != null)
+                {
+                    return 2;
+                }
+
+                Usuario usuarioMail = CatalogoUsuario.RecuperarPor(x => x.Mail == mail, nhSesion);
+
+                if (usuarioMail != null)
+                {
+                    return 3;
+                }
+
                 Usuario usuario;
 
                 if (codigoUsuario == 0)
@@ -160,6 +174,8 @@ namespace BibliotecaAppRouss.Controladores
                 usuario.Telefono = telefono;
 
                 CatalogoUsuario.InsertarActualizar(usuario, nhSesion);
+
+                return 1;
             }
             catch (Exception ex)
             {

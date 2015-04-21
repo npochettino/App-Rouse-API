@@ -108,22 +108,29 @@ namespace AppRouss
             }
         }
 
+        /// <summary>
+        /// Mensaje de validación: 1-ok 2-Dni en uso 3-Mail en uso
+        /// </summary>
         [WebMethod]
         public string InsertarActualizarUsuario(int codigoUsuario, string nombre, string apellido, string dni, string mail, string contraseña, string telefono)
         {
             try
             {
-                ControladorGeneral.InsertarActualizarUsuario(codigoUsuario, nombre, apellido, dni, mail, contraseña, telefono);
-                if (codigoUsuario == 0)
-                    EnviarEmailNewRegistro(nombre,apellido,mail);
-                return "ok";
+                int rta = ControladorGeneral.InsertarActualizarUsuario(codigoUsuario, nombre, apellido, dni, mail, contraseña, telefono);
+
+                if (codigoUsuario == 0 && rta == 1)
+                {
+                    EnviarEmailNewRegistro(nombre, apellido, mail);
+                }
+
+                return rta.ToString();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-                
+
         [WebMethod]
         public string RecuperarPremiosPorUsuario(int codigoUsuario)
         {
@@ -144,7 +151,7 @@ namespace AppRouss
             try
             {
                 DataTable tablaUsuario = ControladorGeneral.RecuperarContraseña(mail);
-                
+
                 if (tablaUsuario.Rows.Count > 0)
                 {
                     //ControladorGeneral.EnviarMail();                    
@@ -169,7 +176,7 @@ namespace AppRouss
             HTMLRecuperarContraseña = File.ReadAllText(Server.MapPath("/rouss/emailRegistro/index.html"));
             HTMLRecuperarContraseña = HTMLRecuperarContraseña.Replace("varNombre", nombre);
             HTMLRecuperarContraseña = HTMLRecuperarContraseña.Replace("varApellido", apellido);
-            
+
             //Envio el mail
             MailMessage mail = new MailMessage();
 
@@ -210,7 +217,7 @@ namespace AppRouss
             MailMessage mail = new MailMessage();
 
             mail.To.Add(email);
-            
+
             mail.From = new MailAddress("info@sempait.com.ar", "Cambio de Contraseña");
             //email's subject
             mail.Subject = "Cambio de Contraseña";
@@ -231,6 +238,6 @@ namespace AppRouss
                 throw ex;
             }
         }
-        
+
     }
 }
