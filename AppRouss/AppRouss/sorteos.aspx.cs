@@ -19,7 +19,7 @@ namespace AppRouss
             if (!IsPostBack)
             {
                 LoadGridSorteos();
-                LoadNotificaciones();
+                //LoadNotificaciones();
             }
             Session["idSorteo"] = null;
             Session["sorteoActual"] = null;
@@ -31,14 +31,14 @@ namespace AppRouss
             DataTable dtSorteoActual = ControladorGeneral.RecuperarSorteoActual();
             if (Convert.ToInt32(dtSorteoActual.Rows[0]["codigoSorteo"]) != 0)
             {
-                NotificacionSorteoEnCurso.Visible = true;
-                NotificacionSinSorteoEnCurso.Visible = false;
+                //NotificacionSorteoEnCurso.Visible = true;
+                //NotificacionSinSorteoEnCurso.Visible = false;
                 btnNewSorteo.Visible = false;
             }
             else
             {
-                NotificacionSorteoEnCurso.Visible = false;
-                NotificacionSinSorteoEnCurso.Visible = true;
+                //NotificacionSorteoEnCurso.Visible = false;
+                //NotificacionSinSorteoEnCurso.Visible = true;
                 btnNewSorteo.Visible = true;    
             }            
         }
@@ -51,7 +51,16 @@ namespace AppRouss
 
         protected void btnNewSorteo_Click(object sender, EventArgs e)
         {
-            Response.Redirect("sorteosAdd.aspx");
+            DataTable dtSorteoActual = ControladorGeneral.RecuperarSorteoActual();
+            if (Convert.ToInt32(dtSorteoActual.Rows[0]["codigoSorteo"]) != 0)
+            {
+                pcAceptarPcMensajeNotificacion.ShowOnPageLoad = true;
+                lblAceptarPcMensajeNotificacion.Text = "Actualmente se encuentra un sorteo en curso, no se puede crear un nuevo sorteo. Intente nuevamente cuando finalice el sorteo vigente.";
+            }
+            else
+            {
+                Response.Redirect("sorteosAdd.aspx");
+            }
         }
 
         protected void btnEditarSorteo_Click(object sender, EventArgs e)
@@ -109,6 +118,11 @@ namespace AppRouss
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             pcSorteos.ShowOnPageLoad = false;
+        }
+
+        protected void btnAceptarPcMensajeNotificacion_Click(object sender, EventArgs e)
+        {
+            pcAceptarPcMensajeNotificacion.ShowOnPageLoad = false;
         }
     }
 }

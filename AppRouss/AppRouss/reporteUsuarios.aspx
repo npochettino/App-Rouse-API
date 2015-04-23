@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="portlet-body">
-                                    <div id="chart_1" class="chart" style="height: 500px;">
+                                    <div id="chart_1" class="chart" style="height: auto;">
                                         <div class="portlet-body form">
                                             <table class="BottomMargin">
                                                 <tr>
@@ -81,11 +81,12 @@
                                                     </dx:GridViewDataTextColumn>
                                                     <dx:GridViewDataTextColumn Caption="Mail" FieldName="mail" VisibleIndex="3">
                                                     </dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataTextColumn Caption="Contraseña" FieldName="contraseña" VisibleIndex="3">
+                                                    <dx:GridViewDataTextColumn Caption="Contraseña" Visible="false" FieldName="contraseña" VisibleIndex="3">
                                                     </dx:GridViewDataTextColumn>
                                                     <dx:GridViewDataTextColumn Caption="Telefono" FieldName="telefono" VisibleIndex="3">
                                                     </dx:GridViewDataTextColumn>
                                                 </Columns>
+                                                <SettingsBehavior ColumnResizeMode="Control" AllowSort ="false"/>
                                             </dx:ASPxGridView>
                                             <dx:ASPxGridViewExporter ID="gridExport" ExportedRowType="All" runat="server" GridViewID="gvUsuarios" PaperKind="A4" ReportFooter="{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Times New Roman;}}
 \viewkind4\uc1\pard\lang11274\f0\fs20 AppRouss\lang3082\f1\par

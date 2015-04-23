@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                                 <div class="portlet-body">
-                                    <div id="chart_1" class="chart" style="height: 500px;">
+                                    <div id="chart_1" class="chart" style="height: auto;">
                                         <div class="portlet-body form">
                                             <!-- BEGIN FORM-->
                                             <div class="form-actions top">
@@ -90,6 +90,7 @@
                                                         </dx:GridViewDataTextColumn>
                                                     </Columns>
                                                     <SettingsBehavior AllowFocusedRow="True" />
+                                                    <SettingsBehavior ColumnResizeMode="Control" AllowSort ="false"/>
                                                 </dx:ASPxGridView>
                                             </div>
 

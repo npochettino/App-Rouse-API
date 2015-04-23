@@ -102,5 +102,10 @@ namespace AppRouss
                     CantidadGanadores = CantidadGanadores + 1;
             }
         }
+
+        protected void btnVerReporte_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("reporteParticipantes.aspx");
+        }
     }
 }

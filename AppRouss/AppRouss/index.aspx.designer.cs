@@ -49,6 +49,15 @@ namespace AppRouss {
         protected global::System.Web.UI.WebControls.Label lblCantidadDeGanadoresTotales;
         
         /// <summary>
+        /// Control btnVerReporte.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVerReporte;
+        
+        /// <summary>
         /// Control lblDescripcionSorteo.
         /// </summary>
         /// <remarks>

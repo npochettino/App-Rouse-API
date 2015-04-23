@@ -266,7 +266,7 @@ namespace BibliotecaAppRouss.Controladores
 
                 List<Sorteo> listaSorteos = CatalogoSorteo.RecuperarTodos(nhSesion);
 
-                (from s in listaSorteos select s).Aggregate(tablaSorteos, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Descripcion, r.CantidadTirosPorUsuario, r.CantidadPremiosPorUsuario, r.CantidadPremiosTotales); return dt; });
+                (from s in listaSorteos.OrderBy(x => x.FechaDesde) select s).Aggregate(tablaSorteos, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Descripcion, r.CantidadTirosPorUsuario, r.CantidadPremiosPorUsuario, r.CantidadPremiosTotales); return dt; });
                 return tablaSorteos;
             }
             catch (Exception ex)

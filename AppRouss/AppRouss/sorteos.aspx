@@ -47,7 +47,7 @@
             </div>
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
-            <div class="row">
+            <%--<div class="row">
                 <div class="col-md-12">
                     <!-- BEGIN ALERTS PORTLET-->
                     <div class="portlet purple box">
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
             <!-- BEGIN PAGE CONTENT-->
             <div class="row">
                 <div class="col-md-12">
@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                                 <div class="portlet-body">
-                                    <div id="chart_1" class="chart" style="height: 500px;">
+                                    <div id="chart_1" class="chart" style="height: auto;">
 
                                         <div class="portlet-body form">
                                             <!-- BEGIN FORM-->
@@ -112,18 +112,18 @@
                                                 <dx:ASPxGridView ID="gvSorteos" runat="server" KeyFieldName="codigoSorteo" Width="100%" Theme="Metropolis" AutoGenerateColumns="False">
                                                     <Columns>
                                                         <dx:GridViewDataTextColumn FieldName="codigoSorteo" ShowInCustomizationForm="True" Caption="Codigo" Visible="False" VisibleIndex="1"></dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="fechaDesde" VisibleIndex="2" Caption="test" PropertiesTextEdit-DisplayFormatString="dd/MM/yyyy H:mm"></dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataDateColumn FieldName="fechaDesde" VisibleIndex="2" Caption="Fecha Desde">
-                                                        </dx:GridViewDataDateColumn>                                                       
+                                                        </dx:GridViewDataDateColumn>
                                                         <dx:GridViewDataDateColumn FieldName="fechaHasta" VisibleIndex="3" Caption="Fecha Hasta">
                                                         </dx:GridViewDataDateColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="descripcion" ShowInCustomizationForm="True" Caption="Descripcion" VisibleIndex="4"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="descripcion" ShowInCustomizationForm="True" Caption="Descripción" VisibleIndex="4"></dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn FieldName="cantidadTirosPorUsuario" ShowInCustomizationForm="True" Caption="Cantidad Juegos x Usuario" VisibleIndex="5"></dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn FieldName="cantidadPremiosPorUsuario" ShowInCustomizationForm="True" Caption="Cantidad Premios x Usuario" VisibleIndex="6"></dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn FieldName="cantidadPremiosTotales" ShowInCustomizationForm="True" Caption="Cantidad Premios Totales" VisibleIndex="7"></dx:GridViewDataTextColumn>
                                                     </Columns>
-                                                    <SettingsBehavior AllowFocusedRow="True" />
+                                                    <SettingsBehavior AllowFocusedRow="True" AllowSort="false" />
                                                     <Settings ShowFilterRow="True" />
+
                                                 </dx:ASPxGridView>
                                             </div>
 
@@ -208,52 +208,98 @@
         });
     </script>
     <!-- END JAVASCRIPTS -->
-    
+
     <dx:ASPxPopupControl ClientInstanceName="pcSorteos" Width="330px" Height="250px"
-            MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" CloseOnEscape="true" ID="pcSorteos"
-            AllowDragging="True" PopupElementID="imgButton" HeaderText="Eliminar de Premios" ShowHeader="false"
-            runat="server" EnableViewState="False" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"
-            EnableHierarchyRecreation="True" Modal="True" Theme="Metropolis" PopupAnimationType="Slide">
-            <ContentCollection>
-                <dx:PopupControlContentControl runat="server">
-                    <asp:Panel ID="Panel1" runat="server">
-                        <div class="row">
+        MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" CloseOnEscape="true" ID="pcSorteos"
+        AllowDragging="True" PopupElementID="imgButton" HeaderText="Eliminar de Premios" ShowHeader="false"
+        runat="server" EnableViewState="False" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"
+        EnableHierarchyRecreation="True" Modal="True" Theme="Metropolis" PopupAnimationType="Slide">
+        <ContentCollection>
+            <dx:PopupControlContentControl runat="server">
+                <asp:Panel ID="Panel1" runat="server">
+                    <div class="row">
 
-                            <div class="col-md-12">
-                                <div class="portlet box red">
-                                    <div class="portlet-title">
-                                        <div class="caption">
-                                            <i class="fa fa-gift"></i>Eliminar Sorteo
+                        <div class="col-md-12">
+                            <div class="portlet box red">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="fa fa-gift"></i>Eliminar Sorteo
+                                    </div>
+
+                                </div>
+                                <div class="portlet-body form">
+                                    <!-- BEGIN FORM-->
+
+                                    <div class="form-body">
+
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                <asp:Label ID="lblMensajeEliminarSorteo" runat="server" Text="Label"></asp:Label></label>
+
                                         </div>
+
 
                                     </div>
-                                    <div class="portlet-body form">
-                                        <!-- BEGIN FORM-->
-
-                                        <div class="form-body">
-
-                                            <div class="form-group">
-                                                <label class="control-label">
-                                                    <asp:Label ID="lblMensajeEliminarSorteo" runat="server" Text="Label"></asp:Label></label>
-                                                
-                                            </div>
-                                            
-
+                                    <div class="form-actions">
+                                        <div class="btn-set pull-right">
+                                            <asp:Button ID="btnConfirmar" class="btn blue" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
+                                            <asp:Button ID="btnCancelar" class="btn red" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
                                         </div>
-                                        <div class="form-actions">
-                                            <div class="btn-set pull-right">
-                                                <asp:Button ID="btnConfirmar" class="btn blue" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
-                                                <asp:Button ID="btnCancelar" class="btn red" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
-                                            </div>
-                                        </div>
-                                        <!-- END FORM-->
                                     </div>
+                                    <!-- END FORM-->
                                 </div>
                             </div>
                         </div>
-                    </asp:Panel>
-                </dx:PopupControlContentControl>
-            </ContentCollection>
-        </dx:ASPxPopupControl>
+                    </div>
+                </asp:Panel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
+    <dx:ASPxPopupControl ClientInstanceName="pcAceptarPcMensajeNotificacion" Width="330px" Height="250px"
+        MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" CloseOnEscape="true" ID="pcAceptarPcMensajeNotificacion"
+        AllowDragging="True" PopupElementID="imgButton" HeaderText="Eliminar de Premios" ShowHeader="false"
+        runat="server" EnableViewState="False" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"
+        EnableHierarchyRecreation="True" Modal="True" Theme="Metropolis" PopupAnimationType="Slide">
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
+                <asp:Panel ID="Panel2" runat="server">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="portlet box red">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="fa fa-gift"></i>Nuevo Sorteo
+                                    </div>
+
+                                </div>
+                                <div class="portlet-body form">
+                                    <!-- BEGIN FORM-->
+
+                                    <div class="form-body">
+
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                <asp:Label ID="lblAceptarPcMensajeNotificacion" runat="server" Text=""></asp:Label></label>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="btn-set pull-right">
+                                            <asp:Button ID="btnAceptarPcMensajeNotificacion" class="btn blue" runat="server" Text="Aceptar" OnClick="btnAceptarPcMensajeNotificacion_Click" />
+                                        </div>
+                                    </div>
+                                    <!-- END FORM-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </asp:Panel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
 
 </asp:Content>

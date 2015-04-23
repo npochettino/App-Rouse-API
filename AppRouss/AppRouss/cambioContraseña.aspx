@@ -57,18 +57,18 @@
                                                     <asp:TextBox class="form-control" type="text" autocomplete="off" placeholder="" name="username" ID="txtUsuario" runat="server"></asp:TextBox>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label">Contraseña Anterior</label>
+                                                    <label class="control-label">Nueva contraseña</label>
                                                     <div class="input-group">
-                                                        <asp:TextBox class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="ingrese contraseña anterior" name="password" ID="txtOldPassword" runat="server"></asp:TextBox>
+                                                        <asp:TextBox class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="ingrese contraseña" name="password" ID="txtOldPassword" runat="server"></asp:TextBox>
                                                         <span class="input-group-addon">
                                                             <i class="fa fa-user"></i>
                                                         </span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label">Password</label>
+                                                    <label class="control-label">Repita nueva contraseña</label>
                                                     <div class="input-group">
-                                                        <asp:TextBox class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="ingrese nueva contraseña" name="password" ID="txtNewPassword" runat="server"></asp:TextBox>
+                                                        <asp:TextBox class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="repita la contraseña" name="password" ID="txtNewPassword" runat="server"></asp:TextBox>
                                                         <span class="input-group-addon">
                                                             <i class="fa fa-user"></i>
                                                         </span>

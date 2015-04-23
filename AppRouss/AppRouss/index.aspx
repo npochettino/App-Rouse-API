@@ -37,8 +37,8 @@
                                 Sorteos
                             </div>
                         </div>
-                        <a class="more" href="#">Ver más <i class="m-icon-swapright m-icon-white"></i>
-                        </a>
+                        <%--<a class="more" href="#">Ver más <i class="m-icon-swapright m-icon-white"></i>
+                        </a>--%>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -54,8 +54,8 @@
                                 Usuarios
                             </div>
                         </div>
-                        <a class="more" href="#">Ver más <i class="m-icon-swapright m-icon-white"></i>
-                        </a>
+                        <%--<a class="more" href="#">Ver más <i class="m-icon-swapright m-icon-white"></i>
+                        </a>--%>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -71,8 +71,8 @@
                                 Juegos
                             </div>
                         </div>
-                        <a class="more" href="#">Ver más <i class="m-icon-swapright m-icon-white"></i>
-                        </a>
+                        <%--<a class="more" href="#">Ver más <i class="m-icon-swapright m-icon-white"></i>
+                        </a>--%>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -88,8 +88,8 @@
                                 Ganadores
                             </div>
                         </div>
-                        <a class="more" href="#">Ver más <i class="m-icon-swapright m-icon-white"></i>
-                        </a>
+                        <%--<a class="more" href="#">Ver más <i class="m-icon-swapright m-icon-white"></i>
+                        </a>--%>
                     </div>
                 </div>
             </div>
@@ -107,8 +107,7 @@
                                             <i class="fa fa-android"></i>Ultimo sorteo
                                         </div>
                                         <div class="actions">
-                                            <a href="reporteParticipantes.aspx" class="btn btn-default btn-sm">
-                                                <i class="fa fa-dashboard"></i>ver reporte </a>
+                                            <asp:Button ID="btnVerReporte" CssClass="btn btn-default btn-sm" runat="server" Text="ver reporte" OnClick="btnVerReporte_Click" />
                                         </div>
                                     </div>
                                     <div class="portlet-body">
@@ -174,17 +173,17 @@
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <a href="#" class="icon-btn">
+                            <a href="reporteUsuarios.aspx" class="icon-btn">
                                 <i class="fa fa-group"></i>
                                 <div>
                                     Usuarios
                                 </div>
                             </a>
 
-                            <a href="#" class="icon-btn">
-                                <i class="fa fa-bar-chart-o"></i>
+                            <a href="sorteos.aspx" class="icon-btn">
+                                <i class="fa fa-bitcoin"></i>
                                 <div>
-                                    Reportes
+                                    Sorteos
                                 </div>
                             </a>
 <%--                            <a href="#" class="icon-btn">
@@ -209,7 +208,7 @@
 												<span class="badge badge-info">
 												12 </span>
 												</a>--%>
-												<a href="#" class="icon-btn">
+												<a href="reporteParticipantes.aspx" class="icon-btn">
 												<i class="fa fa-bullhorn"></i>
 												<div>
 													 Ganadores

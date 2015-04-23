@@ -162,7 +162,7 @@
                                                     <dx:GridViewDataTextColumn Caption="Premio" Width="18%" FieldName="descripcionPremio" VisibleIndex="10">
                                                     </dx:GridViewDataTextColumn>
                                                 </Columns>
-                                                <SettingsBehavior ColumnResizeMode="Control" />
+                                                <SettingsBehavior ColumnResizeMode="Control" AllowSort ="false"/>
                                                 <SettingsPager Mode="ShowAllRecords">
                                                 </SettingsPager>
                                             </dx:ASPxGridView>
