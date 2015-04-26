@@ -344,7 +344,7 @@ namespace BibliotecaAppRouss.Controladores
 
                 if (sorteo != null)
                 {
-                    tablaSorteo.Rows.Add(new object[] { sorteo.Codigo, sorteo.FechaDesde, sorteo.FechaHasta, sorteo.Descripcion, sorteo.CantidadTirosPorUsuario, sorteo.CantidadPremiosPorUsuario, sorteo.CantidadPremiosTotales });
+                    tablaSorteo.Rows.Add(new object[] { sorteo.Codigo, sorteo.FechaDesde.ToString("dd/MM/yyyy HH:mm:ss"), sorteo.FechaHasta.ToString("dd/MM/yyyy HH:mm:ss"), sorteo.Descripcion, sorteo.CantidadTirosPorUsuario, sorteo.CantidadPremiosPorUsuario, sorteo.CantidadPremiosTotales });
                 }
                 else
                 {
