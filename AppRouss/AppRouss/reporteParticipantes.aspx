@@ -139,7 +139,7 @@
                                                 </tr>
                                             </table>
 
-                                            <dx:ASPxGridView ID="gvParticipantes"  Settings-HorizontalScrollBarMode="Auto" runat="server" KeyFieldName="codigoParticipante" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" OnCustomCallback="gvParticipantes_CustomCallback">
+                                            <dx:ASPxGridView ID="gvParticipantes"  Settings-HorizontalScrollBarMode="Auto" runat="server" KeyFieldName="codigoParticipante" Width="100%" Theme="Metropolis" AutoGenerateColumns="False">
                                                 <Columns>
                                                     <dx:GridViewDataTextColumn Caption="idUsuario" FieldName="codigoParticipante" Visible="False" VisibleIndex="1">
                                                     </dx:GridViewDataTextColumn>
