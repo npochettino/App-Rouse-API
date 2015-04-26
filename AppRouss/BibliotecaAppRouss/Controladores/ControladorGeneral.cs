@@ -141,14 +141,14 @@ namespace BibliotecaAppRouss.Controladores
 
             try
             {
-                Usuario usuarioDni = CatalogoUsuario.RecuperarPor(x => x.Dni == dni, nhSesion);
+                Usuario usuarioDni = CatalogoUsuario.RecuperarPor(x => x.Dni == dni && x.Codigo != codigoUsuario, nhSesion);
 
                 if (usuarioDni != null)
                 {
                     return 2;
                 }
 
-                Usuario usuarioMail = CatalogoUsuario.RecuperarPor(x => x.Mail == mail, nhSesion);
+                Usuario usuarioMail = CatalogoUsuario.RecuperarPor(x => x.Mail == mail && x.Codigo != codigoUsuario, nhSesion);
 
                 if (usuarioMail != null)
                 {
