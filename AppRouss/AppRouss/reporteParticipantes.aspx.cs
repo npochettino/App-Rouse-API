@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BibliotecaAppRouss.Controladores;
+using DevExpress.Data;
 using DevExpress.Utils;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraPrintingLinks;
@@ -15,13 +16,13 @@ namespace AppRouss
     public partial class reporteParticipantes : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {            
             if (!IsPostBack)
             {
                 LoadDdlSorteo();
             }
         }
-
+                
         private void LoadDdlSorteo()
         {
             DataTable dtSorteos = ControladorGeneral.RecuperarTodosSorteos();
@@ -66,16 +67,22 @@ namespace AppRouss
             if (opcion == 1)//Muestro todos
             {
                 gvParticipantes.DataSource = ControladorGeneral.RecuperarParticipantesPorSorteo(int.Parse(ddlSorteos.SelectedValue));
+                gvParticipantes.GroupBy(gvParticipantes.Columns["descripcionPremio"]);
+                gvParticipantes.ExpandAll();
                 gvParticipantes.DataBind();
             }
             else if (opcion == 2)//Muestro Ganadores
             {
                 gvParticipantes.DataSource = ControladorGeneral.RecuperarParticipantesPorSorteoGanadorONo(int.Parse(ddlSorteos.SelectedValue), true);
+                gvParticipantes.GroupBy(gvParticipantes.Columns["descripcionPremio"]);
+                gvParticipantes.ExpandAll();
                 gvParticipantes.DataBind();
             }
             else
             {   //Muestro Segui Participando
                 gvParticipantes.DataSource = ControladorGeneral.RecuperarParticipantesPorSorteoGanadorONo(int.Parse(ddlSorteos.SelectedValue), false);
+                gvParticipantes.GroupBy(gvParticipantes.Columns["descripcionPremio"]);
+                gvParticipantes.ExpandAll();
                 gvParticipantes.DataBind();
             }
         }
@@ -107,6 +114,7 @@ namespace AppRouss
             if (rbSeguiParticipando.Checked == true)
                 LoadGrillaParticipante(3);
         }
-        
+
+               
     }
 }

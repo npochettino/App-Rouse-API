@@ -139,7 +139,7 @@
                                                 </tr>
                                             </table>
 
-                                            <dx:ASPxGridView ID="gvParticipantes"  Settings-HorizontalScrollBarMode="Auto" runat="server" KeyFieldName="codigoParticipante" Width="100%" Theme="Metropolis" AutoGenerateColumns="False">
+                                            <dx:ASPxGridView ID="gvParticipantes"  Settings-HorizontalScrollBarMode="Auto" runat="server" KeyFieldName="codigoParticipante" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" OnCustomCallback="gvParticipantes_CustomCallback">
                                                 <Columns>
                                                     <dx:GridViewDataTextColumn Caption="idUsuario" FieldName="codigoParticipante" Visible="False" VisibleIndex="1">
                                                     </dx:GridViewDataTextColumn>
@@ -165,6 +165,8 @@
                                                 <SettingsBehavior ColumnResizeMode="Control" AllowSort ="false"/>
                                                 <SettingsPager Mode="ShowAllRecords">
                                                 </SettingsPager>
+
+<Settings HorizontalScrollBarMode="Auto"></Settings>
                                             </dx:ASPxGridView>
                                             <dx:ASPxGridViewExporter ID="gvExporter" GridViewID="gvParticipantes" ExportedRowType="All" PaperKind="A4" FileName="ReporteParticipantes" runat="server">
                                                 <PageHeader Right="[Date Printed] - [Time Printed]">

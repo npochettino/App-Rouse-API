@@ -105,6 +105,7 @@ namespace AppRouss
 
         protected void btnVerReporte_Click(object sender, EventArgs e)
         {
+
             Response.Redirect("reporteParticipantes.aspx");
         }
     }
