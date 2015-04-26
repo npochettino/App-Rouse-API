@@ -301,7 +301,7 @@ namespace BibliotecaAppRouss.Controladores
 
                 List<Sorteo> listaSorteos = CatalogoSorteo.RecuperarTodos(nhSesion);
 
-                (from s in listaSorteos.OrderBy(x => x.FechaDesde) select s).Aggregate(tablaSorteos, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde, r.FechaHasta, r.Descripcion, r.CantidadTirosPorUsuario, r.CantidadPremiosPorUsuario, r.CantidadPremiosTotales); return dt; });
+                (from s in listaSorteos.OrderBy(x => x.FechaDesde) select s).Aggregate(tablaSorteos, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde.ToString("dd/MM/yyyy HH:mm:ss"), r.FechaHasta.ToString("dd/MM/yyyy HH:mm:ss"), r.Descripcion, r.CantidadTirosPorUsuario, r.CantidadPremiosPorUsuario, r.CantidadPremiosTotales); return dt; });
                 return tablaSorteos;
             }
             catch (Exception ex)
@@ -500,7 +500,12 @@ namespace BibliotecaAppRouss.Controladores
 
                 List<Participante> listaParticipantes = CatalogoParticipante.RecuperarTodos(nhSesion);
 
-                (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo, r.Usuario.Dni, r.Usuario.Apellido, r.Usuario.Nombre, r.Usuario.Telefono, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0, r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt; });
+                (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.FechaParticipacion.ToString("dd/MM/yyyy HH:mm:ss"),
+                        r.Usuario.Codigo, r.Usuario.Dni, r.Usuario.Apellido, r.Usuario.Nombre, r.Usuario.Telefono, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0,
+                        r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt;
+                });
 
                 return tablaParticipantes;
             }
@@ -530,7 +535,11 @@ namespace BibliotecaAppRouss.Controladores
 
                 Sorteo sorteo = CatalogoSorteo.RecuperarPorCodigo(codigoSorteo, nhSesion);
 
-                (from p in sorteo.Participantes.OrderBy(x => x.Usuario.Apellido).ThenBy(x => x.Usuario.Nombre) select p).Aggregate(tablaParticipantes, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo, r.Usuario.Dni, r.Usuario.Apellido, r.Usuario.Nombre, r.Usuario.Telefono, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0, r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt; });
+                (from p in sorteo.Participantes.OrderBy(x => x.Usuario.Apellido).ThenBy(x => x.Usuario.Nombre) select p).Aggregate(tablaParticipantes, (dt, r) =>
+                {
+                    dt.Rows.Add(r.Codigo, r.FechaParticipacion.ToString("dd/MM/yyyy HH:mm:ss"), r.Usuario.Codigo, r.Usuario.Dni, r.Usuario.Apellido, r.Usuario.Nombre, r.Usuario.Telefono,
+                    r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0, r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt;
+                });
 
                 return tablaParticipantes;
             }
@@ -572,7 +581,7 @@ namespace BibliotecaAppRouss.Controladores
 
                 (from p in listaParticipantes.OrderBy(x => x.Usuario.Apellido).ThenBy(x => x.Usuario.Nombre) select p).Aggregate(tablaParticipantes, (dt, r) =>
                 {
-                    dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo, r.Usuario.Dni, r.Usuario.Apellido,
+                    dt.Rows.Add(r.Codigo, r.FechaParticipacion.ToString("dd/MM/yyyy HH:mm:ss"), r.Usuario.Codigo, r.Usuario.Dni, r.Usuario.Apellido,
                       r.Usuario.Nombre, r.Usuario.Telefono, r.Usuario.Mail, r.Premio != null ? r.Premio.Codigo : 0,
                       r.Premio != null ? r.Premio.Descripcion : string.Empty); return dt;
                 });
@@ -641,7 +650,7 @@ namespace BibliotecaAppRouss.Controladores
 
                 (from p in listaParticipantes select p).Aggregate(tablaParticipantes, (dt, r) =>
                 {
-                    dt.Rows.Add(r.Codigo, r.FechaParticipacion, r.Usuario.Codigo, r.Usuario.Nombre, r.Usuario.Apellido, r.Usuario.Dni, r.Usuario.Telefono,
+                    dt.Rows.Add(r.Codigo, r.FechaParticipacion.ToString("dd/MM/yyyy HH:mm:ss"), r.Usuario.Codigo, r.Usuario.Nombre, r.Usuario.Apellido, r.Usuario.Dni, r.Usuario.Telefono,
                         r.Usuario.Mail, sorteo.Codigo, r.Premio.Codigo, r.Premio.Descripcion); return dt;
                 });
 
