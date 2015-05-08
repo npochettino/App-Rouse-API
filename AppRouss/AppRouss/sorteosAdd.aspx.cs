@@ -101,6 +101,9 @@ namespace AppRouss
             
             if ((Int32.TryParse(txtCantidadTotalPremios.Text.Trim(), out CantidadTotalPremios)) == false)
             { lblCantidadTotalPremios.InnerText = " El campo debe ser un numero."; lblCantidadTotalPremios.Visible = true; lblFechaDesde.Visible = false; lblFechaHasta.Visible = false; lblCantidadOportunidades.Visible = false; lblCantidadVictorias.Visible = false; return false; }
+
+            if (!(int.Parse(txtCantidadOportunidades.Text) >= int.Parse(txtCantidadVictorias.Text)))
+            { lblCantidadOportunidades.InnerText = " La cantidad de oportunidad debe ser mayor o igual a la cantidad de victorias."; lblCantidadOportunidades.Visible = true; lblFechaDesde.Visible = false; lblFechaHasta.Visible = false; lblCantidadVictorias.Visible = false; return false; }
             
             //if (!char.IsNumber(char.Parse(txtCantidadVictorias.Text)))
             //{ lblCantidadVictorias.InnerText = " El campo debe ser un numero."; lblCantidadVictorias.Visible = true; lblFechaDesde.Visible = false; lblFechaHasta.Visible = false; lblCantidadOportunidades.Visible = false; return false; }
@@ -120,14 +123,22 @@ namespace AppRouss
                  DateTime iFechaHasta = Convert.ToDateTime(dtSorteos.Rows[i]["fechaHasta"]);
                  if (deFechaDesde.Date < iFechaDesde && deFechaHasta.Date > iFechaHasta)
                      return false;
-                 if ((iFechaDesde < deFechaDesde.Date && deFechaDesde.Date < iFechaHasta) || (iFechaDesde < deFechaHasta.Date && deFechaHasta.Date < iFechaHasta))
+                 if (Session["codigoOperacion"] == null) //es una edicion
                  {
-                     if (Session["codigoOperacion"] == null)
+                     if ((iFechaDesde <= deFechaDesde.Date && deFechaDesde.Date <= iFechaHasta) || (iFechaDesde <= deFechaHasta.Date && deFechaHasta.Date <= iFechaHasta))
                      {
-                         oSorteoActual = (Sorteo)Session["sorteoActual"];
-                         if (oSorteoActual.Codigo == Convert.ToInt32(dtSorteos.Rows[i]["codigoSorteo"]))
-                             return true;
+                         //return false;
+                         if (Session["codigoOperacion"] == null)
+                         {
+                             oSorteoActual = (Sorteo)Session["sorteoActual"];
+                             if (oSorteoActual.Codigo == Convert.ToInt32(dtSorteos.Rows[i]["codigoSorteo"]))
+                                 return true;
+                         }
                      }
+                 }
+                 if ((iFechaDesde <= deFechaDesde.Date && deFechaDesde.Date <= iFechaHasta) || (iFechaDesde <= deFechaHasta.Date && deFechaHasta.Date <= iFechaHasta))
+                 {
+                     return false;
                  }
              }
              return true;

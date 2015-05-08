@@ -29,50 +29,7 @@
                         <a href="#">Sorteos</a>
                     </li>
                 </ul>
-
-
-                <%--                <div class="page-toolbar">
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-fit-height grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
-                            Acciones <i class="fa fa-angle-down"></i>
-                        </button>
-                        <ul class="dropdown-menu pull-right" role="menu">
-                            <li>
-                                <a href="sorteosAdd.aspx">Nuevo Sorteo</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>--%>
             </div>
-            <!-- END PAGE HEADER-->
-            <!-- BEGIN PAGE CONTENT-->
-            <%--<div class="row">
-                <div class="col-md-12">
-                    <!-- BEGIN ALERTS PORTLET-->
-                    <div class="portlet purple box">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="fa fa-cogs"></i>Notificaciones
-                            </div>
-                            <div class="tools">
-                                <a href="javascript:;" class="collapse"></a>
-                                <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                                <a href="javascript:;" class="reload"></a>
-                                <a href="javascript:;" class="remove"></a>
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <div runat="server" id="NotificacionSinSorteoEnCurso" class="alert alert-success">
-                                <strong>No se encuentran Sorteos en Curso!</strong> Usted puede crear un nuevo sorteo.
-                            </div>
-                            <div runat="server" id="NotificacionSorteoEnCurso" class="alert alert-danger">
-                                <strong>Existe un Sorteos en Curso!</strong> No se pueden crear nuevos sorteos.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>--%>
             <!-- BEGIN PAGE CONTENT-->
             <div class="row">
                 <div class="col-md-12">
@@ -98,7 +55,6 @@
                                 </div>
                                 <div class="portlet-body">
                                     <div id="chart_1" class="chart" style="height: auto;">
-
                                         <div class="portlet-body form">
                                             <!-- BEGIN FORM-->
                                             <div class="form-actions top">
@@ -112,18 +68,21 @@
                                                 <dx:ASPxGridView ID="gvSorteos" runat="server" KeyFieldName="codigoSorteo" Width="100%" Theme="Metropolis" AutoGenerateColumns="False">
                                                     <Columns>
                                                         <dx:GridViewDataTextColumn FieldName="codigoSorteo" ShowInCustomizationForm="True" Caption="Codigo" Visible="False" VisibleIndex="1"></dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataDateColumn FieldName="fechaDesde" VisibleIndex="2" Caption="Fecha Desde">
+                                                        <dx:GridViewDataDateColumn Width="20%" FieldName="fechaDesde" VisibleIndex="2" Caption="Fecha Desde">
                                                         </dx:GridViewDataDateColumn>
-                                                        <dx:GridViewDataDateColumn FieldName="fechaHasta" VisibleIndex="3" Caption="Fecha Hasta">
+                                                        <dx:GridViewDataDateColumn Width="20%" FieldName="fechaHasta" VisibleIndex="3" Caption="Fecha Hasta">
                                                         </dx:GridViewDataDateColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="descripcion" ShowInCustomizationForm="True" Caption="Descripción" VisibleIndex="4"></dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="cantidadTirosPorUsuario" ShowInCustomizationForm="True" Caption="Cantidad Juegos x Usuario" VisibleIndex="5"></dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="cantidadPremiosPorUsuario" ShowInCustomizationForm="True" Caption="Cantidad Premios x Usuario" VisibleIndex="6"></dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="cantidadPremiosTotales" ShowInCustomizationForm="True" Caption="Cantidad Premios Totales" VisibleIndex="7"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn Width="20%" FieldName="descripcion" ShowInCustomizationForm="True" Caption="Descripción" VisibleIndex="4"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn Width="12%" FieldName="cantidadTirosPorUsuario" ShowInCustomizationForm="True" Caption="Cantidad Juegos x Usuario" VisibleIndex="5"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn Width="12%" FieldName="cantidadPremiosPorUsuario" ShowInCustomizationForm="True" Caption="Cantidad Premios x Usuario" VisibleIndex="6"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn  Width="20%" FieldName="cantidadPremiosTotales" ShowInCustomizationForm="True" Caption="Cantidad Premios Totales" VisibleIndex="7"></dx:GridViewDataTextColumn>
                                                     </Columns>
-                                                    <SettingsBehavior AllowFocusedRow="True" AllowSort="false" />
-                                                    <Settings ShowFilterRow="True" />
+                                                    <SettingsBehavior ColumnResizeMode="Control" AllowSort="false"/>
+                                                    <SettingsPager Mode="ShowAllRecords">
+                                                    </SettingsPager>
 
+                                                    <Settings HorizontalScrollBarMode="Auto"></Settings>
+                                                    <SettingsBehavior AllowFocusedRow="True" />
                                                 </dx:ASPxGridView>
                                             </div>
 

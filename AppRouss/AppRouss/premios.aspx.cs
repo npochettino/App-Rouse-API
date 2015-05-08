@@ -12,7 +12,6 @@ namespace AppRouss
 {
     public partial class premios : System.Web.UI.Page
     {
-        Premio oPremioActual;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

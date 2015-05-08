@@ -29,7 +29,7 @@
                         <i class="fa fa-angle-right"></i>
                     </li>
                     <li>
-                        <a href="reporteParticiantes.aspx">Reporte Participantes</a>
+                        <a href="reporteParticipantes.aspx">Reporte Participantes</a>
                     </li>
                 </ul>
             </div>
@@ -112,11 +112,6 @@
                                                     <!--/span-->
                                                 </div>
                                             </div>
-                                            <%--<div class="form-actions left">
-                                                <dx:ASPxButton ID="btnCargarReporteParticipante" runat="server" Text="Cargar" UseSubmitBehavior="False"
-                                                    OnClick="btnCargarReporteParticipante_Click" Theme="Metropolis" />
-
-                                            </div>--%>
                                         </form>
                                         <!-- END FORM-->
                                     </div>
@@ -139,7 +134,7 @@
                                                 </tr>
                                             </table>
 
-                                            <dx:ASPxGridView ID="gvParticipantes"  Settings-HorizontalScrollBarMode="Auto" runat="server" KeyFieldName="codigoParticipante" Width="100%" Theme="Metropolis" AutoGenerateColumns="False">
+                                            <dx:ASPxGridView ID="gvParticipantes" Settings-HorizontalScrollBarMode="Auto" runat="server" KeyFieldName="codigoParticipante" Width="100%" Theme="Metropolis" AutoGenerateColumns="False" OnHtmlRowPrepared="gvParticipantes_HtmlRowPrepared">
                                                 <Columns>
                                                     <dx:GridViewDataTextColumn Caption="idUsuario" FieldName="codigoParticipante" Visible="False" VisibleIndex="1">
                                                     </dx:GridViewDataTextColumn>
@@ -147,31 +142,31 @@
                                                     </dx:GridViewDataTextColumn>
                                                     <dx:GridViewDataTextColumn Caption="Codigo Usuario" FieldName="codigoUsuario" VisibleIndex="3" Visible="false">
                                                     </dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataTextColumn Caption="DNI" Width="10%" FieldName="dniUsuario" VisibleIndex="4">
+                                                    <dx:GridViewDataTextColumn Caption="DNI" Width="30%" FieldName="dniUsuario" VisibleIndex="4">
                                                     </dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataTextColumn Caption="Apellido" Width="20%" FieldName="apellidoUsuario" VisibleIndex="5">
+                                                    <dx:GridViewDataTextColumn Caption="Apellido" Width="25%" FieldName="apellidoUsuario" VisibleIndex="5">
                                                     </dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataTextColumn Caption="Nombre" Width="20%" FieldName="nombreUsuario" VisibleIndex="6">
+                                                    <dx:GridViewDataTextColumn Caption="Nombre" Width="25%" FieldName="nombreUsuario" VisibleIndex="6">
                                                     </dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataTextColumn Caption="Teléfono" FieldName="telefonoUsuario" Width="15%" VisibleIndex="7">
+                                                    <dx:GridViewDataTextColumn Caption="Teléfono" FieldName="telefonoUsuario" Width="20%" VisibleIndex="7">
                                                     </dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataTextColumn Caption="Mail" FieldName="mailUsuario" Width="20%" VisibleIndex="8" Visible="false">
+                                                    <dx:GridViewDataTextColumn Caption="Mail" FieldName="mailUsuario" Width="10%" VisibleIndex="8" Visible="false">
                                                     </dx:GridViewDataTextColumn>
                                                     <dx:GridViewDataTextColumn Caption="Codigo Premio" FieldName="codigoPremio" VisibleIndex="9" Visible="false">
                                                     </dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataTextColumn Caption="Premio" Width="18%" FieldName="descripcionPremio" VisibleIndex="10">
+                                                    <dx:GridViewDataTextColumn Caption="Premio" Width="18%" FieldName="descripcionPremio" VisibleIndex="10" Visible="false">
                                                     </dx:GridViewDataTextColumn>
                                                 </Columns>
-                                                <SettingsBehavior ColumnResizeMode="Control" AllowSort ="false"/>
+                                                <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" AutoExpandAllGroups="false" />
                                                 <SettingsPager Mode="ShowAllRecords">
                                                 </SettingsPager>
 
-<Settings HorizontalScrollBarMode="Auto"></Settings>
+                                                <Settings HorizontalScrollBarMode="Auto"></Settings>
                                             </dx:ASPxGridView>
                                             <dx:ASPxGridViewExporter ID="gvExporter" GridViewID="gvParticipantes" ExportedRowType="All" PaperKind="A4" FileName="ReporteParticipantes" runat="server">
                                                 <PageHeader Right="[Date Printed] - [Time Printed]">
                                                 </PageHeader>
-                                                <PageFooter Left="2015 © App Rouss " Right="[Page # of Pages #]">
+                                                <PageFooter Left="2015 © Rouss Night Club " Right="[Page # of Pages #]">
                                                 </PageFooter>
                                             </dx:ASPxGridViewExporter>
                                         </div>

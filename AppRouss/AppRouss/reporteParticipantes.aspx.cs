@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -8,6 +9,7 @@ using System.Web.UI.WebControls;
 using BibliotecaAppRouss.Controladores;
 using DevExpress.Data;
 using DevExpress.Utils;
+using DevExpress.Web.ASPxGridView;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraPrintingLinks;
 
@@ -113,6 +115,19 @@ namespace AppRouss
         {
             if (rbSeguiParticipando.Checked == true)
                 LoadGrillaParticipante(3);
+        }
+
+        protected void gvParticipantes_HtmlRowPrepared(object sender, DevExpress.Web.ASPxGridView.ASPxGridViewTableRowEventArgs e)
+        {
+            if (e.RowType == GridViewRowType.Group)
+            {
+                //if (e.Row.Cells[0] != null && e.Row.Cells[0].Controls.Count > 0)
+                //    e.Row.Cells[0].Controls[0].Visible = false;
+                e.Row.Font.Bold = true;
+                e.Row.BackColor = Color.Khaki;
+                if (e.Row.Cells[0].HasControls())
+                    e.Row.Cells[0].Controls[0].Visible = false;
+            }
         }
 
                

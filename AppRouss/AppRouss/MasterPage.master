@@ -11,7 +11,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    <title>App Rouss | Back End</title>
+    <title>Rouss Night Club</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="" name="description" />
@@ -242,7 +242,7 @@
         <!-- BEGIN FOOTER -->
         <div class="page-footer">
             <div class="page-footer-inner">
-                2015 &copy; App Rouss | by <a href="http://www.sempait.com.ar" target="_blank">SempaIT</a>
+                2015 &copy; Rouss Night Club | by <a href="http://www.sempait.com.ar" target="_blank">SempaIT</a>
             </div>
             <div class="scroll-to-top">
                 <i class="icon-arrow-up"></i>

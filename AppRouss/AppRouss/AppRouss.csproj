@@ -3657,8 +3657,6 @@
     <Content Include="assets\rouss\RULETA2.jpg" />
     <Content Include="assets\rouss\ruleta_sf_Login.png" />
     <Content Include="cambioContraseña.aspx" />
-    <Content Include="components.aspx" />
-    <Content Include="components_pickers.html" />
     <Content Include="emailRegistro\images\confirm-reg.gif" />
     <Content Include="emailRegistro\images\dot.gif" />
     <Content Include="emailRegistro\images\dribbble.gif" />
@@ -3668,7 +3666,6 @@
     <Content Include="emailRegistro\images\rouss.png" />
     <Content Include="emailRegistro\images\twitter.gif" />
     <Content Include="emailRegistro\index.html" />
-    <Content Include="ecommerce_orders_view.html" />
     <Content Include="emailPassword\images\confirm-reg.gif" />
     <Content Include="emailPassword\images\dot.gif" />
     <Content Include="emailPassword\images\dribbble.gif" />
@@ -3678,11 +3675,6 @@
     <Content Include="emailPassword\images\rouss.png" />
     <Content Include="emailPassword\images\twitter.gif" />
     <Content Include="emailPassword\index.html" />
-    <Content Include="extra_lock.aspx" />
-    <Content Include="extra_lock.html" />
-    <Content Include="form_controls.html" />
-    <Content Include="form_layouts.html" />
-    <Content Include="form_validation.html" />
     <Content Include="index.aspx" />
     <Content Include="premios.aspx" />
     <Content Include="reporteParticipantes.aspx" />
@@ -3719,20 +3711,6 @@
     </Compile>
     <Compile Include="cambioContraseña.aspx.designer.cs">
       <DependentUpon>cambioContraseña.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="components.aspx.cs">
-      <DependentUpon>components.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="components.aspx.designer.cs">
-      <DependentUpon>components.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="extra_lock.aspx.cs">
-      <DependentUpon>extra_lock.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="extra_lock.aspx.designer.cs">
-      <DependentUpon>extra_lock.aspx</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
@@ -4088,6 +4066,9 @@
       <Project>{d09179ac-6d9c-4f1f-bb3e-f0d02b11d315}</Project>
       <Name>BibliotecaAppRouss</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

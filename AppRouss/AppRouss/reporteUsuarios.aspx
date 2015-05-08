@@ -69,7 +69,7 @@
 
                                                 </tr>
                                             </table>
-                                            <dx:ASPxGridView ID="gvUsuarios" runat="server" KeyFieldName="idUsuario" Width="100%" Theme="Metropolis">
+                                            <dx:ASPxGridView ID="gvUsuarios" runat="server" KeyFieldName="idUsuario" Width="100%" Theme="Metropolis" SettingsPager-Mode="ShowAllRecords">
                                                 <Columns>
                                                     <dx:GridViewDataTextColumn Caption="idUsuario" FieldName="idUsuario" Visible="False" VisibleIndex="1">
                                                     </dx:GridViewDataTextColumn>
@@ -87,15 +87,19 @@
                                                     </dx:GridViewDataTextColumn>
                                                 </Columns>
                                                 <SettingsBehavior ColumnResizeMode="Control" AllowSort ="false"/>
+                                                <SettingsPager Mode="ShowAllRecords">
+                                                </SettingsPager>
                                             </dx:ASPxGridView>
-                                            <dx:ASPxGridViewExporter ID="gridExport" ExportedRowType="All" runat="server" GridViewID="gvUsuarios" PaperKind="A4" ReportFooter="{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Times New Roman;}}
-\viewkind4\uc1\pard\lang11274\f0\fs20 AppRouss\lang3082\f1\par
-}
-"
+                                            <dx:ASPxGridViewExporter ID="gridExport" FileName="ReporteUsuarios" ExportedRowType="All" runat="server" GridViewID="gvUsuarios" PaperKind="A4" 
+                                                
                                                 ReportHeader="{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Times New Roman;}}
 \viewkind4\uc1\pard\qc\lang11274\b\f0\fs28 Reporte Usuarios\lang3082\b0\fs20\par
 }
 ">
+                                                <PageHeader Right="[Date Printed] - [Time Printed]">
+                                                </PageHeader>
+                                                <PageFooter Left="2015 © Rouss Night Club " Right="[Page # of Pages #]">
+                                                </PageFooter>
                                             </dx:ASPxGridViewExporter>
                                         </div>
                                     </div>
