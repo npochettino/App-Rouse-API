@@ -170,7 +170,7 @@
 
     <dx:ASPxPopupControl ClientInstanceName="pcSorteos" Width="330px" Height="250px"
         MaxWidth="800px" MaxHeight="800px" MinHeight="150px" MinWidth="150px" CloseOnEscape="true" ID="pcSorteos"
-        AllowDragging="True" PopupElementID="imgButton" HeaderText="Eliminar de Premios" ShowHeader="false"
+        AllowDragging="True" PopupElementID="imgButton" HeaderText="Eliminar Sorteo" ShowHeader="false"
         runat="server" EnableViewState="False" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"
         EnableHierarchyRecreation="True" Modal="True" Theme="Metropolis" PopupAnimationType="Slide">
         <ContentCollection>

@@ -183,6 +183,21 @@ namespace BibliotecaAppRouss.Controladores
             }
         }
 
+        public static void EliminarUsuario(int codigoUsuario)
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                Usuario usuario = CatalogoUsuario.RecuperarPorCodigo(codigoUsuario, nhSesion);
+                CatalogoUsuario.Eliminar(usuario, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static DataTable RecuperarLogueoUsuario(string mail, string contraseña)
         {
             ISession nhSesion = ManejoNHibernate.IniciarSesion();
@@ -663,5 +678,6 @@ namespace BibliotecaAppRouss.Controladores
         }
 
         #endregion
+
     }
 }

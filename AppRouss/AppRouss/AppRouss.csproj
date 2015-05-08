@@ -3686,6 +3686,8 @@
     <Content Include="livecss.js" />
     <Content Include="login.aspx" />
     <Content Include="test.aspx" />
+    <Content Include="usuarios.aspx" />
+    <Content Include="usuariosAdd.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3783,6 +3785,20 @@
     </Compile>
     <Compile Include="test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="usuarios.aspx.cs">
+      <DependentUpon>usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usuarios.aspx.designer.cs">
+      <DependentUpon>usuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="usuariosAdd.aspx.cs">
+      <DependentUpon>usuariosAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usuariosAdd.aspx.designer.cs">
+      <DependentUpon>usuariosAdd.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

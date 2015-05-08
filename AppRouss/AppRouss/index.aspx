@@ -173,7 +173,7 @@
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <a href="reporteUsuarios.aspx" class="icon-btn">
+                            <a href="usuarios.aspx" class="icon-btn">
                                 <i class="fa fa-group"></i>
                                 <div>
                                     Usuarios
