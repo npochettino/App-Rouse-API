@@ -41,6 +41,11 @@ namespace BibliotecaAppRouss.Controladores
             {
                 throw ex;
             }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         public static DataTable RecuperarLogueoAdministrador(string nombreUsuario, string contraseña)
@@ -66,6 +71,11 @@ namespace BibliotecaAppRouss.Controladores
             {
                 throw ex;
             }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         public static DataTable RecuperarTodosAdministradores()
@@ -88,6 +98,11 @@ namespace BibliotecaAppRouss.Controladores
             {
                 throw ex;
             }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         public static void EliminarAdministrador(int codigoAdministrador)
@@ -102,6 +117,11 @@ namespace BibliotecaAppRouss.Controladores
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
             }
         }
 
@@ -132,6 +152,11 @@ namespace BibliotecaAppRouss.Controladores
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
             }
         }
 
@@ -181,20 +206,37 @@ namespace BibliotecaAppRouss.Controladores
             {
                 throw ex;
             }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         public static void EliminarUsuario(int codigoUsuario)
         {
             ISession nhSesion = ManejoNHibernate.IniciarSesion();
+            ITransaction transaccion = nhSesion.BeginTransaction();
 
             try
             {
+                List<Participante> listaParticipantes = CatalogoParticipante.RecuperarLista(x => x.Usuario.Codigo == codigoUsuario, nhSesion);
+                CatalogoParticipante.EliminarLista(listaParticipantes, nhSesion);
+
                 Usuario usuario = CatalogoUsuario.RecuperarPorCodigo(codigoUsuario, nhSesion);
                 CatalogoUsuario.Eliminar(usuario, nhSesion);
+
+                transaccion.Commit();
             }
             catch (Exception ex)
             {
+                transaccion.Rollback();
                 throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
             }
         }
 
@@ -225,6 +267,11 @@ namespace BibliotecaAppRouss.Controladores
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
             }
         }
 
@@ -260,6 +307,11 @@ namespace BibliotecaAppRouss.Controladores
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
             }
         }
 
@@ -297,6 +349,11 @@ namespace BibliotecaAppRouss.Controladores
             {
                 throw ex;
             }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         public static DataTable RecuperarTodosSorteos()
@@ -323,6 +380,11 @@ namespace BibliotecaAppRouss.Controladores
             {
                 throw ex;
             }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         public static void EliminarSorteo(int codigoSorteo)
@@ -337,6 +399,11 @@ namespace BibliotecaAppRouss.Controladores
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
             }
         }
 
@@ -372,6 +439,11 @@ namespace BibliotecaAppRouss.Controladores
             {
                 throw ex;
             }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         #endregion
@@ -404,6 +476,11 @@ namespace BibliotecaAppRouss.Controladores
             {
                 throw ex;
             }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         public static DataTable RecuperarTodosPremios()
@@ -425,6 +502,11 @@ namespace BibliotecaAppRouss.Controladores
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
             }
         }
 
@@ -461,6 +543,11 @@ namespace BibliotecaAppRouss.Controladores
             {
                 throw ex;
             }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         public static DataTable RecuperarPremiosPorUsuario(int codigoUsuario)
@@ -488,6 +575,11 @@ namespace BibliotecaAppRouss.Controladores
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
             }
         }
 
@@ -528,6 +620,11 @@ namespace BibliotecaAppRouss.Controladores
             {
                 throw ex;
             }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         public static DataTable RecuperarParticipantesPorSorteo(int codigoSorteo)
@@ -561,6 +658,11 @@ namespace BibliotecaAppRouss.Controladores
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
             }
         }
 
@@ -607,6 +709,11 @@ namespace BibliotecaAppRouss.Controladores
             {
                 throw ex;
             }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         public static void InsertarParticipante(int codigoUsuario, int codigoSorteo, int codigoPremio)
@@ -629,6 +736,11 @@ namespace BibliotecaAppRouss.Controladores
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
             }
         }
 
@@ -675,9 +787,13 @@ namespace BibliotecaAppRouss.Controladores
             {
                 throw ex;
             }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
         }
 
         #endregion
-
     }
 }

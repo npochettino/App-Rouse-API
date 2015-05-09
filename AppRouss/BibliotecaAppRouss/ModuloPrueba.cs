@@ -12,7 +12,8 @@ namespace BibliotecaAppRouss
     {
         public static void Main()
         {
-            ControladorGeneral.RecuperarPremiosPorUsuario(1);
+            ControladorGeneral.EliminarUsuario(2);
+            //ControladorGeneral.RecuperarPremiosPorUsuario(1);
         }
     }
 }
