@@ -29,18 +29,7 @@
                 </ul>
 
 
-                <div class="page-toolbar">
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-fit-height grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
-                            Acciones <i class="fa fa-angle-down"></i>
-                        </button>
-                        <ul class="dropdown-menu pull-right" role="menu">
-                            <li>
-                                <a href="usuariosAdd.aspx">Nuevo Usuarios</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                
             </div>
             <!-- END PAGE HEADER-->
 
@@ -94,10 +83,12 @@
                                                         </dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn Caption="Mail" FieldName="mail" VisibleIndex="6">
                                                         </dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn Caption="Contraseña" FieldName="contraseña" VisibleIndex="7"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn Caption="Contraseña" Visible="false" FieldName="contraseña" VisibleIndex="7"></dx:GridViewDataTextColumn>
                                                     </Columns>
                                                     <SettingsBehavior AllowFocusedRow="True" />
-                                                    <SettingsBehavior ColumnResizeMode="Control" AllowSort="false" />
+                                                    <SettingsBehavior ColumnResizeMode="Control" AllowSort ="false"/>
+                                                    <SettingsPager Mode="ShowAllRecords">
+                                                    </SettingsPager>
                                                 </dx:ASPxGridView>
                                             </div>
 
