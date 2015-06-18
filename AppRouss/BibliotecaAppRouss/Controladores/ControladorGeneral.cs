@@ -795,5 +795,165 @@ namespace BibliotecaAppRouss.Controladores
         }
 
         #endregion
+
+        #region Publicidad
+
+        public static void InsertarActualizarPublicidad(int codigoPublicidad, string rutaImagen, string descripcion, DateTime fechaHoraInicio, DateTime? fechaHoraFin)
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+            try
+            {
+                Publicidad publicidad;
+
+                if (codigoPublicidad == 0)
+                {
+                    publicidad = new Publicidad();
+                }
+                else
+                {
+                    publicidad = CatalogoPublicidad.RecuperarPorCodigo(codigoPublicidad, nhSesion);
+                }
+
+                publicidad.Descripcion = descripcion;
+                publicidad.FechaHoraFin = fechaHoraFin;
+                publicidad.FechaHoraInicio = fechaHoraInicio;
+                publicidad.RutaImagen = rutaImagen;
+
+                CatalogoPublicidad.InsertarActualizar(publicidad, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void EliminarPublicidad(int codigoPublicidad)
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                Publicidad publicidad = CatalogoPublicidad.RecuperarPorCodigo(codigoPublicidad, nhSesion);
+                CatalogoPublicidad.Eliminar(publicidad, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        public static DataTable RecuperarTodasPublicidades()
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaPublicidades = new DataTable();
+                tablaPublicidades.Columns.Add("codigoPublicidad");
+                tablaPublicidades.Columns.Add("rutaImagen");
+                tablaPublicidades.Columns.Add("descripcion");
+                tablaPublicidades.Columns.Add("fechaHoraInicio");
+                tablaPublicidades.Columns.Add("fechaHoraFin");
+
+                List<Publicidad> listaPublicidades = CatalogoPublicidad.RecuperarTodos(nhSesion);
+
+                (from s in listaPublicidades.OrderBy(x => x.FechaHoraInicio) select s).Aggregate(tablaPublicidades, (dt, r) => { dt.Rows.Add(r.Codigo, r.RutaImagen, r.Descripcion, r.FechaHoraInicio.ToString("dd/MM/yyyy HH:mm:ss"), r.FechaHoraFin == null ? string.Empty : r.FechaHoraFin.Value.ToString("dd/MM/yyyy HH:mm:ss")); return dt; });
+                return tablaPublicidades;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataTable RecuperarPublicidadActual()
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaPublicidad = new DataTable();
+                tablaPublicidad.Columns.Add("codigoPublicidad");
+                tablaPublicidad.Columns.Add("rutaImagen");
+                tablaPublicidad.Columns.Add("descripcion");
+                tablaPublicidad.Columns.Add("fechaHoraInicio");
+                tablaPublicidad.Columns.Add("fechaHoraFin");
+
+                Publicidad publicidad = CatalogoPublicidad.RecuperarPor(x => x.FechaHoraInicio <= DateTime.Now && (x.FechaHoraFin.Value >= DateTime.Now || x.FechaHoraFin == null), nhSesion);
+
+                if (publicidad != null)
+                {
+                    tablaPublicidad.Rows.Add(new object[] { publicidad.Codigo, publicidad.RutaImagen, publicidad.Descripcion, publicidad.FechaHoraInicio.ToString("dd/MM/yyyy HH:mm:ss"), publicidad.FechaHoraFin == null ? string.Empty : publicidad.FechaHoraFin.Value.ToString("dd/MM/yyyy HH:mm:ss") });
+                }
+                else
+                {
+                    tablaPublicidad.Rows.Add(new object[] { 0, DateTime.MinValue, DateTime.MinValue, string.Empty, 0, 0, 0 });
+                }
+
+                return tablaPublicidad;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                nhSesion.Close();
+                nhSesion.Dispose();
+            }
+        }
+
+        #endregion
+
+        #region Push
+
+        public static void InsertarPush(int codigoPush, string descripcion, DateTime fechaHoraEnvio)
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+            try
+            {
+                Push push;
+
+                push = new Push();
+
+                push.Descripcion = descripcion;
+                push.FechaHoraEnvio = fechaHoraEnvio;
+
+                CatalogoPush.InsertarActualizar(push, nhSesion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataTable RecuperarTodasPush()
+        {
+            ISession nhSesion = ManejoNHibernate.IniciarSesion();
+
+            try
+            {
+                DataTable tablaPushes = new DataTable();
+                tablaPushes.Columns.Add("codigoPush");
+                tablaPushes.Columns.Add("descripcion");
+                tablaPushes.Columns.Add("fechaHoraEnvio");
+
+                List<Push> listaPushes = CatalogoPush.RecuperarTodos(nhSesion);
+
+                (from s in listaPushes.OrderBy(x => x.FechaHoraEnvio) select s).Aggregate(tablaPushes, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.FechaHoraEnvio.ToString("dd/MM/yyyy HH:mm:ss")); return dt; });
+                return tablaPushes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion
     }
 }

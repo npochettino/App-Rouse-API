@@ -12,8 +12,8 @@ namespace BibliotecaAppRouss
     {
         public static void Main()
         {
-            ControladorGeneral.EliminarUsuario(2);
-            //ControladorGeneral.RecuperarPremiosPorUsuario(1);
+            ControladorGeneral.InsertarPush(0, "aaa", DateTime.Now);
+            ControladorGeneral.RecuperarTodasPush();
         }
     }
 }
