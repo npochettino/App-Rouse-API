@@ -18,6 +18,12 @@ namespace AppRouss
                 Response.Redirect("login.aspx");
             }
             lblUsuario.Text = " " + Session["usuarioAdm"].ToString();
+            
+            if (Session["usuarioAdm"].ToString() != "sempait")
+            {
+                idPublicidad.Visible = false;
+                idPush.Visible = false;
+            }
         }
         protected void lnkSalir_Click(object sender, EventArgs e)
         {

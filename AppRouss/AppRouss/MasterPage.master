@@ -106,7 +106,8 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <img alt="" class="img-circle" src="assets/rouss/avatar_1.png" />
                                 <span class="username username-hide-on-mobile">
-                                    <asp:Label ID="lblUsuario" runat="server" Text=""></asp:Label> </span>
+                                    <asp:Label ID="lblUsuario" runat="server" Text=""></asp:Label>
+                                </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
@@ -180,9 +181,18 @@
 						
 					</ul>--%>
                         </li>
-
-
-
+                        <li id="idPush" runat="server">
+                            <a href="push_notification.aspx">
+                                <i class="icon-note"></i>
+                                <span class="title">Push Notification</span>
+                            </a>
+                        </li>
+                        <li id="idPublicidad" runat="server">
+                            <a href="publicidad.aspx">
+                                <i class="icon-camera"></i>
+                                <span class="title">Publicidad</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="javascript:;">
                                 <i class="icon-briefcase"></i>
