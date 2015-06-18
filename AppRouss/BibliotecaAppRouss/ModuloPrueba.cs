@@ -12,8 +12,7 @@ namespace BibliotecaAppRouss
     {
         public static void Main()
         {
-            ControladorGeneral.InsertarPush(0, "aaa", DateTime.Now);
-            ControladorGeneral.RecuperarTodasPush();
+            ClasesComplementarias.PushNotification.Enviar("prueba 2");
         }
     }
 }

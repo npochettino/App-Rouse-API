@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D09179AC-6D9C-4F1F-BB3E-F0D02B11D315}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BibliotecaAppRouss</RootNamespace>
     <AssemblyName>BibliotecaAppRouss</AssemblyName>
@@ -39,6 +39,9 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
@@ -60,6 +63,7 @@
     <Compile Include="Catalogos\CatalogoSorteo.cs" />
     <Compile Include="Catalogos\CatalogoUsuario.cs" />
     <Compile Include="ClasesComplementarias\ManejoNHibernate.cs" />
+    <Compile Include="ClasesComplementarias\PushNotification.cs" />
     <Compile Include="Clases\Administrador.cs" />
     <Compile Include="Clases\Participante.cs" />
     <Compile Include="Clases\Premio.cs" />
