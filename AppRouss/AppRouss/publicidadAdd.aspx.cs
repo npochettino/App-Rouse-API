@@ -11,7 +11,7 @@ namespace AppRouss
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //2048 x 1536
         }
 
         protected void btnConfirmar_Click(object sender, EventArgs e)

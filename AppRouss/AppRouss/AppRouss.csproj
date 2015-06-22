@@ -3679,8 +3679,7 @@
     <Content Include="premios.aspx" />
     <Content Include="publicidad.aspx" />
     <Content Include="publicidadAdd.aspx" />
-    <Content Include="push_notification.aspx" />
-    <Content Include="push_notificationAdd.aspx" />
+    <Content Include="push.aspx" />
     <Content Include="reporteParticipantes.aspx" />
     <Content Include="reporteUsuarios.aspx" />
     <Content Include="reporteGanadores.aspx" />
@@ -3753,19 +3752,12 @@
     <Compile Include="publicidadAdd.aspx.designer.cs">
       <DependentUpon>publicidadAdd.aspx</DependentUpon>
     </Compile>
-    <Compile Include="push_notification.aspx.cs">
-      <DependentUpon>push_notification.aspx</DependentUpon>
+    <Compile Include="push.aspx.cs">
+      <DependentUpon>push.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="push_notification.aspx.designer.cs">
-      <DependentUpon>push_notification.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="push_notificationAdd.aspx.cs">
-      <DependentUpon>push_notificationAdd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="push_notificationAdd.aspx.designer.cs">
-      <DependentUpon>push_notificationAdd.aspx</DependentUpon>
+    <Compile Include="push.aspx.designer.cs">
+      <DependentUpon>push.aspx</DependentUpon>
     </Compile>
     <Compile Include="reporteParticipantes.aspx.cs">
       <DependentUpon>reporteParticipantes.aspx</DependentUpon>
@@ -4114,6 +4106,9 @@
       <Project>{d09179ac-6d9c-4f1f-bb3e-f0d02b11d315}</Project>
       <Name>BibliotecaAppRouss</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
