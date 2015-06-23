@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace BibliotecaAppRouss.ClasesComplementarias
 {
-    class PushNotification
+    public class PushNotification
     {
         public static bool Enviar(string pushMessage)
         {

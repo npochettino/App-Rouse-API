@@ -44,6 +44,7 @@ namespace AppRouss
                 pushActual.FechaHoraEnvio = DateTime.Now;
 
                 ControladorGeneral.InsertarPush(0,txtPush.Text, DateTime.Now);
+                BibliotecaAppRouss.ClasesComplementarias.PushNotification.Enviar(txtPush.Text);
 
                 lblDescripcionPush.Visible = false;
                 txtPush.Visible = false;
