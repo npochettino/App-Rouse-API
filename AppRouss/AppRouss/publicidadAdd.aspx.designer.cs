@@ -67,22 +67,31 @@ namespace AppRouss {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblFechaHasta;
         
         /// <summary>
-        /// Control ASPxUploadControl1.
+        /// Control fuImagen.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxUploadControl.ASPxUploadControl ASPxUploadControl1;
+        protected global::System.Web.UI.WebControls.FileUpload fuImagen;
         
         /// <summary>
-        /// Control lblCantidadOportunidades.
+        /// Control lblImagenCargada.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblCantidadOportunidades;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblImagenCargada;
+        
+        /// <summary>
+        /// Control lblImagen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblImagen;
         
         /// <summary>
         /// Control btnConfirmar.

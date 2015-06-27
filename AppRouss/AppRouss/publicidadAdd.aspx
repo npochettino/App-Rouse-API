@@ -91,14 +91,17 @@
                                                     </dx:ASPxDateEdit>
                                                     <label id="lblFechaHasta" class="help-block" style="color: red" visible="false" runat="server"></label>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="control-label">Imagen</label>
-
-                                                    <dx:ASPxUploadControl ID="ASPxUploadControl1" runat="server" Width="280px" Theme="Metropolis">
-                                                        <ValidationSettings MaxFileSize="4194304" AllowedFileExtensions=".jpg, .jpeg, .gif, .png" />
-
-                                                    </dx:ASPxUploadControl>
-                                                    <label id="lblCantidadOportunidades" class="help-block" style="color: red" visible="false" runat="server"></label>
+                                                <label class="control-label">Imagen de publicidad</label>
+                                                <div class="form-group">                                                    
+                                                    <div class="col-lg-6">
+                                                            <asp:FileUpload ID="fuImagen" runat="server" />                                                           
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                            <p>
+                                                                <label id="lblImagenCargada" class="control-label" runat="server"></label>
+                                                            </p>
+                                                    </div>
+                                                    <label id="lblImagen" class="help-block" style="color: red" visible="false" runat="server"></label>
                                                 </div>
                                             </div>
                                             <div class="form-actions">

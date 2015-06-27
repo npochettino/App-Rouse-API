@@ -12,6 +12,6 @@ namespace BibliotecaAppRouss.Clases
         public virtual string Descripcion { get; set; }
         public virtual string RutaImagen { get; set; }
         public virtual DateTime FechaHoraInicio { get; set; }
-        public virtual DateTime? FechaHoraFin { get; set; }
+        public virtual DateTime FechaHoraFin { get; set; }
     }
 }

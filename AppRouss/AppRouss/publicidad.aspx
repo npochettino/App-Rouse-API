@@ -61,17 +61,19 @@
                                                 <dx:ASPxGridView ID="gvPublicidad" runat="server" KeyFieldName="codigoPublicidad" Width="100%" Theme="Metropolis" AutoGenerateColumns="False">
                                                     <Columns>
                                                         <dx:GridViewDataTextColumn FieldName="codigoPublicidad" ShowInCustomizationForm="True" Caption="Codigo" Visible="False" VisibleIndex="1"></dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="rutaImagen" ShowInCustomizationForm="True" Caption="Ruta Imagen" Visible="false" VisibleIndex="5"></dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataDateColumn FieldName="fechaHoraInicio" VisibleIndex="2" Caption="Fecha Desde">
+                                                        <dx:GridViewDataTextColumn FieldName="rutaImagen" ShowInCustomizationForm="True" Caption="Ruta Imagen" Visible="True" VisibleIndex="2"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn FieldName="descripcion" ShowInCustomizationForm="True" Caption="Descripción" VisibleIndex="3"></dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataDateColumn FieldName="fechaHoraInicio" VisibleIndex="4" Caption="Fecha Desde">
                                                         </dx:GridViewDataDateColumn>
-                                                        <dx:GridViewDataDateColumn FieldName="fechaHoraFin" VisibleIndex="3" Caption="Fecha Hasta">
+                                                        <dx:GridViewDataDateColumn FieldName="fechaHoraFin" VisibleIndex="5" Caption="Fecha Hasta">
                                                         </dx:GridViewDataDateColumn>
-                                                        <dx:GridViewDataTextColumn FieldName="descripcion" ShowInCustomizationForm="True" Caption="Descripción" VisibleIndex="4"></dx:GridViewDataTextColumn>
+                                                        
                                                      
                                                     </Columns>
                                                     <SettingsBehavior ColumnResizeMode="Control" AllowSort="false"/>
                                                     <SettingsPager Mode="ShowAllRecords">
                                                     </SettingsPager>
+                                                    <SettingsBehavior AllowFocusedRow="True" />
                                                 </dx:ASPxGridView>
                                             </div>
 

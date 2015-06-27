@@ -18,6 +18,9 @@ namespace AppRouss
             {
                 LoadGridPublicidad();
             }
+            Session["publicidadActual"] = null;
+            Session["codigoOperacion"] = null;
+            Session["rutaImagen"] = null;
         }
 
         private void LoadGridPublicidad()
@@ -42,7 +45,8 @@ namespace AppRouss
 
         protected void btnEditarPublicidad_Click(object sender, EventArgs e)
         {
-            Modificar();
+            if(gvPublicidad.FocusedRowIndex != -1)
+                Modificar();
         }
 
         private void Modificar()
@@ -50,7 +54,7 @@ namespace AppRouss
 
             Publicidad publicidadActual = new Publicidad();
 
-            publicidadActual.Codigo = int.Parse(gvPublicidad.GetRowValues(gvPublicidad.FocusedRowIndex, "codigopublicidad").ToString());
+            publicidadActual.Codigo = int.Parse(gvPublicidad.GetRowValues(gvPublicidad.FocusedRowIndex, "codigoPublicidad").ToString());
             publicidadActual.RutaImagen = gvPublicidad.GetRowValues(gvPublicidad.FocusedRowIndex, "rutaImagen").ToString();
             publicidadActual.FechaHoraInicio = DateTime.Parse(gvPublicidad.GetRowValues(gvPublicidad.FocusedRowIndex, "fechaHoraInicio").ToString());
             publicidadActual.FechaHoraFin = DateTime.Parse(gvPublicidad.GetRowValues(gvPublicidad.FocusedRowIndex, "fechaHoraFin").ToString());
@@ -63,7 +67,7 @@ namespace AppRouss
 
         protected void btnEliminarPublicidad_Click(object sender, EventArgs e)
         {
-            lblMensajeEliminarPublicidad.Text = "¿Esta seguro que desea eliminar el sorteo?";
+            lblMensajeEliminarPublicidad.Text = "¿Esta seguro que desea eliminar la publicidad?";
             
             pcPublicidad.ShowOnPageLoad = true;
         }
@@ -89,7 +93,7 @@ namespace AppRouss
 
         protected void btnAceptarPcMensajeNotificacion_Click(object sender, EventArgs e)
         {
-
+            pcAceptarPcMensajeNotificacion.ShowOnPageLoad = false;
         }
     }
 }

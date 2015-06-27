@@ -798,7 +798,7 @@ namespace BibliotecaAppRouss.Controladores
 
         #region Publicidad
 
-        public static void InsertarActualizarPublicidad(int codigoPublicidad, string rutaImagen, string descripcion, DateTime fechaHoraInicio, DateTime? fechaHoraFin)
+        public static void InsertarActualizarPublicidad(int codigoPublicidad, string rutaImagen, string descripcion, DateTime fechaHoraInicio, DateTime fechaHoraFin)
         {
             ISession nhSesion = ManejoNHibernate.IniciarSesion();
             try
@@ -862,7 +862,7 @@ namespace BibliotecaAppRouss.Controladores
 
                 List<Publicidad> listaPublicidades = CatalogoPublicidad.RecuperarTodos(nhSesion);
 
-                (from s in listaPublicidades.OrderBy(x => x.FechaHoraInicio) select s).Aggregate(tablaPublicidades, (dt, r) => { dt.Rows.Add(r.Codigo, r.RutaImagen, r.Descripcion, r.FechaHoraInicio.ToString("dd/MM/yyyy HH:mm:ss"), r.FechaHoraFin == null ? string.Empty : r.FechaHoraFin.Value.ToString("dd/MM/yyyy HH:mm:ss")); return dt; });
+                (from s in listaPublicidades.OrderBy(x => x.FechaHoraInicio) select s).Aggregate(tablaPublicidades, (dt, r) => { dt.Rows.Add(r.Codigo, r.RutaImagen, r.Descripcion, r.FechaHoraInicio.ToString("dd/MM/yyyy HH:mm:ss"), r.FechaHoraFin.ToString("dd/MM/yyyy HH:mm:ss")); return dt; });
                 return tablaPublicidades;
             }
             catch (Exception ex)
@@ -884,15 +884,15 @@ namespace BibliotecaAppRouss.Controladores
                 tablaPublicidad.Columns.Add("fechaHoraInicio");
                 tablaPublicidad.Columns.Add("fechaHoraFin");
 
-                Publicidad publicidad = CatalogoPublicidad.RecuperarPor(x => x.FechaHoraInicio <= DateTime.Now && (x.FechaHoraFin.Value >= DateTime.Now || x.FechaHoraFin == null), nhSesion);
+                Publicidad publicidad = CatalogoPublicidad.RecuperarPor(x => x.FechaHoraInicio <= DateTime.Now && (x.FechaHoraFin >= DateTime.Now || x.FechaHoraFin == null), nhSesion);
 
                 if (publicidad != null)
                 {
-                    tablaPublicidad.Rows.Add(new object[] { publicidad.Codigo, publicidad.RutaImagen, publicidad.Descripcion, publicidad.FechaHoraInicio.ToString("dd/MM/yyyy HH:mm:ss"), publicidad.FechaHoraFin == null ? string.Empty : publicidad.FechaHoraFin.Value.ToString("dd/MM/yyyy HH:mm:ss") });
+                    tablaPublicidad.Rows.Add(new object[] { publicidad.Codigo, publicidad.RutaImagen, publicidad.Descripcion, publicidad.FechaHoraInicio.ToString("dd/MM/yyyy HH:mm:ss"), publicidad.FechaHoraFin.ToString("dd/MM/yyyy HH:mm:ss") });
                 }
                 else
                 {
-                    tablaPublicidad.Rows.Add(new object[] { 0, DateTime.MinValue, DateTime.MinValue, string.Empty, 0, 0, 0 });
+                    tablaPublicidad.Rows.Add(new object[] { 0,string.Empty,string.Empty, DateTime.MinValue, DateTime.MinValue});
                 }
 
                 return tablaPublicidad;
