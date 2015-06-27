@@ -202,7 +202,6 @@ namespace AppRouss
             }
         }
 
-
         private void EnviarEmailRecuperarContraseña(string nombre, string apellido, string contraseña, string email)
         {
             string HTMLRecuperarContraseña = "";
@@ -238,5 +237,26 @@ namespace AppRouss
             }
         }
 
+        [WebMethod]
+        public string RecuperarImagenPublicidadVigente()
+        {
+            try
+            {
+                DataTable tablaPublicidad = ControladorGeneral.RecuperarPublicidadActual();
+
+                if (tablaPublicidad.Rows.Count > 0)
+                {
+                    return tablaPublicidad.Rows[0]["rutaImagen"].ToString();
+                }
+                else
+                {
+                    return "SinPublicidad";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

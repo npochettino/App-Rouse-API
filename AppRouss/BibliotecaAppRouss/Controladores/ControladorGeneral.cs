@@ -890,10 +890,6 @@ namespace BibliotecaAppRouss.Controladores
                 {
                     tablaPublicidad.Rows.Add(new object[] { publicidad.Codigo, publicidad.RutaImagen, publicidad.Descripcion, publicidad.FechaHoraInicio.ToString("dd/MM/yyyy HH:mm:ss"), publicidad.FechaHoraFin.ToString("dd/MM/yyyy HH:mm:ss") });
                 }
-                else
-                {
-                    tablaPublicidad.Rows.Add(new object[] { 0,string.Empty,string.Empty, DateTime.MinValue, DateTime.MinValue});
-                }
 
                 return tablaPublicidad;
             }
