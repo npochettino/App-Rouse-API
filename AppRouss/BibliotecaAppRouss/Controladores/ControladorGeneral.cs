@@ -319,7 +319,7 @@ namespace BibliotecaAppRouss.Controladores
 
         #region Sorteo
 
-        public static void InsertarActualizarSorteo(int codigoSorteo, DateTime fechaDesde, DateTime fechaHasta, string descripcion, int cantidadTirosPorUsuario, int cantidadPremiosPorUsuario, int cantidadTotalPremios)
+        public static string InsertarActualizarSorteo(int codigoSorteo, DateTime fechaDesde, DateTime fechaHasta, string descripcion, int cantidadTirosPorUsuario, int cantidadPremiosPorUsuario, int cantidadTotalPremios, bool enviarPush)
         {
             ISession nhSesion = ManejoNHibernate.IniciarSesion();
 
@@ -344,6 +344,22 @@ namespace BibliotecaAppRouss.Controladores
                 sorteo.FechaHasta = fechaHasta;
 
                 CatalogoSorteo.InsertarActualizar(sorteo, nhSesion);
+
+                if (codigoSorteo == 0 && enviarPush)
+                {
+                    Push pushAutomatica = CatalogoPush.RecuperarPor(x => x.IsAutomatica == true, nhSesion);
+
+                    if (pushAutomatica == null)
+                    {
+                        return "PushAutomaticaInexistente";
+                    }
+                    else
+                    {
+                        PushNotification.Enviar(pushAutomatica.Descripcion);
+                    }
+                }
+
+                return "ok";
             }
             catch (Exception ex)
             {
@@ -908,17 +924,29 @@ namespace BibliotecaAppRouss.Controladores
 
         #region Push
 
-        public static void InsertarPush(int codigoPush, string descripcion, DateTime fechaHoraEnvio)
+        public static void InsertarActualizarPush(int codigoPush, string descripcion, DateTime fechaHoraEnvio, bool isAutomatica)
         {
             ISession nhSesion = ManejoNHibernate.IniciarSesion();
             try
             {
                 Push push;
 
-                push = new Push();
+                if (codigoPush == 0 && !isAutomatica)
+                {
+                    push = new Push();
+                }
+                else if(isAutomatica)
+                {
+                    push = CatalogoPush.RecuperarPor(x => x.IsAutomatica == true, nhSesion);
+                }
+                else
+                {
+                    push = CatalogoPush.RecuperarPorCodigo(codigoPush, nhSesion);
+                }
 
                 push.Descripcion = descripcion;
                 push.FechaHoraEnvio = fechaHoraEnvio;
+                push.IsAutomatica = isAutomatica;
 
                 CatalogoPush.InsertarActualizar(push, nhSesion);
             }
@@ -928,7 +956,7 @@ namespace BibliotecaAppRouss.Controladores
             }
         }
 
-        public static DataTable RecuperarTodasPush()
+        public static DataTable RecuperarTodasPush(bool isAutomatica)
         {
             ISession nhSesion = ManejoNHibernate.IniciarSesion();
 
@@ -939,7 +967,7 @@ namespace BibliotecaAppRouss.Controladores
                 tablaPushes.Columns.Add("descripcion");
                 tablaPushes.Columns.Add("fechaHoraEnvio");
 
-                List<Push> listaPushes = CatalogoPush.RecuperarTodos(nhSesion);
+                List<Push> listaPushes = CatalogoPush.RecuperarLista(x => x.IsAutomatica == isAutomatica, nhSesion);
 
                 (from s in listaPushes.OrderBy(x => x.FechaHoraEnvio) select s).Aggregate(tablaPushes, (dt, r) => { dt.Rows.Add(r.Codigo, r.Descripcion, r.FechaHoraEnvio.ToString("dd/MM/yyyy HH:mm:ss")); return dt; });
                 return tablaPushes;

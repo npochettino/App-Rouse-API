@@ -21,7 +21,7 @@ namespace AppRouss
 
         private void LoadGridPush()
         {
-            gvPush.DataSource = ControladorGeneral.RecuperarTodasPush();
+            gvPush.DataSource = ControladorGeneral.RecuperarTodasPush(false); //se agrega booleano
             gvPush.DataBind();
         }
 
@@ -43,7 +43,7 @@ namespace AppRouss
                 pushActual.Descripcion = txtPush.Text;
                 pushActual.FechaHoraEnvio = DateTime.Now;
 
-                ControladorGeneral.InsertarPush(0,txtPush.Text, DateTime.Now);
+                ControladorGeneral.InsertarActualizarPush(0, txtPush.Text, DateTime.Now, false); //cambiar isAutomatica
                 BibliotecaAppRouss.ClasesComplementarias.PushNotification.Enviar(txtPush.Text);
 
                 lblDescripcionPush.Visible = false;
@@ -65,8 +65,8 @@ namespace AppRouss
         private bool validar()
         {
             if (txtPush.Text == "" || string.IsNullOrWhiteSpace(txtPush.Text) == true || string.IsNullOrEmpty(txtPush.Text) == true)
-            { lblPush.InnerText = " El campo es requerido"; return false; }            
-            
+            { lblPush.InnerText = " El campo es requerido"; return false; }
+
             return true;
         }
 

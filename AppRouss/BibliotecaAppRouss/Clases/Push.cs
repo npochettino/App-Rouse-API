@@ -11,5 +11,6 @@ namespace BibliotecaAppRouss.Clases
         public virtual int Codigo { get; set; }
         public virtual string Descripcion { get; set; }
         public virtual DateTime FechaHoraEnvio { get; set; }
+        public virtual bool IsAutomatica { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace BibliotecaAppRouss.Mapeos
             Id(x => x.Codigo).Column("idPush").GeneratedBy.Identity();
             Map(x => x.Descripcion).Column("descripcion");
             Map(x => x.FechaHoraEnvio).Column("fechaHoraEnvio");
+            Map(x => x.IsAutomatica).Column("isAutomatica");
         }
     }
 }

@@ -18,6 +18,7 @@ namespace BibliotecaAppRouss.ClasesComplementarias
             string postString = "";
             string urlpath = "https://api.parse.com/1/push";
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(urlpath);
+            
             postString = "{ \"channels\": [ \"SempaIT\"  ], " +
                              "\"data\" : {\"alert\":\"" + pushMessage + "\"}" +
                              "}";
@@ -30,6 +31,7 @@ namespace BibliotecaAppRouss.ClasesComplementarias
             requestWriter.Write(postString);
             requestWriter.Close();
             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
                 var responseText = streamReader.ReadToEnd();

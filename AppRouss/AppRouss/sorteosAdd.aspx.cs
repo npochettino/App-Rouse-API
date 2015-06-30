@@ -54,14 +54,14 @@ namespace AppRouss
                 if (Session["codigoOperacion"] == null)
                 {
                     oSorteoActual = (Sorteo)Session["sorteoActual"];
-                    ControladorGeneral.InsertarActualizarSorteo(oSorteoActual.Codigo,deFechaDesde.Date,deFechaHasta.Date,txtDescripcionSorteo.Text,int.Parse(txtCantidadOportunidades.Text),int.Parse(txtCantidadVictorias.Text), int.Parse(txtCantidadTotalPremios.Text));
+                    ControladorGeneral.InsertarActualizarSorteo(oSorteoActual.Codigo,deFechaDesde.Date,deFechaHasta.Date,txtDescripcionSorteo.Text,int.Parse(txtCantidadOportunidades.Text),int.Parse(txtCantidadVictorias.Text), int.Parse(txtCantidadTotalPremios.Text), false); //cambiar ultimo parametro
                     lblMensajeSorteo.Text = "El sorteo se modificó correctamente.";
                     pcSorteos.ShowOnPageLoad = true;
                 }
                 //si el codigoOperacion es != null hago un insert.
                 else
                 {
-                    ControladorGeneral.InsertarActualizarSorteo(0, DateTime.Parse(deFechaDesde.Text), DateTime.Parse(deFechaHasta.Text), txtDescripcionSorteo.Text, int.Parse(txtCantidadOportunidades.Text), int.Parse(txtCantidadVictorias.Text), int.Parse(txtCantidadTotalPremios.Text));
+                    ControladorGeneral.InsertarActualizarSorteo(0, DateTime.Parse(deFechaDesde.Text), DateTime.Parse(deFechaHasta.Text), txtDescripcionSorteo.Text, int.Parse(txtCantidadOportunidades.Text), int.Parse(txtCantidadVictorias.Text), int.Parse(txtCantidadTotalPremios.Text), false); //cambiar ultimo parametro
                     lblMensajeSorteo.Text = "El sorteo se ha creado correctamente.";
                     pcSorteos.ShowOnPageLoad = true;
                 }
