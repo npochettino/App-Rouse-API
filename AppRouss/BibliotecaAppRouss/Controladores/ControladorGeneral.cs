@@ -386,10 +386,12 @@ namespace BibliotecaAppRouss.Controladores
                 tablaSorteos.Columns.Add("cantidadTirosPorUsuario");
                 tablaSorteos.Columns.Add("cantidadPremiosPorUsuario");
                 tablaSorteos.Columns.Add("cantidadPremiosTotales");
+                tablaSorteos.Columns.Add("cantidadParticipantes");
+                tablaSorteos.Columns.Add("cantidadGanadores");
 
                 List<Sorteo> listaSorteos = CatalogoSorteo.RecuperarTodos(nhSesion);
 
-                (from s in listaSorteos.OrderBy(x => x.FechaDesde) select s).Aggregate(tablaSorteos, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde.ToString("dd/MM/yyyy HH:mm:ss"), r.FechaHasta.ToString("dd/MM/yyyy HH:mm:ss"), r.Descripcion, r.CantidadTirosPorUsuario, r.CantidadPremiosPorUsuario, r.CantidadPremiosTotales); return dt; });
+                (from s in listaSorteos.OrderBy(x => x.FechaDesde) select s).Aggregate(tablaSorteos, (dt, r) => { dt.Rows.Add(r.Codigo, r.FechaDesde.ToString("dd/MM/yyyy HH:mm:ss"), r.FechaHasta.ToString("dd/MM/yyyy HH:mm:ss"), r.Descripcion, r.CantidadTirosPorUsuario, r.CantidadPremiosPorUsuario, r.CantidadPremiosTotales, r.Participantes.Count, (from p in r.Participantes where p.Premio.Codigo != 4 select p).Count()); return dt; });
                 return tablaSorteos;
             }
             catch (Exception ex)
